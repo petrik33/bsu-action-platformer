@@ -1,3 +1,48 @@
 [gd_scene format=3 uid="uid://nf1afiohuuo4"]
 
+[ext_resource type="PackedScene" uid="uid://dw4q416nx8pd5" path="res://scene/character.tscn" id="1_5kiuu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbls1"]
+size = Vector2(640, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kiuu"]
+size = Vector2(20, 44)
+
 [node name="Game" type="Node2D" unique_id=220446193]
+
+[node name="Character" parent="." unique_id=205535491 instance=ExtResource("1_5kiuu")]
+
+[node name="Camera2D" type="Camera2D" parent="Character" unique_id=745299939]
+position = Vector2(0, -8)
+zoom = Vector2(2, 2)
+drag_horizontal_enabled = true
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=978909707]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=926906774]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_dbls1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=1337536415]
+
+[node name="ColorRect" type="ColorRect" parent="Floor" unique_id=1498684897]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_right = 320.0
+offset_bottom = 32.0
+grow_horizontal = 2
+color = Color(0.2847, 0.39, 0.39, 1)
+
+[node name="Wall" type="StaticBody2D" parent="." unique_id=153506757]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=1036053378]
+position = Vector2(81, -22)
+shape = SubResource("RectangleShape2D_5kiuu")
+
+[node name="ColorRect" type="ColorRect" parent="Wall" unique_id=34403835]
+offset_left = 71.0
+offset_top = -44.0
+offset_right = 91.0
+color = Color(0.115499996, 0.25229168, 0.35, 1)
