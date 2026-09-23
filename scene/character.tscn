@@ -85,5 +85,4 @@ shape = SubResource("RectangleShape2D_lp7ui")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1717960583]
 sprite_frames = SubResource("SpriteFrames_0hf0l")
 animation = &"idle"
-frame_progress = 0.24498768
 offset = Vector2(0, -16)
