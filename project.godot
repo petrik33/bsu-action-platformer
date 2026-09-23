@@ -25,7 +25,8 @@ window/size/mode=2
 
 folder_colors={
 "res://asset/": "red",
-"res://scene/": "blue"
+"res://scene/": "blue",
+"res://script/": "yellow"
 }
 
 [input]
