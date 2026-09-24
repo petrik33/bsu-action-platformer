@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c66ehfrg0jmo0"
-path="res://.godot/imported/player_recolored_spritesheet.png-1865ee9835b8dfa279790cbbb08cc31f.ctex"
+uid="uid://cyems2rhg4r7"
+path="res://.godot/imported/character_recolored_no_vfx.png-e6cdab7956326b8f9c2eb448f6134b94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/texture/character/player_recolored_spritesheet.png"
-dest_files=["res://.godot/imported/player_recolored_spritesheet.png-1865ee9835b8dfa279790cbbb08cc31f.ctex"]
+source_file="res://asset/texture/character/character_recolored_no_vfx.png"
+dest_files=["res://.godot/imported/character_recolored_no_vfx.png-e6cdab7956326b8f9c2eb448f6134b94.ctex"]
 
 [params]
 
