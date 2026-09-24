@@ -2,7 +2,9 @@ extends CharacterBody2D
 
 @export var speed := 400
 @export var jump_velocity := 300
+
 @export var sprite: AnimatedSprite2D
+@export var visuals: Node2D
 
 
 func _process(_delta: float) -> void:
@@ -12,12 +14,12 @@ func _process(_delta: float) -> void:
 		else:
 			sprite.animation = "jump_down"
 	elif abs(velocity.x) > 0:
-		sprite.animation = "walk"
+		sprite.animation = "run"
 	else:
 		sprite.animation = "idle"
 		
 	if abs(velocity.x) > 0:
-		sprite.flip_h = sign(velocity.x) == -1
+		visuals.scale.x = abs(visuals.scale.x) * sign(velocity.x)
 
 
 func _physics_process(delta: float):
