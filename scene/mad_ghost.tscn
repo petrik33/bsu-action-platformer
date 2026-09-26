@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://cv0nc1nnyjsh0"]
+
+[ext_resource type="Script" uid="uid://bxova767wkam4" path="res://script/mad_ghost.gd" id="1_g1sfn"]
+[ext_resource type="Texture2D" uid="uid://ddpi7h3eqkmal" path="res://asset/texture/enemies/Mad Ghost/Mad Ghost-Sheet Separated tags.png" id="1_tuwl0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuwl0"]
+size = Vector2(8, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhwnp"]
+atlas = ExtResource("1_tuwl0")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1sfn"]
+atlas = ExtResource("1_tuwl0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25wn3"]
+atlas = ExtResource("1_tuwl0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cplct"]
+atlas = ExtResource("1_tuwl0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d43v4"]
+atlas = ExtResource("1_tuwl0")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3a8sd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhwnp")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1sfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25wn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cplct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d43v4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1sfn"]
+size = Vector2(24, 37.5)
+
+[node name="MadGhost" type="CharacterBody2D" unique_id=1439942586 node_paths=PackedStringArray("ground_ray", "hurt_box", "sprite")]
+collision_layer = 4
+script = ExtResource("1_g1sfn")
+ground_ray = NodePath("GroundRayCast")
+hurt_box = NodePath("HurtBox")
+sprite = NodePath("Visual/AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1859505110]
+position = Vector2(0, -23.5)
+shape = SubResource("RectangleShape2D_tuwl0")
+
+[node name="Visual" type="Node2D" parent="." unique_id=809263730]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual" unique_id=1272308513]
+sprite_frames = SubResource("SpriteFrames_3a8sd")
+animation = &"hurt"
+autoplay = "idle"
+offset = Vector2(-3, -36)
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1251584711]
+collision_layer = 64
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1106873227]
+position = Vector2(0, -23.25)
+shape = SubResource("RectangleShape2D_g1sfn")
+debug_color = Color(0.7, 0.05833332, 0, 0.41960785)
+
+[node name="GroundRayCast" type="RayCast2D" parent="." unique_id=1143814937]
+position = Vector2(0, -5)
+target_position = Vector2(0, 200)
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
