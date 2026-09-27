@@ -4,6 +4,7 @@ class_name CharacterStateIdle extends CharacterStateBase
 func enter(_from: CharacterStateBase):
 	character.set_animation("idle")
 	character.reset_speed()
+	character.reset_jumps()
 
 
 func handle_input() -> StringName:

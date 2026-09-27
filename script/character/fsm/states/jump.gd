@@ -1,15 +1,14 @@
 class_name CharacterStateJump extends CharacterStateBase
 
 
-@export var jump_velocity := 300.0
-
-
 func enter(from: CharacterStateBase):
-	character.velocity.y = -jump_velocity
+	character.jump()
 	character.set_animation("jump_up")
 
 
 func handle_input() -> StringName:
+	if Input.is_action_just_pressed("jump") and character.can_jump():
+		character.jump()
 	if Input.is_action_just_pressed("click"):
 		return "attack"
 	return ""

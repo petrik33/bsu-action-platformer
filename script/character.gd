@@ -8,6 +8,8 @@ signal animation_finished(anim_name: StringName)
 @export var gravity := 900.0
 @export var acceleration := 2000.0
 @export var decceleration := 1250.0
+@export var jump_velocity := 300.0
+@export var jumps_count := 2
 
 
 @export var state_machine: CharacterStateMachine
@@ -18,10 +20,10 @@ signal animation_finished(anim_name: StringName)
 
 
 var speed: float
+var jumps_remaining: int
 
 
 func _ready() -> void:
-	reset_speed()
 	state_machine.initialize(self)
 
 
@@ -78,6 +80,19 @@ func play_animation(anim_name: StringName):
 
 func reset_speed():
 	speed = default_speed
+
+
+func can_jump() -> bool:
+	return jumps_remaining > 0
+
+
+func jump():
+	velocity.y = -jump_velocity
+	jumps_remaining -= 1
+
+
+func reset_jumps():
+	jumps_remaining = jumps_count
 
 
 func flip(direction: float):
