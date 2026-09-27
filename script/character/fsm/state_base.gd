@@ -15,11 +15,11 @@ func exit(to: CharacterStateBase):
 	pass
 
 
-func handle_input(delta: float) -> StringName:
+func handle_input() -> StringName:
 	return &""
 
 
-func update_physics(delta: float) -> StringName:
+func update() -> StringName:
 	return &""
 
 

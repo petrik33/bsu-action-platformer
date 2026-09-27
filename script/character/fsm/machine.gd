@@ -14,18 +14,18 @@ func initialize(character: Character):
 	_change_state(initial)
 
 
-func handle_input(delta: float) -> void:
+func handle_input() -> void:
 	if state == null:
 		return
-	var state_requested := state.handle_input(delta)
+	var state_requested := state.handle_input()
 	if not state_requested.is_empty():
 		_on_transition_requested(state_requested)
 
 
-func update_physics(delta: float) -> void:
+func update() -> void:
 	if state == null:
 		return
-	var state_requested := state.update_physics(delta)
+	var state_requested := state.update()
 	if not state_requested.is_empty():
 		_on_transition_requested(state_requested)
 

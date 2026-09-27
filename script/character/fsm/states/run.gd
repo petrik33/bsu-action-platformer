@@ -2,10 +2,11 @@ class_name CharacterStateRun extends CharacterStateMoveHorizontally
 
 
 func enter(from: CharacterStateBase):
-	character.play_animation("run")
+	super.enter(from)
+	character.set_animation("run")
 
 
-func handle_input(delta: float) -> StringName:
+func handle_input() -> StringName:
 	if Input.is_action_just_pressed("walk"):
 		return "walk"
 	

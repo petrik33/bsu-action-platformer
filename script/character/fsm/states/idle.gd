@@ -2,10 +2,11 @@ class_name CharacterStateIdle extends CharacterStateBase
 
 
 func enter(_from: CharacterStateBase):
-	character.play_animation("idle")
+	character.set_animation("idle")
+	character.reset_speed()
 
 
-func handle_input(delta: float) -> StringName:
+func handle_input() -> StringName:
 	var direction := Input.get_axis("left", "right")
 	
 	if Input.is_action_just_pressed("jump"):
@@ -17,9 +18,4 @@ func handle_input(delta: float) -> StringName:
 	if direction != 0:
 		return "run"
 	
-	return ""
-
-
-func update_physics(delta: float) -> StringName:
-	character.velocity.x = 0
 	return ""

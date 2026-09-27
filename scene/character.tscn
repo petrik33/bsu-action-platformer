@@ -936,5 +936,3 @@ metadata/_custom_type_script = "uid://dr2asqi5vdchm"
 [node name="Fall" type="Node" parent="StateMachine" unique_id=1320539035]
 script = ExtResource("11_beyxi")
 metadata/_custom_type_script = "uid://dhnrowptrb1ni"
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
