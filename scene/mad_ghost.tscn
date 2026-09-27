@@ -72,7 +72,7 @@ shape = SubResource("RectangleShape2D_tuwl0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual" unique_id=1272308513]
 sprite_frames = SubResource("SpriteFrames_3a8sd")
-animation = &"hurt"
+animation = &"idle"
 autoplay = "idle"
 offset = Vector2(-3, -36)
 
