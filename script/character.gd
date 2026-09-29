@@ -6,8 +6,8 @@ signal animation_finished(anim_name: StringName)
 
 @export var default_speed := 300.0
 @export var gravity := 900.0
-@export var acceleration := 2000.0
-@export var decceleration := 1250.0
+@export var acceleration := 2500.0
+@export var decceleration := 2000.0
 @export var jump_velocity := 300.0
 @export var jumps_count := 2
 

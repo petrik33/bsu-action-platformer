@@ -921,11 +921,12 @@ metadata/_custom_type_script = "uid://bm6qlu0fg8pwi"
 
 [node name="Run" type="Node" parent="StateMachine" unique_id=2081305924]
 script = ExtResource("8_jy7ch")
+speed = 250.0
 metadata/_custom_type_script = "uid://dwdp1v0hrovlw"
 
 [node name="Sprint" type="Node" parent="StateMachine" unique_id=425718407]
 script = ExtResource("9_j6hc6")
-speed = 500.0
+speed = 450.0
 metadata/_custom_type_script = "uid://dj8e3xanl1x4"
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=1289279409]
