@@ -1,0 +1,706 @@
+[gd_scene format=3 uid="uid://b3wc0hno02c02"]
+
+[ext_resource type="Script" uid="uid://brvupwhk7ckv4" path="res://script/character.gd" id="1_fh6cn"]
+[ext_resource type="Texture2D" uid="uid://bw1qcjbm7b05g" path="res://asset/texture/water_priestess/13_take_hit/take_hit_1.png" id="2_4j8lu"]
+[ext_resource type="Texture2D" uid="uid://dg2imrkv6f8uw" path="res://asset/texture/water_priestess/01_idle/idle_1.png" id="2_a16k5"]
+[ext_resource type="Texture2D" uid="uid://dl0s8o0je2kqd" path="res://asset/texture/water_priestess/07_1_atk/1_atk_1.png" id="2_ve7ek"]
+[ext_resource type="Texture2D" uid="uid://p46xxigobvmm" path="res://asset/texture/water_priestess/13_take_hit/take_hit_2.png" id="3_5tou6"]
+[ext_resource type="Texture2D" uid="uid://bckle4bqkt5n2" path="res://asset/texture/water_priestess/07_1_atk/1_atk_2.png" id="3_6vwpc"]
+[ext_resource type="Texture2D" uid="uid://cat68xxsl15gr" path="res://asset/texture/water_priestess/01_idle/idle_2.png" id="3_86bum"]
+[ext_resource type="Texture2D" uid="uid://ycd1kdekqk5" path="res://asset/texture/water_priestess/07_1_atk/1_atk_3.png" id="4_c0hh6"]
+[ext_resource type="Texture2D" uid="uid://c3sh2l8jcadvf" path="res://asset/texture/water_priestess/01_idle/idle_3.png" id="4_f6x5m"]
+[ext_resource type="Texture2D" uid="uid://ce8g1jwfw6h01" path="res://asset/texture/water_priestess/13_take_hit/take_hit_3.png" id="4_wlfwb"]
+[ext_resource type="Texture2D" uid="uid://kath4t2wyikb" path="res://asset/texture/water_priestess/01_idle/idle_4.png" id="5_lcefu"]
+[ext_resource type="Texture2D" uid="uid://88erpu3eq6v8" path="res://asset/texture/water_priestess/13_take_hit/take_hit_4.png" id="5_nc3ks"]
+[ext_resource type="Texture2D" uid="uid://cf2lut7n5xvmu" path="res://asset/texture/water_priestess/07_1_atk/1_atk_4.png" id="5_qxlw2"]
+[ext_resource type="Texture2D" uid="uid://cbo2gusldc8cv" path="res://asset/texture/water_priestess/13_take_hit/take_hit_5.png" id="6_62iaa"]
+[ext_resource type="Texture2D" uid="uid://cfdos5iuw7xft" path="res://asset/texture/water_priestess/01_idle/idle_5.png" id="6_iafts"]
+[ext_resource type="Texture2D" uid="uid://lijejukcf15e" path="res://asset/texture/water_priestess/07_1_atk/1_atk_5.png" id="6_msu6y"]
+[ext_resource type="Texture2D" uid="uid://dbw5rehno1epu" path="res://asset/texture/water_priestess/01_idle/idle_6.png" id="7_3axeq"]
+[ext_resource type="Texture2D" uid="uid://b0lwipqrhuenp" path="res://asset/texture/water_priestess/13_take_hit/take_hit_6.png" id="7_rifci"]
+[ext_resource type="Texture2D" uid="uid://bfhvn4m0j8u6o" path="res://asset/texture/water_priestess/07_1_atk/1_atk_6.png" id="7_w1poh"]
+[ext_resource type="Texture2D" uid="uid://bc3uodjxcocq" path="res://asset/texture/water_priestess/13_take_hit/take_hit_7.png" id="8_3rvip"]
+[ext_resource type="Texture2D" uid="uid://ddip3p6irflvv" path="res://asset/texture/water_priestess/01_idle/idle_7.png" id="8_fa5ej"]
+[ext_resource type="Texture2D" uid="uid://b2vv8ks6sbvvr" path="res://asset/texture/water_priestess/07_1_atk/1_atk_7.png" id="8_gge7x"]
+[ext_resource type="Texture2D" uid="uid://di5unu5k66gay" path="res://asset/texture/water_priestess/08_2_atk/2_atk_1.png" id="9_1tfli"]
+[ext_resource type="Texture2D" uid="uid://cqmh87xw352rq" path="res://asset/texture/water_priestess/01_idle/idle_8.png" id="9_ypc70"]
+[ext_resource type="Texture2D" uid="uid://3kdgsgrwp6mk" path="res://asset/texture/water_priestess/08_2_atk/2_atk_2.png" id="10_ikgbm"]
+[ext_resource type="Texture2D" uid="uid://b3q4awef4wqbp" path="res://asset/texture/water_priestess/03_surf/surf_1.png" id="10_irjso"]
+[ext_resource type="Texture2D" uid="uid://beybocqg5k35c" path="res://asset/texture/water_priestess/03_surf/surf_2.png" id="11_4j8lu"]
+[ext_resource type="Texture2D" uid="uid://14d8ou04sb1o" path="res://asset/texture/water_priestess/08_2_atk/2_atk_3.png" id="11_al6cn"]
+[ext_resource type="Texture2D" uid="uid://jyun1qgi7377" path="res://asset/texture/water_priestess/03_surf/surf_3.png" id="12_5tou6"]
+[ext_resource type="Texture2D" uid="uid://d1ek6jt4ml6m" path="res://asset/texture/water_priestess/08_2_atk/2_atk_4.png" id="12_gekao"]
+[ext_resource type="Texture2D" uid="uid://brub0svjaqrj5" path="res://asset/texture/water_priestess/08_2_atk/2_atk_5.png" id="13_jdxm7"]
+[ext_resource type="Texture2D" uid="uid://b5tgicww41nk5" path="res://asset/texture/water_priestess/03_surf/surf_4.png" id="13_wlfwb"]
+[ext_resource type="Texture2D" uid="uid://gs0p6n1wmu73" path="res://asset/texture/water_priestess/08_2_atk/2_atk_6.png" id="14_0fj25"]
+[ext_resource type="Texture2D" uid="uid://bwd6dgfijkfp2" path="res://asset/texture/water_priestess/03_surf/surf_5.png" id="14_nc3ks"]
+[ext_resource type="Texture2D" uid="uid://ugkkmqas1yte" path="res://asset/texture/water_priestess/03_surf/surf_6.png" id="15_62iaa"]
+[ext_resource type="Texture2D" uid="uid://can1osq1mbmtl" path="res://asset/texture/water_priestess/08_2_atk/2_atk_7.png" id="15_ms0yw"]
+[ext_resource type="Texture2D" uid="uid://dfojqd4m7pijf" path="res://asset/texture/water_priestess/03_surf/surf_7.png" id="16_rifci"]
+[ext_resource type="Texture2D" uid="uid://dgytvr2ghd0s4" path="res://asset/texture/water_priestess/08_2_atk/2_atk_8.png" id="16_tksck"]
+[ext_resource type="Texture2D" uid="uid://ce46df0l2psqq" path="res://asset/texture/water_priestess/03_surf/surf_8.png" id="17_3rvip"]
+[ext_resource type="Texture2D" uid="uid://bepop8xepkwvr" path="res://asset/texture/water_priestess/05_j_down/j_down_1.png" id="17_4gqvp"]
+[ext_resource type="Texture2D" uid="uid://dws3wye72pukj" path="res://asset/texture/water_priestess/08_2_atk/2_atk_9.png" id="17_kg56w"]
+[ext_resource type="Texture2D" uid="uid://du5hfrhw5ahnf" path="res://asset/texture/water_priestess/04_j_up/j_up_1.png" id="17_tqd7l"]
+[ext_resource type="Texture2D" uid="uid://706fhdr3addl" path="res://asset/texture/water_priestess/04_j_up/j_up_2.png" id="18_2ikun"]
+[ext_resource type="Texture2D" uid="uid://bu8mwjpx3snx" path="res://asset/texture/water_priestess/02_walk/walk_1.png" id="18_tqd7l"]
+[ext_resource type="Texture2D" uid="uid://dwsskcl30cx0v" path="res://asset/texture/water_priestess/05_j_down/j_down_2.png" id="18_vj4rp"]
+[ext_resource type="Texture2D" uid="uid://cc7mnl14rx8f" path="res://asset/texture/water_priestess/08_2_atk/2_atk_10.png" id="18_wqu1k"]
+[ext_resource type="Texture2D" uid="uid://pfd268pal0ll" path="res://asset/texture/water_priestess/02_walk/walk_2.png" id="19_2ikun"]
+[ext_resource type="Texture2D" uid="uid://ct3lgq6er0kwj" path="res://asset/texture/water_priestess/04_j_up/j_up_3.png" id="19_4gqvp"]
+[ext_resource type="Texture2D" uid="uid://d2xc3llegp1da" path="res://asset/texture/water_priestess/05_j_down/j_down_3.png" id="19_bhxk8"]
+[ext_resource type="Texture2D" uid="uid://cr21xwntq8hxi" path="res://asset/texture/water_priestess/08_2_atk/2_atk_11.png" id="19_na48d"]
+[ext_resource type="Texture2D" uid="uid://b36eunmvugr7d" path="res://asset/texture/water_priestess/02_walk/walk_3.png" id="20_4gqvp"]
+[ext_resource type="Texture2D" uid="uid://poygqbf4hub2" path="res://asset/texture/water_priestess/08_2_atk/2_atk_12.png" id="20_rtn4g"]
+[ext_resource type="Texture2D" uid="uid://dx5leytvqfpwf" path="res://asset/texture/water_priestess/08_2_atk/2_atk_13.png" id="21_b4yyx"]
+[ext_resource type="Texture2D" uid="uid://bkd2pqiwgt5cf" path="res://asset/texture/water_priestess/02_walk/walk_4.png" id="21_vj4rp"]
+[ext_resource type="Texture2D" uid="uid://dvkia8flbkkc3" path="res://asset/texture/water_priestess/02_walk/walk_5.png" id="22_bhxk8"]
+[ext_resource type="Texture2D" uid="uid://bf1dcwsp51jgk" path="res://asset/texture/water_priestess/08_2_atk/2_atk_14.png" id="22_mhd2n"]
+[ext_resource type="Texture2D" uid="uid://7q86p42khb0d" path="res://asset/texture/water_priestess/02_walk/walk_6.png" id="23_81ohg"]
+[ext_resource type="Texture2D" uid="uid://d0dai7jtyllo7" path="res://asset/texture/water_priestess/08_2_atk/2_atk_15.png" id="23_rdsp8"]
+[ext_resource type="Texture2D" uid="uid://ctp1ghmk3wukb" path="res://asset/texture/water_priestess/02_walk/walk_7.png" id="24_kthvy"]
+[ext_resource type="Texture2D" uid="uid://chgg3gw1xxfv6" path="res://asset/texture/water_priestess/08_2_atk/2_atk_16.png" id="24_mc5n5"]
+[ext_resource type="Texture2D" uid="uid://dnswn7anr6e03" path="res://asset/texture/water_priestess/02_walk/walk_8.png" id="25_3xht8"]
+[ext_resource type="Texture2D" uid="uid://de6oqkjieyhli" path="res://asset/texture/water_priestess/08_2_atk/2_atk_17.png" id="25_8m0df"]
+[ext_resource type="Texture2D" uid="uid://dhiqp2b4k4ad6" path="res://asset/texture/water_priestess/02_walk/walk_9.png" id="26_bu5mc"]
+[ext_resource type="Texture2D" uid="uid://byyrj8k0ionph" path="res://asset/texture/water_priestess/08_2_atk/2_atk_18.png" id="26_mlvfs"]
+[ext_resource type="Texture2D" uid="uid://c1rcswinvudvf" path="res://asset/texture/water_priestess/08_2_atk/2_atk_19.png" id="27_5vk8s"]
+[ext_resource type="Texture2D" uid="uid://7p4ni2mqgeyx" path="res://asset/texture/water_priestess/02_walk/walk_10.png" id="27_bms78"]
+[ext_resource type="Texture2D" uid="uid://c1klu5jl3so0v" path="res://asset/texture/water_priestess/08_2_atk/2_atk_20.png" id="28_cj3n7"]
+[ext_resource type="Texture2D" uid="uid://cocanwl1ss3ph" path="res://asset/texture/water_priestess/08_2_atk/2_atk_21.png" id="29_kvhyq"]
+[ext_resource type="Texture2D" uid="uid://dsetf22lqinmi" path="res://asset/texture/water_priestess/09_3_atk/3_atk_1.png" id="30_ifix7"]
+[ext_resource type="Texture2D" uid="uid://ffoo58jhem1r" path="res://asset/texture/water_priestess/06_tumble/tumble_1.png" id="31_81ohg"]
+[ext_resource type="Texture2D" uid="uid://3pl66fnyfrvp" path="res://asset/texture/water_priestess/09_3_atk/3_atk_2.png" id="31_nmf53"]
+[ext_resource type="Texture2D" uid="uid://cyi15x0cxnqdf" path="res://asset/texture/water_priestess/09_3_atk/3_atk_3.png" id="32_8otb0"]
+[ext_resource type="Texture2D" uid="uid://cmxn1y2hd1d8x" path="res://asset/texture/water_priestess/06_tumble/tumble_2.png" id="32_kthvy"]
+[ext_resource type="Texture2D" uid="uid://cfeia1y1tomcb" path="res://asset/texture/water_priestess/06_tumble/tumble_3.png" id="33_3xht8"]
+[ext_resource type="Texture2D" uid="uid://c2giymi2etop4" path="res://asset/texture/water_priestess/09_3_atk/3_atk_4.png" id="33_um07x"]
+[ext_resource type="Texture2D" uid="uid://b8prn4e3l28om" path="res://asset/texture/water_priestess/06_tumble/tumble_4.png" id="34_bu5mc"]
+[ext_resource type="Texture2D" uid="uid://c3uv2rbrmrrsp" path="res://asset/texture/water_priestess/09_3_atk/3_atk_5.png" id="34_wlioi"]
+[ext_resource type="Texture2D" uid="uid://nw3xlh3utptd" path="res://asset/texture/water_priestess/06_tumble/tumble_5.png" id="35_bms78"]
+[ext_resource type="Texture2D" uid="uid://dljfximah00iu" path="res://asset/texture/water_priestess/09_3_atk/3_atk_6.png" id="35_gscn1"]
+[ext_resource type="Texture2D" uid="uid://cyjjpu4hvr3s0" path="res://asset/texture/water_priestess/09_3_atk/3_atk_7.png" id="36_6dkpp"]
+[ext_resource type="Texture2D" uid="uid://d4j0foulmc1k8" path="res://asset/texture/water_priestess/06_tumble/tumble_6.png" id="36_dn53k"]
+[ext_resource type="Texture2D" uid="uid://b0qj3mh18jp5i" path="res://asset/texture/water_priestess/09_3_atk/3_atk_8.png" id="37_w0s3j"]
+[ext_resource type="Texture2D" uid="uid://dngup4t3gi1h" path="res://asset/texture/water_priestess/09_3_atk/3_atk_9.png" id="38_r2ien"]
+[ext_resource type="Texture2D" uid="uid://5n5hmsv23ew4" path="res://asset/texture/water_priestess/09_3_atk/3_atk_10.png" id="39_ob75u"]
+[ext_resource type="Texture2D" uid="uid://dhrcvltogqahg" path="res://asset/texture/water_priestess/09_3_atk/3_atk_11.png" id="40_v8fnc"]
+[ext_resource type="Texture2D" uid="uid://ds0y7awyjhghq" path="res://asset/texture/water_priestess/09_3_atk/3_atk_12.png" id="41_menab"]
+[ext_resource type="Texture2D" uid="uid://c1i63cb6btd3e" path="res://asset/texture/water_priestess/09_3_atk/3_atk_13.png" id="42_ejr8c"]
+[ext_resource type="Texture2D" uid="uid://egu13ejnacqg" path="res://asset/texture/water_priestess/09_3_atk/3_atk_14.png" id="43_8rhqe"]
+[ext_resource type="Texture2D" uid="uid://djkex6gs643ds" path="res://asset/texture/water_priestess/09_3_atk/3_atk_15.png" id="44_7rkm6"]
+[ext_resource type="Texture2D" uid="uid://cxt66xwokprfr" path="res://asset/texture/water_priestess/09_3_atk/3_atk_16.png" id="45_11ttw"]
+[ext_resource type="Texture2D" uid="uid://djubl6utccwyt" path="res://asset/texture/water_priestess/09_3_atk/3_atk_17.png" id="46_imonw"]
+[ext_resource type="Texture2D" uid="uid://dyfw7cis6hfxp" path="res://asset/texture/water_priestess/09_3_atk/3_atk_18.png" id="47_6ihuh"]
+[ext_resource type="Texture2D" uid="uid://c6d8bfqvwrle0" path="res://asset/texture/water_priestess/09_3_atk/3_atk_19.png" id="48_h26mj"]
+[ext_resource type="Texture2D" uid="uid://b6ldho83qhnpp" path="res://asset/texture/water_priestess/09_3_atk/3_atk_20.png" id="49_eihtm"]
+[ext_resource type="Texture2D" uid="uid://dtqakisctunmo" path="res://asset/texture/water_priestess/09_3_atk/3_atk_21.png" id="50_cpp44"]
+[ext_resource type="Texture2D" uid="uid://c3oasm5aqo784" path="res://asset/texture/water_priestess/09_3_atk/3_atk_22.png" id="51_yj65k"]
+[ext_resource type="Texture2D" uid="uid://bt1uj1aewvrqk" path="res://asset/texture/water_priestess/09_3_atk/3_atk_23.png" id="52_plgdg"]
+[ext_resource type="Texture2D" uid="uid://c3k20x0swpsld" path="res://asset/texture/water_priestess/09_3_atk/3_atk_24.png" id="53_kovxh"]
+[ext_resource type="Texture2D" uid="uid://co2w26sdqk0bi" path="res://asset/texture/water_priestess/09_3_atk/3_atk_25.png" id="54_lm1dm"]
+[ext_resource type="Texture2D" uid="uid://dvfycmwgk25f1" path="res://asset/texture/water_priestess/09_3_atk/3_atk_26.png" id="55_kilsb"]
+[ext_resource type="Texture2D" uid="uid://cbbl4wcesbwcg" path="res://asset/texture/water_priestess/09_3_atk/3_atk_27.png" id="56_7p4t0"]
+[ext_resource type="Texture2D" uid="uid://benhvdn7pujkg" path="res://asset/texture/water_priestess/11_heal/heal_1.png" id="57_imonw"]
+[ext_resource type="Texture2D" uid="uid://bd8c0q1mnfv50" path="res://asset/texture/water_priestess/12_defend/defend_1.png" id="57_o5o8y"]
+[ext_resource type="Texture2D" uid="uid://dawf6qxm7mq18" path="res://asset/texture/water_priestess/11_heal/heal_2.png" id="58_6ihuh"]
+[ext_resource type="Texture2D" uid="uid://bsa5u0uewqom" path="res://asset/texture/water_priestess/12_defend/defend_2.png" id="58_woefh"]
+[ext_resource type="Texture2D" uid="uid://nvets3ymey42" path="res://asset/texture/water_priestess/11_heal/heal_3.png" id="59_h26mj"]
+[ext_resource type="Texture2D" uid="uid://c6xqudwkpm0d2" path="res://asset/texture/water_priestess/12_defend/defend_3.png" id="59_o2q8g"]
+[ext_resource type="Texture2D" uid="uid://gaeeq3f41imm" path="res://asset/texture/water_priestess/11_heal/heal_4.png" id="60_eihtm"]
+[ext_resource type="Texture2D" uid="uid://dkox86j1iox8e" path="res://asset/texture/water_priestess/12_defend/defend_4.png" id="60_hjeca"]
+[ext_resource type="Texture2D" uid="uid://b5ax83a6qjbn6" path="res://asset/texture/water_priestess/11_heal/heal_5.png" id="61_cpp44"]
+[ext_resource type="Texture2D" uid="uid://dpx2kgliaf1uc" path="res://asset/texture/water_priestess/12_defend/defend_5.png" id="61_nrb4p"]
+[ext_resource type="Texture2D" uid="uid://cj2i84q4t4u88" path="res://asset/texture/water_priestess/12_defend/defend_6.png" id="62_xl0bd"]
+[ext_resource type="Texture2D" uid="uid://bsgsjbms0ybco" path="res://asset/texture/water_priestess/11_heal/heal_6.png" id="62_yj65k"]
+[ext_resource type="Texture2D" uid="uid://b2lspkec5fbdh" path="res://asset/texture/water_priestess/12_defend/defend_7.png" id="63_8bo0j"]
+[ext_resource type="Texture2D" uid="uid://bjtdoghve33hq" path="res://asset/texture/water_priestess/11_heal/heal_7.png" id="63_plgdg"]
+[ext_resource type="Texture2D" uid="uid://8ggamd0exl1g" path="res://asset/texture/water_priestess/12_defend/defend_8.png" id="64_ho5fr"]
+[ext_resource type="Texture2D" uid="uid://el2hba5pom3l" path="res://asset/texture/water_priestess/11_heal/heal_8.png" id="64_kovxh"]
+[ext_resource type="Texture2D" uid="uid://cjtpjoyn1w3jb" path="res://asset/texture/water_priestess/12_defend/defend_9.png" id="65_6gt6w"]
+[ext_resource type="Texture2D" uid="uid://bib7bgcex4i80" path="res://asset/texture/water_priestess/11_heal/heal_9.png" id="65_lm1dm"]
+[ext_resource type="Texture2D" uid="uid://k7skdcjjakpf" path="res://asset/texture/water_priestess/11_heal/heal_10.png" id="66_kilsb"]
+[ext_resource type="Texture2D" uid="uid://cd3h701lmh483" path="res://asset/texture/water_priestess/12_defend/defend_10.png" id="66_pt008"]
+[ext_resource type="Texture2D" uid="uid://vay7fsj6otow" path="res://asset/texture/water_priestess/12_defend/defend_11.png" id="67_0jvw6"]
+[ext_resource type="Texture2D" uid="uid://dreleiwkol5o3" path="res://asset/texture/water_priestess/11_heal/heal_11.png" id="67_7p4t0"]
+[ext_resource type="Texture2D" uid="uid://53voixxs35id" path="res://asset/texture/water_priestess/12_defend/defend_12.png" id="68_1wq5u"]
+[ext_resource type="Texture2D" uid="uid://cd1mtyeua8tq6" path="res://asset/texture/water_priestess/11_heal/heal_12.png" id="68_kq8cb"]
+[ext_resource type="Texture2D" uid="uid://cllo6lofe4qlw" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_1.png" id="90_o5o8y"]
+[ext_resource type="Texture2D" uid="uid://bcvjkmpjp4bji" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_2.png" id="91_woefh"]
+[ext_resource type="Texture2D" uid="uid://byw8sko471vf6" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_3.png" id="92_o2q8g"]
+[ext_resource type="Texture2D" uid="uid://c8j0md0lv8sqx" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_4.png" id="93_hjeca"]
+[ext_resource type="Texture2D" uid="uid://0h0blxohvpl1" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_5.png" id="94_nrb4p"]
+[ext_resource type="Texture2D" uid="uid://b5x73itxv4ged" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_6.png" id="95_xl0bd"]
+[ext_resource type="Texture2D" uid="uid://0pn1ltxydw14" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_7.png" id="96_8bo0j"]
+[ext_resource type="Texture2D" uid="uid://dfp74eu6tqgrd" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_8.png" id="97_ho5fr"]
+[ext_resource type="Texture2D" uid="uid://bf6228qisnl4t" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_9.png" id="98_6gt6w"]
+[ext_resource type="Texture2D" uid="uid://d1b6tvx77wqtg" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_10.png" id="99_pt008"]
+[ext_resource type="Texture2D" uid="uid://b80rpow80rv32" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_11.png" id="100_0jvw6"]
+[ext_resource type="Texture2D" uid="uid://ccfb3nyd3dp75" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_12.png" id="101_1wq5u"]
+[ext_resource type="Texture2D" uid="uid://cs5b06eto3yqv" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_13.png" id="102_lbv5x"]
+[ext_resource type="Texture2D" uid="uid://7wqj7p787w8v" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_14.png" id="103_hf6hm"]
+[ext_resource type="Texture2D" uid="uid://bpqemawrqppcc" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_15.png" id="104_ky6s8"]
+[ext_resource type="Texture2D" uid="uid://8il4eid4vkyj" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_16.png" id="105_mtk6t"]
+[ext_resource type="Texture2D" uid="uid://c0pk2q3cjopap" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_17.png" id="106_hgiyl"]
+[ext_resource type="Texture2D" uid="uid://c41nrybwe1i6c" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_18.png" id="107_tddg5"]
+[ext_resource type="Texture2D" uid="uid://s688dqnto6lw" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_19.png" id="108_ulcry"]
+[ext_resource type="Texture2D" uid="uid://drfcxr37olabs" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_20.png" id="109_okmev"]
+[ext_resource type="Texture2D" uid="uid://cddrn5bw4pbva" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_21.png" id="110_3kien"]
+[ext_resource type="Texture2D" uid="uid://borem052inex0" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_22.png" id="111_4q8yv"]
+[ext_resource type="Texture2D" uid="uid://r0o57itjacot" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_23.png" id="112_ytxcy"]
+[ext_resource type="Texture2D" uid="uid://bl30pf3frsiid" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_24.png" id="113_2o33o"]
+[ext_resource type="Texture2D" uid="uid://bcxfuerqg37vx" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_25.png" id="114_ucjog"]
+[ext_resource type="Texture2D" uid="uid://bqporaommf3k5" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_26.png" id="115_8vw2g"]
+[ext_resource type="Texture2D" uid="uid://34mj3g3wud0x" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_27.png" id="116_8y4jm"]
+[ext_resource type="Texture2D" uid="uid://dpixrdu7l6n60" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_28.png" id="117_mifu2"]
+[ext_resource type="Texture2D" uid="uid://drx7dv0acsm26" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_29.png" id="118_7ehhp"]
+[ext_resource type="Texture2D" uid="uid://6o38iheovyy3" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_30.png" id="119_yn7hy"]
+[ext_resource type="Texture2D" uid="uid://cj4e1g6nvow7w" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_31.png" id="120_lp3au"]
+[ext_resource type="Texture2D" uid="uid://ccv3m83023gct" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_32.png" id="121_lirr0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dn53k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ve7ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6vwpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c0hh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qxlw2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_msu6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w1poh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gge7x")
+}],
+"loop": false,
+"name": &"attack1",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_1tfli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ikgbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_al6cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_gekao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jdxm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_0fj25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ms0yw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_tksck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_kg56w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_wqu1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_na48d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_rtn4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_b4yyx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_mhd2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_rdsp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_mc5n5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_8m0df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_mlvfs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_5vk8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_cj3n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_kvhyq")
+}],
+"loop": true,
+"name": &"attack2",
+"speed": 21.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_ifix7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_nmf53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_8otb0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_um07x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_wlioi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_gscn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_6dkpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_w0s3j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_r2ien")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_ob75u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_v8fnc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_menab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_ejr8c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_8rhqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_7rkm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_11ttw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_imonw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_6ihuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_h26mj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_eihtm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_cpp44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_yj65k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_plgdg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_kovxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_lm1dm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_kilsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_7p4t0")
+}],
+"loop": false,
+"name": &"attack3",
+"speed": 27.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("57_o5o8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_woefh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_o2q8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_hjeca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_nrb4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_xl0bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_8bo0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_ho5fr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_6gt6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_pt008")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_0jvw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_1wq5u")
+}],
+"loop": false,
+"name": &"defend",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("57_imonw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_6ihuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_h26mj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_eihtm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_cpp44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_yj65k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_plgdg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_kovxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_lm1dm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_kilsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_7p4t0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_kq8cb")
+}],
+"loop": false,
+"name": &"heal",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4j8lu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5tou6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wlfwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nc3ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_62iaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rifci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3rvip")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a16k5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_86bum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f6x5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lcefu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_iafts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3axeq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fa5ej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ypc70")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_4gqvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_vj4rp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_bhxk8")
+}],
+"loop": true,
+"name": &"jump_down",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_tqd7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_2ikun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_4gqvp")
+}],
+"loop": true,
+"name": &"jump_up",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("90_o5o8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_woefh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_o2q8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_hjeca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_nrb4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_xl0bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_8bo0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_ho5fr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_6gt6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_pt008")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_0jvw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_1wq5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_lbv5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_hf6hm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_ky6s8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_mtk6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_hgiyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_tddg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_ulcry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_okmev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_3kien")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_4q8yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_ytxcy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_2o33o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_ucjog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_8vw2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_8y4jm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_mifu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_7ehhp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_yn7hy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_lp3au")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_lirr0")
+}],
+"loop": false,
+"name": &"special",
+"speed": 32.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_irjso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4j8lu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5tou6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wlfwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_nc3ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_62iaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_rifci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3rvip")
+}],
+"loop": true,
+"name": &"surf",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("31_81ohg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_kthvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_3xht8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_bu5mc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_bms78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_dn53k")
+}],
+"loop": false,
+"name": &"tumble",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_tqd7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2ikun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_4gqvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_vj4rp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_bhxk8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_81ohg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_kthvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_3xht8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_bu5mc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_bms78")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[node name="WaterPriestess" type="CharacterBody2D" unique_id=1544133711]
+script = ExtResource("1_fh6cn")
+metadata/_custom_type_script = "uid://brvupwhk7ckv4"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1319270603]
+sprite_frames = SubResource("SpriteFrames_dn53k")
+animation = &"defend"
+autoplay = "idle"
+frame_progress = 0.8781755
+offset = Vector2(0, -63)
