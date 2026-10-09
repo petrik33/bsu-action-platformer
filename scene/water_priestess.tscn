@@ -700,7 +700,6 @@ metadata/_custom_type_script = "uid://brvupwhk7ckv4"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1319270603]
 sprite_frames = SubResource("SpriteFrames_dn53k")
-animation = &"defend"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.8781755
 offset = Vector2(0, -63)

@@ -50,7 +50,6 @@ centered = false
 
 [node name="Character" parent="Bodies" unique_id=205535491 instance=ExtResource("1_5kiuu")]
 position = Vector2(64, -48)
-speed = 200
 
 [node name="Camera2D" type="Camera2D" parent="Bodies/Character" unique_id=745299939]
 zoom = Vector2(2, 2)
