@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b3wc0hno02c02"]
 
-[ext_resource type="Script" uid="uid://brvupwhk7ckv4" path="res://script/character.gd" id="1_fh6cn"]
+[ext_resource type="Script" uid="uid://bowr4smo7rude" path="res://script/game_character.gd" id="1_o5o8y"]
 [ext_resource type="Texture2D" uid="uid://bw1qcjbm7b05g" path="res://asset/texture/water_priestess/13_take_hit/take_hit_1.png" id="2_4j8lu"]
 [ext_resource type="Texture2D" uid="uid://dg2imrkv6f8uw" path="res://asset/texture/water_priestess/01_idle/idle_1.png" id="2_a16k5"]
 [ext_resource type="Texture2D" uid="uid://dl0s8o0je2kqd" path="res://asset/texture/water_priestess/07_1_atk/1_atk_1.png" id="2_ve7ek"]
@@ -695,7 +695,7 @@ animations = [{
 }]
 
 [node name="WaterPriestess" type="CharacterBody2D" unique_id=1544133711]
-script = ExtResource("1_fh6cn")
+script = ExtResource("1_o5o8y")
 metadata/_custom_type_script = "uid://brvupwhk7ckv4"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1319270603]
@@ -703,3 +703,8 @@ sprite_frames = SubResource("SpriteFrames_dn53k")
 animation = &"idle"
 autoplay = "idle"
 offset = Vector2(0, -63)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=321922695]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_sprite_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
