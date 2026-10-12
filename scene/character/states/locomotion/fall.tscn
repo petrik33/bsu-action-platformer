@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ciuiv751od242"]
+
+[ext_resource type="Script" uid="uid://4aklut8hj6r1" path="res://script/character/fsm/state_base.gd" id="1_c06eq"]
+
+[node name="Falling" type="Node" unique_id=946198965]
+script = ExtResource("1_c06eq")
+metadata/_custom_type_script = "uid://4aklut8hj6r1"

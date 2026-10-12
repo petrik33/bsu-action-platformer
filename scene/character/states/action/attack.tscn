@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://rphikkm5thmx"]
+
+[ext_resource type="Script" uid="uid://4aklut8hj6r1" path="res://script/character/fsm/state_base.gd" id="1_gte77"]
+
+[node name="Attack" type="Node" unique_id=912385043]
+script = ExtResource("1_gte77")
+metadata/_custom_type_script = "uid://4aklut8hj6r1"

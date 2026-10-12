@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cgbn8bkj1hks5"]
+
+[ext_resource type="Script" uid="uid://d0obapmnn0y7v" path="res://script/character/fsm/states/locomotion/airborne.gd" id="1_7lmr2"]
+
+[node name="Airborne" type="Node" unique_id=1304592049]
+script = ExtResource("1_7lmr2")
+metadata/_custom_type_script = "uid://4aklut8hj6r1"
