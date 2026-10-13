@@ -6,14 +6,14 @@ func handle_input() -> StringName:
 		return "Jump"
 		
 	if Input.is_action_just_pressed("click"):
-		return "AirAttack"
+		return "Attack"
 		
 	if Input.is_action_just_pressed("roll"):
 		return "Roll"
 		
 	return ""
 
-func update() -> StringName:
+func post_physics() -> StringName:
 	if character.is_on_floor():
-		return "Grounded"
+		return "Idle"
 	return ""

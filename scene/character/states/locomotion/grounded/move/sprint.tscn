@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://0fb41j0ms7y3"]
+
+[ext_resource type="Script" uid="uid://dj8e3xanl1x4" path="res://script/character/fsm/states/locomotion/grounded/move/sprint.gd" id="1_51wy4"]
+
+[node name="Sprint" type="Node" unique_id=101147460]
+script = ExtResource("1_51wy4")
+metadata/_custom_type_script = "uid://4aklut8hj6r1"

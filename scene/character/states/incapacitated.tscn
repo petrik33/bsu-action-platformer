@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://t40f4mawxn56"]
+
+[ext_resource type="Script" uid="uid://bntf7oawcqpj3" path="res://script/character/fsm/states/incapacitated.gd" id="1_tcbik"]
+
+[node name="Incapacitated" type="Node" unique_id=740572724]
+script = ExtResource("1_tcbik")
+metadata/_custom_type_script = "uid://4aklut8hj6r1"

@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bnx84ttdi5rpr"]
-
-[ext_resource type="Script" uid="uid://4aklut8hj6r1" path="res://script/character/fsm/state_base.gd" id="1_m4rj5"]
-
-[node name="Run" type="Node" unique_id=1608890109]
-script = ExtResource("1_m4rj5")
-metadata/_custom_type_script = "uid://4aklut8hj6r1"

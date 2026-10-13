@@ -2,7 +2,7 @@ extends CharacterStateBase
 
 
 func enter():
-	character.play_animation("Jump")
+	character.play_animation("jump")
 	character.jump()
 
 

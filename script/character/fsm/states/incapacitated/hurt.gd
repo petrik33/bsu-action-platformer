@@ -9,5 +9,5 @@ func exit():
 
 
 func _on_animation_finished(_anim_name: StringName):
-	_transition("idle")
+	_transition("Idle")
 	

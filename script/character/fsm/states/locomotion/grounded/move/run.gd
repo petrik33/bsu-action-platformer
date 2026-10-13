@@ -7,9 +7,9 @@ func enter():
 
 func handle_input() -> StringName:
 	if Input.is_action_just_pressed("walk"):
-		return "walk"
+		return "Walk"
 	
 	if Input.is_action_just_pressed("sprint"):
-		return "sprint"
+		return "Sprint"
 	
 	return ""

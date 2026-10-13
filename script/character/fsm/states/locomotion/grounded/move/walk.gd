@@ -1,4 +1,4 @@
-class_name CharacterStateWalk extends CharacterStateMoveHorizontally
+extends CharacterStateBase
 
 @export var walk_speed: float = 200
 
