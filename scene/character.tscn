@@ -547,39 +547,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-<<<<<<< HEAD
-"texture": SubResource("AtlasTexture_6i8yy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tax6x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nc4dq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0hkcv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0c1l8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7lep1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_foytj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2lan6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d62io")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d434r")
-}],
-"loop": false,
-"name": &"holster_sword",
-=======
 "texture": SubResource("AtlasTexture_k8rrn")
 }, {
 "duration": 1.0,
@@ -599,7 +566,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
->>>>>>> alt-character
 "speed": 18.0
 }, {
 "frames": [{
@@ -1366,11 +1332,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-<<<<<<< HEAD
-"values": [0, 8]
-=======
 "values": [0, 12]
->>>>>>> alt-character
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1394,45 +1356,20 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-<<<<<<< HEAD
-"values": [0, 8]
-=======
 "values": [0, 12]
->>>>>>> alt-character
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-<<<<<<< HEAD
-tracks/4/path = NodePath("HitBox/Attack3:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.075, 0.125),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Visuals/Sword:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-=======
 tracks/4/path = NodePath("Visuals/Sword:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
->>>>>>> alt-character
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
-<<<<<<< HEAD
-=======
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
@@ -1445,19 +1382,13 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true]
 }
->>>>>>> alt-character
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p3t0x"]
 _data = {
 &"RESET": SubResource("Animation_6k5wm"),
 &"attack": SubResource("Animation_7v2w7"),
-<<<<<<< HEAD
-&"attack2": SubResource("Animation_beyxi"),
-&"attack3": SubResource("Animation_j2y7t")
-=======
 &"attack2": SubResource("Animation_0qvrh"),
 &"attack3": SubResource("Animation_cnvcp")
->>>>>>> alt-character
 }
 
 [node name="Character" type="CharacterBody2D" unique_id=205535491 node_paths=PackedStringArray("visuals", "sprite", "animation_player", "state_machine")]
@@ -1484,12 +1415,7 @@ offset = Vector2(2, -15.5)
 visible = false
 position = Vector2(26, -15)
 sprite_frames = SubResource("SpriteFrames_aqmka")
-<<<<<<< HEAD
-animation = &"attack3"
-frame = 1
-=======
 animation = &"attack1"
->>>>>>> alt-character
 
 [node name="HitBox" type="Area2D" parent="." unique_id=1342386439]
 collision_layer = 8
@@ -1502,17 +1428,6 @@ shape = SubResource("RectangleShape2D_d7vt2")
 disabled = true
 debug_color = Color(0.7019608, 0.1764706, 0, 0.41960785)
 
-<<<<<<< HEAD
-[node name="Attack2" type="CollisionShape2D" parent="HitBox" unique_id=1272162793]
-position = Vector2(30.75, -29)
-shape = SubResource("RectangleShape2D_j2y7t")
-disabled = true
-debug_color = Color(0.7019608, 0.1764706, 0, 0.41960785)
-
-[node name="Attack3" type="CollisionShape2D" parent="HitBox" unique_id=375142797]
-position = Vector2(23.5, -7)
-shape = SubResource("RectangleShape2D_jy7ch")
-=======
 [node name="Attack2" type="CollisionShape2D" parent="HitBox" unique_id=99299981]
 position = Vector2(30.5, -29)
 shape = SubResource("RectangleShape2D_cnvcp")
@@ -1522,7 +1437,6 @@ debug_color = Color(0.8633153, 0.3378712, 0.3281017, 0.41960785)
 [node name="Attack3" type="CollisionShape2D" parent="HitBox" unique_id=1739070447]
 position = Vector2(23.5, -5)
 shape = SubResource("RectangleShape2D_x2uf3")
->>>>>>> alt-character
 disabled = true
 debug_color = Color(0.7019608, 0.1764706, 0, 0.41960785)
 
@@ -1538,36 +1452,14 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 
 [node name="Grounded" parent="StateMachine/Locomotion" unique_id=2122582834 instance=ExtResource("6_5hcsl")]
 
-<<<<<<< HEAD
-[node name="Attack" type="Node" parent="StateMachine" unique_id=578372559]
-script = ExtResource("7_j2y7t")
-combo_animations = Array[StringName]([&"attack2", &"attack3"])
-metadata/_custom_type_script = "uid://bm6qlu0fg8pwi"
-
-[node name="Run" type="Node" parent="StateMachine" unique_id=2081305924]
-script = ExtResource("8_jy7ch")
-speed = 250.0
-metadata/_custom_type_script = "uid://dwdp1v0hrovlw"
-
-[node name="Sprint" type="Node" parent="StateMachine" unique_id=425718407]
-script = ExtResource("9_j6hc6")
-speed = 450.0
-metadata/_custom_type_script = "uid://dj8e3xanl1x4"
-=======
 [node name="Idle" parent="StateMachine/Locomotion/Grounded" unique_id=1808960593 instance=ExtResource("7_ud0a3")]
 
 [node name="Move" parent="StateMachine/Locomotion/Grounded" unique_id=2105850077 instance=ExtResource("8_0qvrh")]
 
 [node name="Run" parent="StateMachine/Locomotion/Grounded/Move" unique_id=1608890109 instance=ExtResource("9_a748v")]
->>>>>>> alt-character
 
 [node name="Sprint" parent="StateMachine/Locomotion/Grounded/Move" unique_id=101147460 instance=ExtResource("10_cnvcp")]
 
-<<<<<<< HEAD
-[node name="Fall" type="Node" parent="StateMachine" unique_id=1320539035]
-script = ExtResource("11_beyxi")
-metadata/_custom_type_script = "uid://dhnrowptrb1ni"
-=======
 [node name="Walk" parent="StateMachine/Locomotion/Grounded/Move" unique_id=227761043 instance=ExtResource("11_x2uf3")]
 
 [node name="Airborne" parent="StateMachine/Locomotion" unique_id=1304592049 instance=ExtResource("12_7s5o7")]
@@ -1590,4 +1482,3 @@ metadata/_custom_type_script = "uid://dhnrowptrb1ni"
 
 [connection signal="animation_finished" from="Visuals/Base" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
->>>>>>> alt-character
