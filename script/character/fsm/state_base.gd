@@ -4,24 +4,23 @@ class_name CharacterStateBase extends Node
 signal transition_requested(to: StringName)
 
 
-var character: Character
+var character: GameCharacter
 
 
-func enter(from: CharacterStateBase):
+func enter():
 	pass
 
-
-func exit(to: CharacterStateBase):
+func exit():
 	pass
-
 
 func handle_input() -> StringName:
 	return &""
 
+func update_physics(delta: float):
+	pass
 
-func update() -> StringName:
+func post_physics() -> StringName:
 	return &""
-
 
 func _transition(to: StringName):
 	transition_requested.emit(to)

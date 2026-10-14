@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://df4en8hdjyeb"]
+
+[ext_resource type="Script" uid="uid://bwlfhydhkxq7p" path="res://script/character/fsm/states/locomotion/grounded.gd" id="1_7q50c"]
+
+[node name="Grounded" type="Node" unique_id=2122582834]
+script = ExtResource("1_7q50c")
+metadata/_custom_type_script = "uid://4aklut8hj6r1"

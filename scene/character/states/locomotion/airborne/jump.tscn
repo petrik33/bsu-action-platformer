@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dsflokmpqtns7"]
+
+[ext_resource type="Script" uid="uid://uuxbilc0ttfb" path="res://script/character/fsm/states/locomotion/airborne/jump.gd" id="1_2gkeu"]
+
+[node name="Jump" type="Node" unique_id=533408498]
+script = ExtResource("1_2gkeu")
+metadata/_custom_type_script = "uid://4aklut8hj6r1"

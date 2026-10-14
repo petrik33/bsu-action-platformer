@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c5d84xi7jty73"]
+
+[ext_resource type="Script" uid="uid://bof5gyph8ve63" path="res://script/character/fsm/states/action.gd" id="1_kgrpa"]
+
+[node name="Action" type="Node" unique_id=842032143]
+script = ExtResource("1_kgrpa")
+metadata/_custom_type_script = "uid://4aklut8hj6r1"

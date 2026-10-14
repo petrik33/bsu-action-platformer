@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dgsdo2v3q356f"]
+
+[ext_resource type="Script" uid="uid://dlttnbh54nykn" path="res://script/character/fsm/states/locomotion.gd" id="1_o21fp"]
+
+[node name="Locomotion" type="Node" unique_id=1324174554]
+script = ExtResource("1_o21fp")
+metadata/_custom_type_script = "uid://4aklut8hj6r1"
