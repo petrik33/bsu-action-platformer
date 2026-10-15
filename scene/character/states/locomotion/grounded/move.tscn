@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bejmpipnu481a"]
 
-[ext_resource type="Script" uid="uid://gjnoxpiji0pv" path="res://script/character/fsm/states/locomotion/grounded/move.gd" id="1_rrn1x"]
+[ext_resource type="Script" uid="uid://gjnoxpiji0pv" path="res://script/character/states/locomotion/grounded/move.gd" id="1_rrn1x"]
 
 [node name="Move" type="Node" unique_id=2105850077]
 script = ExtResource("1_rrn1x")

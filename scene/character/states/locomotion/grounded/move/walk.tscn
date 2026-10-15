@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cu47872cwivvj"]
 
-[ext_resource type="Script" uid="uid://dr2asqi5vdchm" path="res://script/character/fsm/states/locomotion/grounded/move/walk.gd" id="1_pfgt1"]
+[ext_resource type="Script" uid="uid://dr2asqi5vdchm" path="res://script/character/states/locomotion/grounded/move/walk.gd" id="1_pfgt1"]
 
 [node name="Walk" type="Node" unique_id=227761043]
 script = ExtResource("1_pfgt1")

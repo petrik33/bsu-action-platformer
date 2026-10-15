@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ciuiv751od242"]
 
-[ext_resource type="Script" uid="uid://cekgsfoliv554" path="res://script/character/fsm/states/locomotion/airborne/fall.gd" id="1_pk06p"]
+[ext_resource type="Script" uid="uid://cekgsfoliv554" path="res://script/character/states/locomotion/airborne/fall.gd" id="1_pk06p"]
 
 [node name="Fall" type="Node" unique_id=946198965]
 script = ExtResource("1_pk06p")

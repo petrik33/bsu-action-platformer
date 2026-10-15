@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cl02erl2k84ad"]
 
-[ext_resource type="Script" uid="uid://dwf0eqiruhmvd" path="res://script/character/fsm/states/action/aim.gd" id="1_8rdnr"]
+[ext_resource type="Script" uid="uid://dwf0eqiruhmvd" path="res://script/character/states/action/aim.gd" id="1_8rdnr"]
 
 [node name="Aim" type="Node" unique_id=109740685]
 script = ExtResource("1_8rdnr")

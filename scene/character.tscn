@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cyems2rhg4r7" path="res://asset/texture/character/character_recolored_no_vfx.png" id="2_d7vt2"]
 [ext_resource type="Texture2D" uid="uid://bctpt2ofrqnlf" path="res://asset/texture/character/sword/Attack1.png" id="3_d7vt2"]
 [ext_resource type="Texture2D" uid="uid://dmawkigs4d5gs" path="res://asset/texture/character/sword/Attack2.png" id="4_a748v"]
-[ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/character/fsm/machine.gd" id="4_t17xi"]
+[ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/fsm/machine.gd" id="4_t17xi"]
 [ext_resource type="PackedScene" uid="uid://dgsdo2v3q356f" path="res://scene/character/states/locomotion.tscn" id="5_3fky7"]
 [ext_resource type="Texture2D" uid="uid://c4oxjwmm2o8aq" path="res://asset/texture/character/sword/Attack3.png" id="5_cnvcp"]
 [ext_resource type="PackedScene" uid="uid://df4en8hdjyeb" path="res://scene/character/states/locomotion/grounded.tscn" id="6_5hcsl"]
@@ -1362,13 +1362,9 @@ _data = {
 &"attack3": SubResource("Animation_cnvcp")
 }
 
-[node name="Character" type="CharacterBody2D" unique_id=205535491 node_paths=PackedStringArray("visuals", "sprite", "animation_player", "state_machine")]
+[node name="Character" type="CharacterBody2D" unique_id=205535491]
 collision_layer = 2
 script = ExtResource("1_0qvrh")
-visuals = NodePath("Visuals")
-sprite = NodePath("Visuals/Base")
-animation_player = NodePath("AnimationPlayer")
-state_machine = NodePath("StateMachine")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=726962726]
 position = Vector2(0, -10)
