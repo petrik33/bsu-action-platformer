@@ -6,3 +6,8 @@ func process(delta: float) -> StringName:
 		return "Jump"
 	
 	return ""
+
+
+func post_physics() -> StringName:
+	game_character.face_movement()
+	return &""

@@ -39,8 +39,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	state_machine.post_physics()
-	
-	face(velocity.x)
 
 
 func can_jump() -> bool:

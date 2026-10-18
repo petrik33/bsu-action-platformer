@@ -27,9 +27,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	state_machine.post_physics()
-	
-	if not is_zero_approx(velocity.x):
-		face(velocity.x)
 
 
 func move_horizontal(direction: float, speed: float):

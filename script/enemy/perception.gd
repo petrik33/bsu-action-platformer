@@ -16,26 +16,16 @@ var _candidates: Array[CharacterBody2D] = []
 var _lost_time: float = 0.0
 
 
-func _ready() -> void:
-	monitoring = true
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
-
-
 func _physics_process(delta: float) -> void:
-	if target == null:
-		return
-	
 	if not is_instance_valid(target):
-		target_lost.emit(target)
-		target = null
+		var found_target := _check_candidates()
+		if not found_target:
+			return
 	
-	if is_instance_valid(target) and _can_see(target):
+	if _can_see(target):
 		last_known_position = target.global_position
 		_lost_time = 0.0
-		return
-
-	if is_instance_valid(target):
+	else:
 		_lost_time += delta
 
 		if _lost_time < forget_delay:
@@ -44,6 +34,13 @@ func _physics_process(delta: float) -> void:
 		target_lost.emit(target)
 		target = null
 
+
+
+func has_target() -> bool:
+	return is_instance_valid(target)
+
+
+func _check_candidates() -> bool:
 	for candidate in _candidates:
 		if not is_instance_valid(candidate):
 			continue
@@ -53,11 +50,8 @@ func _physics_process(delta: float) -> void:
 			last_known_position = candidate.global_position
 			_lost_time = 0.0
 			target_spotted.emit(candidate)
-			return
-
-
-func has_target() -> bool:
-	return is_instance_valid(target)
+			return true
+	return false
 
 
 func _can_see(candidate: CharacterBody2D) -> bool:

@@ -24,6 +24,8 @@ func update_physics(_delta: float):
 	)
 
 func post_physics() -> StringName:
+	enemy.face_movement()
+	
 	if absf(enemy.global_position.x - origin_x) >= max_distance:
 		return &"Idle"
 	

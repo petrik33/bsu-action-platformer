@@ -1,13 +1,23 @@
 extends EnemyCharacterStateBase
 
+@export var knockback_resist := 500
+
+
 func enter():
 	enemy.stop_horizontal()
-	enemy.animation_finished.connect(_on_animation_finished)
 	enemy.play_animation(&"hurt")
+	enemy.velocity = enemy.hurt_box.last_hit.knockback
+	enemy.face(-enemy.velocity.x)
 
-func exit():
-	enemy.animation_finished.disconnect(_on_animation_finished)
+func update_physics(delta: float):
+	enemy.velocity.x = move_toward(
+		enemy.velocity.x,
+		0.0,
+		knockback_resist * delta
+	)
 
-
-func _on_animation_finished():
-	_transition(&"Idle")
+func post_physics() -> StringName:
+	if is_zero_approx(enemy.velocity.x):
+		enemy.stop_horizontal()
+		return &"Idle"
+	return &""

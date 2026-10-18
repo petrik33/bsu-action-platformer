@@ -15,6 +15,8 @@ func _ready() -> void:
 		return
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 
+func face_movement():
+	face(velocity.x)
 
 func face(direction: float):
 	if is_zero_approx(direction):
