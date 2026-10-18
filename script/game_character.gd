@@ -2,7 +2,11 @@ class_name GameCharacter extends Actor
 
 
 @export var state_machine: CharacterStateMachine
+@export var hit_box: HitBox
 
+@export var speed: float = 400
+@export var gravity: float = 900
+@export var gravity_enabled: bool = true
 @export var default_speed: float = 400
 @export var jump_speed: float = 350
 
@@ -12,11 +16,12 @@ var movement_direction := 0.0
 
 
 func _ready() -> void:
+	super._ready()
 	state_machine.initialize(self)
 
 
-func _process(_delta: float) -> void:
-	state_machine.process()
+func _process(delta: float) -> void:
+	state_machine.process(delta)
 
 
 func _physics_process(delta: float) -> void:

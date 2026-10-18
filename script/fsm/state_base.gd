@@ -16,7 +16,7 @@ func enter():
 func exit():
 	pass
 
-func process() -> StringName:
+func process(delta: float) -> StringName:
 	return &""
 
 func update_physics(delta: float):

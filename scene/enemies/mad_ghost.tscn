@@ -1,29 +1,29 @@
 [gd_scene format=3 uid="uid://cv0nc1nnyjsh0"]
 
-[ext_resource type="Script" uid="uid://bxova767wkam4" path="res://script/mad_ghost.gd" id="1_g1sfn"]
-[ext_resource type="Texture2D" uid="uid://ddpi7h3eqkmal" path="res://asset/texture/enemies/Mad Ghost/Mad Ghost-Sheet Separated tags.png" id="1_tuwl0"]
+[ext_resource type="Script" uid="uid://bxova767wkam4" path="res://script/mad_ghost.gd" id="1_xpdev"]
+[ext_resource type="Texture2D" uid="uid://ddpi7h3eqkmal" path="res://asset/texture/enemies/Mad Ghost/Mad Ghost-Sheet Separated tags.png" id="2_qfdwy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tuwl0"]
 size = Vector2(8, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhwnp"]
-atlas = ExtResource("1_tuwl0")
+atlas = ExtResource("2_qfdwy")
 region = Rect2(64, 320, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1sfn"]
-atlas = ExtResource("1_tuwl0")
+atlas = ExtResource("2_qfdwy")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25wn3"]
-atlas = ExtResource("1_tuwl0")
+atlas = ExtResource("2_qfdwy")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cplct"]
-atlas = ExtResource("1_tuwl0")
+atlas = ExtResource("2_qfdwy")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d43v4"]
-atlas = ExtResource("1_tuwl0")
+atlas = ExtResource("2_qfdwy")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3a8sd"]
@@ -59,7 +59,7 @@ size = Vector2(24, 37.5)
 
 [node name="MadGhost" type="CharacterBody2D" unique_id=1439942586 node_paths=PackedStringArray("ground_ray", "hurt_box", "sprite")]
 collision_layer = 4
-script = ExtResource("1_g1sfn")
+script = ExtResource("1_xpdev")
 ground_ray = NodePath("GroundRayCast")
 hurt_box = NodePath("HurtBox")
 sprite = NodePath("Visual/AnimatedSprite2D")

@@ -10,7 +10,7 @@ func enter():
 func exit():
 	game_character.reset_speed()
 
-func process() -> StringName:
+func process(delta: float) -> StringName:
 	if Input.is_action_just_pressed("walk"):
 		return "Walk"
 	

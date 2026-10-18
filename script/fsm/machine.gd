@@ -14,16 +14,16 @@ func initialize(character: CharacterBody2D) -> void:
 		var state = child as CharacterStateBase
 		states[state.name] = state
 		state.init(character)
-		state.transition_requested.connect(_on_transition_requested)
+		state.transition_requested.connect(request_transition)
 	if initial != null:
 		transition_to(initial)
 
-func process() -> void:
+func process(delta: float) -> void:
 	var state_requested := _evaluate_active_path_reverse(func(state: CharacterStateBase):
-		return state.process()
+		return state.process(delta)
 	)
 	if not state_requested.is_empty():
-		_on_transition_requested(state_requested)
+		request_transition(state_requested)
 
 func update_physics(delta: float) -> void:
 	for state in active_path:
@@ -34,7 +34,14 @@ func post_physics() -> void:
 		return state.post_physics()
 	)
 	if not state_requested.is_empty():
-		_on_transition_requested(state_requested)
+		request_transition(state_requested)
+
+func request_transition(target_state: StringName) -> void:
+	if not states.has(target_state):
+		if assert_on_unknown_state:
+			assert(false, "State " + target_state + " not registered")
+		return
+	transition_to(states[target_state])
 
 func transition_to(target_state: CharacterStateBase) -> void:
 	if target_state == null:
@@ -77,10 +84,3 @@ func _evaluate_active_path_reverse(action: Callable) -> StringName:
 		if requested != &"":
 			return requested
 	return &""
-
-func _on_transition_requested(to: StringName):
-	if not states.has(to):
-		if assert_on_unknown_state:
-			assert(false, "State " + to + " not registered")
-		return
-	transition_to(states[to])

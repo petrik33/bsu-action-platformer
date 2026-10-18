@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bqkwlevbj2nwh"]
+
+[ext_resource type="Script" uid="uid://b6m2r76pfc72k" path="res://script/enemy/states/attack.gd" id="1_qeggh"]
+
+[node name="Attack" type="Node" unique_id=1140714920]
+script = ExtResource("1_qeggh")
+metadata/_custom_type_script = "uid://bhs7xi0ommry6"

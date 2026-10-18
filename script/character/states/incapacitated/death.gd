@@ -8,5 +8,5 @@ func exit():
 	game_character.animation_finished.disconnect(_on_animation_finished)
 
 
-func _on_animation_finished(_anim_name: StringName):
-	_transition("idle")
+func _on_animation_finished():
+	_transition(&"Idle")

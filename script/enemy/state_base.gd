@@ -1,7 +1,7 @@
 class_name EnemyCharacterStateBase extends CharacterStateBase
 
 
-var enemy:
+var enemy: EnemyCharacter:
 	get():
 		return character as EnemyCharacter
 

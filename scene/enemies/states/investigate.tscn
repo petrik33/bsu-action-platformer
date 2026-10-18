@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cu1fyvhsvvnxt"]
+
+[ext_resource type="Script" uid="uid://ch0ky3utnldoi" path="res://script/enemy/states/investigate.gd" id="1_i8kx2"]
+
+[node name="Investigate" type="Node" unique_id=2119018935]
+script = ExtResource("1_i8kx2")
+metadata/_custom_type_script = "uid://bhs7xi0ommry6"

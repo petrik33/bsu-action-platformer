@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dbijohyvc6go"]
+
+[ext_resource type="Script" uid="uid://kp6gmiyxkl3o" path="res://script/enemy/navigation/grounded.gd" id="1_7dhvo"]
+
+[node name="NavigationGrounded" type="Node2D" unique_id=2085862437 node_paths=PackedStringArray("wall_check", "floor_check")]
+script = ExtResource("1_7dhvo")
+wall_check = NodePath("WallCheck")
+floor_check = NodePath("FloorCheck")
+metadata/_custom_type_script = "uid://kp6gmiyxkl3o"
+
+[node name="FloorCheck" type="RayCast2D" parent="." unique_id=797976595]
+position = Vector2(16, 0)
+target_position = Vector2(0, 24)
+
+[node name="WallCheck" type="RayCast2D" parent="." unique_id=1768408391]
+position = Vector2(0, -8)
+target_position = Vector2(20, 0)

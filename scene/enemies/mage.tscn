@@ -2,6 +2,17 @@
 
 [ext_resource type="Script" uid="uid://w23557yemp8u" path="res://script/enemy_character.gd" id="1_oqubo"]
 [ext_resource type="Texture2D" uid="uid://b3pvn82o3xh5o" path="res://asset/texture/enemies/Mage/Mage-Sheet Separated Tags.png" id="1_vxxwj"]
+[ext_resource type="PackedScene" uid="uid://5ngj1n3q6rd" path="res://scene/enemies/common/hurt_box.tscn" id="3_dp037"]
+[ext_resource type="PackedScene" uid="uid://dbijohyvc6go" path="res://scene/enemies/common/navigation_grounded.tscn" id="4_h2iyk"]
+[ext_resource type="PackedScene" uid="uid://dlgm3haqibyaw" path="res://scene/enemies/common/perception.tscn" id="5_u06k2"]
+[ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/fsm/machine.gd" id="6_bxxyc"]
+[ext_resource type="PackedScene" uid="uid://dgr0braecu28y" path="res://scene/enemies/states/passive.tscn" id="7_xydch"]
+[ext_resource type="PackedScene" uid="uid://cp38i6pqejveu" path="res://scene/enemies/states/passive/idle.tscn" id="8_rtlgi"]
+[ext_resource type="PackedScene" uid="uid://dtgvyec0183ks" path="res://scene/enemies/states/passive/patrol.tscn" id="9_srgcj"]
+[ext_resource type="PackedScene" uid="uid://dyr6nh4ibjwua" path="res://scene/enemies/states/chase.tscn" id="10_8l2p6"]
+[ext_resource type="PackedScene" uid="uid://bqkwlevbj2nwh" path="res://scene/enemies/states/attack.tscn" id="11_i4onk"]
+[ext_resource type="PackedScene" uid="uid://8u16f5cw6syf" path="res://scene/enemies/states/hurt.tscn" id="12_0c3hi"]
+[ext_resource type="PackedScene" uid="uid://cu1fyvhsvvnxt" path="res://scene/enemies/states/investigate.tscn" id="13_rtlgi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxxwj"]
 size = Vector2(12, 31)
@@ -86,13 +97,13 @@ region = Rect2(896, 192, 112, 48)
 atlas = ExtResource("1_vxxwj")
 region = Rect2(1008, 192, 112, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nxtip"]
-atlas = ExtResource("1_vxxwj")
-region = Rect2(0, 144, 112, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_dxho3"]
 atlas = ExtResource("1_vxxwj")
 region = Rect2(112, 144, 112, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxtip"]
+atlas = ExtResource("1_vxxwj")
+region = Rect2(0, 144, 112, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqubo"]
 atlas = ExtResource("1_vxxwj")
@@ -200,10 +211,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nxtip")
+"texture": SubResource("AtlasTexture_dxho3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dxho3")
+"texture": SubResource("AtlasTexture_nxtip")
 }],
 "loop": false,
 "name": &"hurt",
@@ -247,12 +258,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqubo"]
 size = Vector2(16, 31)
 
-[node name="Mage" type="CharacterBody2D" unique_id=927593917]
+[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "visuals", "sprite")]
+collision_layer = 4
 script = ExtResource("1_oqubo")
+state_machine = NodePath("StateMachine")
+perception = NodePath("Perception")
+navigation = NodePath("Visual/NavigationGrounded")
+hurt_box = NodePath("HurtBox")
+visuals = NodePath("Visual")
+sprite = NodePath("Visual/AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=3677463]
-position = Vector2(-1, -15.5)
+position = Vector2(0, -15.5)
 shape = SubResource("RectangleShape2D_vxxwj")
 
 [node name="Visual" type="Node2D" parent="." unique_id=538338525]
@@ -262,9 +280,34 @@ sprite_frames = SubResource("SpriteFrames_bxxyc")
 animation = &"idle"
 offset = Vector2(0, -24)
 
-[node name="HurtBox" type="Area2D" parent="." unique_id=568956600]
+[node name="NavigationGrounded" parent="Visual" unique_id=2085862437 instance=ExtResource("4_h2iyk")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=466657655]
+[node name="HurtBox" parent="." unique_id=1463069577 instance=ExtResource("3_dp037")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1381433368]
 position = Vector2(0, -15.5)
 shape = SubResource("RectangleShape2D_oqubo")
 debug_color = Color(0.7, 0.19833331, 0, 0.41960785)
+
+[node name="Perception" parent="." unique_id=855897802 instance=ExtResource("5_u06k2")]
+visible = false
+
+[node name="StateMachine" type="Node" parent="." unique_id=1650397840 node_paths=PackedStringArray("initial")]
+script = ExtResource("6_bxxyc")
+initial = NodePath("Passive/Idle")
+metadata/_custom_type_script = "uid://doq0lhrxpcf22"
+
+[node name="Passive" parent="StateMachine" unique_id=228852256 instance=ExtResource("7_xydch")]
+
+[node name="Idle" parent="StateMachine/Passive" unique_id=2005035550 instance=ExtResource("8_rtlgi")]
+
+[node name="Patrol" parent="StateMachine/Passive" unique_id=1114917989 instance=ExtResource("9_srgcj")]
+
+[node name="Chase" parent="StateMachine" unique_id=1942010174 instance=ExtResource("10_8l2p6")]
+run_animation_name = &"walk"
+
+[node name="Attack" parent="StateMachine" unique_id=1140714920 instance=ExtResource("11_i4onk")]
+
+[node name="Hurt" parent="StateMachine" unique_id=73280351 instance=ExtResource("12_0c3hi")]
+
+[node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("13_rtlgi")]

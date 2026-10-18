@@ -1,7 +1,7 @@
 class_name GameCharacterStateBase extends CharacterStateBase
 
 
-var game_character:
+var game_character: GameCharacter:
 	get():
 		return character as GameCharacter
 

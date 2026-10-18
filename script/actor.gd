@@ -8,10 +8,6 @@ signal animation_finished()
 @export var sprite: AnimatedSprite2D
 @export var animation_player: AnimationPlayer
 
-@export var speed: float = 400
-@export var gravity: float = 900
-@export var gravity_enabled: bool = true
-
 
 func _ready() -> void:
 	sprite.animation_finished.connect(_on_sprite_animation_finished)
@@ -23,10 +19,13 @@ func _ready() -> void:
 func face(direction: float):
 	if is_zero_approx(direction):
 		return
-	visuals.scale.x = sign(direction)
+	visuals.scale.x = signf(direction)
 
 func facing_direction() -> float:
 	return sign(visuals.scale.x)
+
+func turn_around():
+	face(-facing_direction())
 
 func play_animation(anim_name: StringName):
 	if animation_player and animation_player.has_animation(anim_name):

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dgsdo2v3q356f" path="res://scene/character/states/locomotion.tscn" id="5_3fky7"]
 [ext_resource type="Texture2D" uid="uid://c4oxjwmm2o8aq" path="res://asset/texture/character/sword/Attack3.png" id="5_cnvcp"]
 [ext_resource type="PackedScene" uid="uid://df4en8hdjyeb" path="res://scene/character/states/locomotion/grounded.tscn" id="6_5hcsl"]
+[ext_resource type="Script" uid="uid://jr5ukwbmeayd" path="res://script/combat/hit_box.gd" id="6_cnvcp"]
 [ext_resource type="PackedScene" uid="uid://dsjj74yffpddg" path="res://scene/character/states/locomotion/grounded/idle.tscn" id="7_ud0a3"]
 [ext_resource type="PackedScene" uid="uid://bejmpipnu481a" path="res://scene/character/states/locomotion/grounded/move.tscn" id="8_0qvrh"]
 [ext_resource type="PackedScene" uid="uid://bnx84ttdi5rpr" path="res://scene/character/states/locomotion/grounded/move/run.tscn" id="9_a748v"]
@@ -1080,7 +1081,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HitBox/Attack1:disabled")
+tracks/3/path = NodePath("Visuals/HitBox/Attack1:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1092,7 +1093,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox/Attack2:disabled")
+tracks/4/path = NodePath("Visuals/HitBox/Attack2:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1104,7 +1105,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox/Attack3:disabled")
+tracks/5/path = NodePath("Visuals/HitBox/Attack3:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1180,7 +1181,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HitBox/Attack1:disabled")
+tracks/4/path = NodePath("Visuals/HitBox/Attack1:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1268,7 +1269,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox/Attack2:disabled")
+tracks/5/path = NodePath("Visuals/HitBox/Attack2:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1344,7 +1345,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HitBox/Attack3:disabled")
+tracks/5/path = NodePath("Visuals/HitBox/Attack3:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1362,9 +1363,14 @@ _data = {
 &"attack3": SubResource("Animation_cnvcp")
 }
 
-[node name="Character" type="CharacterBody2D" unique_id=205535491]
+[node name="Character" type="CharacterBody2D" unique_id=213064435 node_paths=PackedStringArray("state_machine", "visuals", "sprite", "animation_player") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_0qvrh")
+state_machine = NodePath("StateMachine")
+visuals = NodePath("Visuals")
+sprite = NodePath("Visuals/Base")
+animation_player = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://bowr4smo7rude"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=726962726]
 position = Vector2(0, -10)
@@ -1385,24 +1391,25 @@ sprite_frames = SubResource("SpriteFrames_aqmka")
 animation = &"attack3"
 frame = 1
 
-[node name="HitBox" type="Area2D" parent="." unique_id=1342386439]
+[node name="HitBox" type="Area2D" parent="Visuals" unique_id=1342386439]
 collision_layer = 8
 collision_mask = 64
-monitoring = false
+monitorable = false
+script = ExtResource("6_cnvcp")
 
-[node name="Attack1" type="CollisionShape2D" parent="HitBox" unique_id=329105037]
+[node name="Attack1" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=329105037]
 position = Vector2(21.5, -9)
 shape = SubResource("RectangleShape2D_d7vt2")
 disabled = true
 debug_color = Color(0.7019608, 0.1764706, 0, 0.41960785)
 
-[node name="Attack2" type="CollisionShape2D" parent="HitBox" unique_id=99299981]
+[node name="Attack2" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=99299981]
 position = Vector2(30.5, -29)
 shape = SubResource("RectangleShape2D_cnvcp")
 disabled = true
 debug_color = Color(0.8633153, 0.3378712, 0.3281017, 0.41960785)
 
-[node name="Attack3" type="CollisionShape2D" parent="HitBox" unique_id=1739070447]
+[node name="Attack3" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=1739070447]
 position = Vector2(23.5, -5)
 shape = SubResource("RectangleShape2D_x2uf3")
 disabled = true
@@ -1447,6 +1454,3 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 [node name="Hurt" parent="StateMachine/Incapacitated" unique_id=33714673 instance=ExtResource("19_ud0a3")]
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("20_0qvrh")]
-
-[connection signal="animation_finished" from="Visuals/Base" to="." method="_on_sprite_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

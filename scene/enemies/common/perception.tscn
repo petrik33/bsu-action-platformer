@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dlgm3haqibyaw"]
+
+[ext_resource type="Script" uid="uid://25sdyppolkpd" path="res://script/enemy/perception.gd" id="1_otuoh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otuoh"]
+size = Vector2(400, 200)
+
+[node name="Perception" type="Area2D" unique_id=855897802]
+collision_layer = 2
+monitorable = false
+script = ExtResource("1_otuoh")
+visibility_mask = 3
+metadata/_custom_type_script = "uid://25sdyppolkpd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1530584546]
+shape = SubResource("RectangleShape2D_otuoh")
+debug_color = Color(0.55999994, 0.7, 0, 0.41960785)

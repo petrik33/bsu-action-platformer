@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://8u16f5cw6syf"]
+
+[ext_resource type="Script" uid="uid://ryficrrolyjr" path="res://script/enemy/states/hurt.gd" id="1_8wv73"]
+
+[node name="Hurt" type="Node" unique_id=73280351]
+script = ExtResource("1_8wv73")
+metadata/_custom_type_script = "uid://bhs7xi0ommry6"

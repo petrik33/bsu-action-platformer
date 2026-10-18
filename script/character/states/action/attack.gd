@@ -21,7 +21,7 @@ func exit():
 	game_character.reset_speed()
 	game_character.animation_finished.disconnect(_on_animation_finished)
 
-func process() -> StringName:
+func process(delta: float) -> StringName:
 	if Input.is_action_just_pressed("click"):
 		combo_buffered = true
 	return ""

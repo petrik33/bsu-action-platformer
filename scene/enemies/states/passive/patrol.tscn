@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dtgvyec0183ks"]
+
+[ext_resource type="Script" uid="uid://70nnnvqn7ao8" path="res://script/enemy/states/passive/patrol.gd" id="1_jmhdg"]
+
+[node name="Patrol" type="Node" unique_id=1114917989]
+script = ExtResource("1_jmhdg")
+metadata/_custom_type_script = "uid://bhs7xi0ommry6"
