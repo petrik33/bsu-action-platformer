@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dbijohyvc6go" path="res://scene/enemies/common/navigation_grounded.tscn" id="4_h2iyk"]
 [ext_resource type="PackedScene" uid="uid://dlgm3haqibyaw" path="res://scene/enemies/common/perception.tscn" id="5_u06k2"]
 [ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/fsm/machine.gd" id="6_bxxyc"]
+[ext_resource type="PackedScene" uid="uid://i0rj2sedr07y" path="res://scene/enemies/common/hit_box.tscn" id="6_srgcj"]
 [ext_resource type="PackedScene" uid="uid://dgr0braecu28y" path="res://scene/enemies/states/passive.tscn" id="7_xydch"]
 [ext_resource type="PackedScene" uid="uid://cp38i6pqejveu" path="res://scene/enemies/states/passive/idle.tscn" id="8_rtlgi"]
 [ext_resource type="PackedScene" uid="uid://dtgvyec0183ks" path="res://scene/enemies/states/passive/patrol.tscn" id="9_srgcj"]
@@ -258,18 +259,22 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqubo"]
 size = Vector2(16, 31)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srgcj"]
+size = Vector2(105, 44)
+
 [node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "visuals", "sprite")]
 collision_layer = 4
 script = ExtResource("1_oqubo")
 state_machine = NodePath("StateMachine")
-perception = NodePath("Perception")
+perception = NodePath("Visual/Perception")
 navigation = NodePath("Visual/NavigationGrounded")
-hurt_box = NodePath("HurtBox")
+hurt_box = NodePath("Visual/HurtBox")
 visuals = NodePath("Visual")
 sprite = NodePath("Visual/AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=3677463]
+visible = false
 position = Vector2(0, -15.5)
 shape = SubResource("RectangleShape2D_vxxwj")
 
@@ -277,20 +282,33 @@ shape = SubResource("RectangleShape2D_vxxwj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual" unique_id=1063587671]
 sprite_frames = SubResource("SpriteFrames_bxxyc")
-animation = &"idle"
+animation = &"attack"
+frame = 4
 offset = Vector2(0, -24)
 
 [node name="NavigationGrounded" parent="Visual" unique_id=2085862437 instance=ExtResource("4_h2iyk")]
+visible = false
 
-[node name="HurtBox" parent="." unique_id=1463069577 instance=ExtResource("3_dp037")]
+[node name="HurtBox" parent="Visual" unique_id=1463069577 instance=ExtResource("3_dp037")]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1381433368]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visual/HurtBox" unique_id=1381433368]
 position = Vector2(0, -15.5)
 shape = SubResource("RectangleShape2D_oqubo")
 debug_color = Color(0.7, 0.19833331, 0, 0.41960785)
 
-[node name="Perception" parent="." unique_id=855897802 instance=ExtResource("5_u06k2")]
+[node name="Perception" parent="Visual" unique_id=855897802 instance=ExtResource("5_u06k2")]
 visible = false
+
+[node name="HitBox" parent="Visual" unique_id=1133976621 instance=ExtResource("6_srgcj")]
+
+[node name="Attack" type="CollisionShape2D" parent="Visual/HitBox" unique_id=1813798163]
+position = Vector2(0.5, -22)
+shape = SubResource("RectangleShape2D_srgcj")
+disabled = true
+debug_color = Color(0.52554315, 0.5724057, 0.06283313, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1760355641]
 
 [node name="StateMachine" type="Node" parent="." unique_id=1650397840 node_paths=PackedStringArray("initial")]
 script = ExtResource("6_bxxyc")

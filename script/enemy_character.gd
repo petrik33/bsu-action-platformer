@@ -5,6 +5,7 @@ class_name EnemyCharacter extends Actor
 @export var perception: EnemyPerception
 @export var navigation: EnemyNavigationBsae
 @export var hurt_box: HurtBox
+@export var hit_box: HitBox
 
 @export var gravity: float = 900
 @export var gravity_enabled: bool = true

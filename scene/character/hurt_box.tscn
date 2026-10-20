@@ -5,5 +5,6 @@
 [node name="HurtBox" type="Area2D" unique_id=1404215644]
 collision_layer = 32
 collision_mask = 16
+monitoring = false
 script = ExtResource("1_0544b")
 metadata/_custom_type_script = "uid://cidlfo3jkctop"
