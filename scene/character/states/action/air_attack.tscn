@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://depht2awncffo"]
+
+[ext_resource type="Script" uid="uid://h3gkfru54kqt" path="res://script/character/states/action/air_attack.gd" id="1_c4i4t"]
+
+[node name="AirAttack" type="Node" unique_id=1996409664]
+script = ExtResource("1_c4i4t")
+metadata/_custom_type_script = "uid://cob6ddl21va62"
