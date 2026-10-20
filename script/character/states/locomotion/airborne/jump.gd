@@ -1,8 +1,9 @@
 extends GameCharacterStateBase
 
+@export var animation_name: StringName = &"jump"
 
 func enter():
-	game_character.play_animation("jump")
+	game_character.play_animation(animation_name)
 	game_character.jump()
 
 

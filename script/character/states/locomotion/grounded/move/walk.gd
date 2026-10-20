@@ -1,11 +1,12 @@
 extends GameCharacterStateBase
 
 @export var walk_speed: float = 200
+@export var animation_name: StringName = &"walk"
 
 
 func enter():
 	game_character.speed = walk_speed
-	game_character.play_animation("walk")
+	game_character.play_animation(animation_name)
 
 func exit():
 	game_character.reset_speed()

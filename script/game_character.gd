@@ -3,6 +3,7 @@ class_name GameCharacter extends Actor
 
 @export var state_machine: CharacterStateMachine
 @export var hit_box: HitBox
+@export var hurt_box: HurtBox
 
 @export var speed: float = 400
 @export var gravity: float = 900
@@ -13,6 +14,7 @@ class_name GameCharacter extends Actor
 
 var jumps_left := 2
 var movement_direction := 0.0
+var is_movement_locked := false
 
 
 func _ready() -> void:
@@ -25,7 +27,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	movement_direction = signf(Input.get_axis("left", "right"))
+	if not is_movement_locked:
+		movement_direction = signf(Input.get_axis("left", "right"))
 	
 	state_machine.update_physics(delta)
 	
@@ -40,6 +43,18 @@ func _physics_process(delta: float) -> void:
 	
 	state_machine.post_physics()
 
+func set_invulnerable(value: bool) -> void:
+	if hurt_box:
+		hurt_box.is_invulnerable = value
+
+func is_invulnerable() -> bool:
+	return hurt_box != null and hurt_box.is_invulnerable
+
+func lock_movement():
+	is_movement_locked = true
+
+func unlock_movement():
+	is_movement_locked = false
 
 func can_jump() -> bool:
 	return jumps_left > 0
