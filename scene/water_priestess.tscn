@@ -165,7 +165,6 @@
 [ext_resource type="Texture2D" uid="uid://6o38iheovyy3" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_30.png" id="119_yn7hy"]
 [ext_resource type="Texture2D" uid="uid://cj4e1g6nvow7w" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_31.png" id="120_lp3au"]
 [ext_resource type="Texture2D" uid="uid://ccv3m83023gct" path="res://asset/texture/water_priestess/10_sp_atk/sp_atk_32.png" id="121_lirr0"]
-[ext_resource type="Script" uid="uid://jr5ukwbmeayd" path="res://script/combat/hit_box.gd" id="158_ulcry"]
 [ext_resource type="PackedScene" uid="uid://bqxdqohr17scx" path="res://scene/character/hurt_box.tscn" id="159_3kien"]
 [ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/fsm/machine.gd" id="159_okmev"]
 [ext_resource type="PackedScene" uid="uid://dgsdo2v3q356f" path="res://scene/character/states/locomotion.tscn" id="160_3kien"]
@@ -175,6 +174,7 @@
 [ext_resource type="PackedScene" uid="uid://bnx84ttdi5rpr" path="res://scene/character/states/locomotion/grounded/move/run.tscn" id="164_ucjog"]
 [ext_resource type="PackedScene" uid="uid://0fb41j0ms7y3" path="res://scene/character/states/locomotion/grounded/move/sprint.tscn" id="165_8vw2g"]
 [ext_resource type="PackedScene" uid="uid://cu47872cwivvj" path="res://scene/character/states/locomotion/grounded/move/walk.tscn" id="166_8y4jm"]
+[ext_resource type="PackedScene" uid="uid://dhdj53ixvhfeb" path="res://scene/character/hit_box.tscn" id="166_yn7hy"]
 [ext_resource type="PackedScene" uid="uid://cgbn8bkj1hks5" path="res://scene/character/states/locomotion/airborne.tscn" id="167_mifu2"]
 [ext_resource type="PackedScene" uid="uid://dsflokmpqtns7" path="res://scene/character/states/locomotion/airborne/jump.tscn" id="168_7ehhp"]
 [ext_resource type="PackedScene" uid="uid://ciuiv751od242" path="res://scene/character/states/locomotion/airborne/fall.tscn" id="169_yn7hy"]
@@ -913,12 +913,7 @@ animation = &"idle"
 autoplay = "idle"
 offset = Vector2(0, -63)
 
-[node name="HitBox" type="Area2D" parent="Visuals" unique_id=594449296]
-visible = false
-collision_layer = 8
-collision_mask = 64
-monitorable = false
-script = ExtResource("158_ulcry")
+[node name="HitBox" parent="Visuals" unique_id=1029822365 instance=ExtResource("166_yn7hy")]
 
 [node name="Attack1" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=815215970]
 position = Vector2(21.5, -9)

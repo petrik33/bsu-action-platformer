@@ -1,15 +1,16 @@
 extends GameCharacterStateBase
 
-@export var roll_speed: float = 500.0
+@export var roll_speed: float = 300.0
 @export var roll_animation: StringName = &"roll"
 @export var invulnerable_during_roll: bool = true
 
 
 func enter() -> void:
-	if is_zero_approx(game_character.movement_direction):
-		game_character.movement_direction = game_character.facing_direction()
+	var _roll_direction := game_character.movement_direction
+	if is_zero_approx(_roll_direction):
+		_roll_direction = game_character.facing_direction()
 	
-	game_character.speed = roll_speed
+	game_character.velocity.x = _roll_direction * roll_speed
 	game_character.lock_movement()
 	
 	if invulnerable_during_roll:
@@ -25,7 +26,6 @@ func exit() -> void:
 	if invulnerable_during_roll:
 		game_character.set_invulnerable(false)
 	
-	game_character.reset_speed()
 	game_character.unlock_movement()
 
 

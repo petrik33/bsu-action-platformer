@@ -7,4 +7,5 @@ collision_layer = 8
 collision_mask = 64
 monitorable = false
 script = ExtResource("1_5ch6h")
+knockback_y = 0.0
 metadata/_custom_type_script = "uid://jr5ukwbmeayd"

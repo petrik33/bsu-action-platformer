@@ -33,12 +33,13 @@ func _on_frame_changed() -> void:
 
 func _on_animation_changed() -> void:
 	if sprite.animation == animation:
-		sprite.frame_changed.connect(_on_frame_changed)
+		if not sprite.frame_changed.is_connected(_on_frame_changed):
+			sprite.frame_changed.connect(_on_frame_changed)
 	elif sprite.frame_changed.is_connected(_on_frame_changed):
 		sprite.frame_changed.disconnect(_on_frame_changed)
-		_is_currently_active = false
-		frame_exited.emit()
-	
+		if _is_currently_active:
+			_is_currently_active = false
+			frame_exited.emit()
 
 ## Resolves frame so negative indices (-1, -2) map correctly to frame positions.
 func _resolve_frame_index():
@@ -59,3 +60,9 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if not sprite.sprite_frames.has_animation(animation):
 		return ["No such animation in target sprite"]
 	return []
+
+func _on_frame_entered():
+	pass
+
+func _on_frame_exited():
+	pass

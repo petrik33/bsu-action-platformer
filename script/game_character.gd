@@ -20,6 +20,7 @@ var is_movement_locked := false
 func _ready() -> void:
 	super._ready()
 	state_machine.initialize(self)
+	hurt_box.hit_received.connect(_on_hit_received)
 
 
 func _process(delta: float) -> void:
@@ -27,8 +28,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_movement_locked:
-		movement_direction = signf(Input.get_axis("left", "right"))
+	movement_direction = signf(Input.get_axis("left", "right"))
 	
 	state_machine.update_physics(delta)
 	
@@ -37,7 +37,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		jumps_left = 2
 	
-	velocity.x = movement_direction * speed
+	if not is_movement_locked:
+		velocity.x = movement_direction * speed
 	
 	move_and_slide()
 	
@@ -65,3 +66,7 @@ func jump():
 
 func reset_speed():
 	speed = default_speed
+
+
+func _on_hit_received(_attack_data: AttackData):
+	state_machine.request_transition(&"Hurt")
