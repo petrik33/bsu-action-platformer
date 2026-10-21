@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bfb2slsr1piqf" path="res://asset/texture/environment/Background.png" id="2_p1ry8"]
 [ext_resource type="Texture2D" uid="uid://b4q38gf8ekmbp" path="res://asset/texture/environment/Midground.png" id="3_xlg7c"]
 [ext_resource type="Texture2D" uid="uid://c4t7amkr4f87p" path="res://asset/texture/environment/Foreground.png" id="4_qpk70"]
-[ext_resource type="PackedScene" uid="uid://cv0nc1nnyjsh0" path="res://scene/enemies/mad_ghost.tscn" id="6_qpk70"]
+[ext_resource type="PackedScene" uid="uid://ca4ta3fmrmdte" path="res://scene/enemies/dummy.tscn" id="6_ll5lq"]
 [ext_resource type="TileSet" uid="uid://0i4n4wh6626b" path="res://resource/tileset.tres" id="6_xlg7c"]
 [ext_resource type="PackedScene" uid="uid://b3wc0hno02c02" path="res://scene/water_priestess.tscn" id="7_17rxn"]
 [ext_resource type="PackedScene" uid="uid://cpo4adxkqyhuw" path="res://scene/enemies/mage.tscn" id="7_ll5lq"]
@@ -51,12 +51,6 @@ centered = false
 
 [node name="Enemies" type="Node2D" parent="Bodies" unique_id=1601694248]
 
-[node name="MadGhost" parent="Bodies/Enemies" unique_id=1439942586 instance=ExtResource("6_qpk70")]
-position = Vector2(251, -122)
-
-[node name="MadGhost2" parent="Bodies/Enemies" unique_id=500202479 instance=ExtResource("6_qpk70")]
-position = Vector2(178, -51)
-
 [node name="Mage" parent="Bodies/Enemies" unique_id=927593917 instance=ExtResource("7_ll5lq")]
 position = Vector2(445, -134)
 
@@ -71,6 +65,9 @@ position = Vector2(1756, -58)
 
 [node name="Mage5" parent="Bodies/Enemies" unique_id=1885897608 instance=ExtResource("7_ll5lq")]
 position = Vector2(2137, -58)
+
+[node name="Dummy" parent="Bodies/Enemies" unique_id=1200216083 instance=ExtResource("6_ll5lq")]
+position = Vector2(170, -54)
 
 [node name="WaterPriestess" parent="Bodies" unique_id=1544133711 instance=ExtResource("7_17rxn")]
 position = Vector2(78, -53)

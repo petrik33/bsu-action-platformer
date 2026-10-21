@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://ca4ta3fmrmdte"]
+
+[ext_resource type="Script" uid="uid://w23557yemp8u" path="res://script/enemy_character.gd" id="1_rm4py"]
+[ext_resource type="Texture2D" uid="uid://cwj05aevg6c4e" path="res://asset/texture/dummy/IDLE.png" id="1_sdolw"]
+[ext_resource type="Texture2D" uid="uid://dndkh24n3qmri" path="res://asset/texture/dummy/HIT.png" id="2_crlft"]
+[ext_resource type="PackedScene" uid="uid://5ngj1n3q6rd" path="res://scene/enemies/common/hurt_box.tscn" id="4_crlft"]
+[ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/fsm/machine.gd" id="4_ekrq8"]
+[ext_resource type="PackedScene" uid="uid://b4an34w423jre" path="res://scene/enemies/dummy/idle_state.tscn" id="5_mvfgf"]
+[ext_resource type="PackedScene" uid="uid://byxebin6wflxt" path="res://scene/enemies/dummy/hurt_state.tscn" id="6_i4rh1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yniqp"]
+size = Vector2(33, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofa2e"]
+atlas = ExtResource("2_crlft")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tcw2"]
+atlas = ExtResource("2_crlft")
+region = Rect2(80, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uftvr"]
+atlas = ExtResource("2_crlft")
+region = Rect2(160, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fvql"]
+atlas = ExtResource("2_crlft")
+region = Rect2(240, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew8mg"]
+atlas = ExtResource("2_crlft")
+region = Rect2(320, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjm3a"]
+atlas = ExtResource("2_crlft")
+region = Rect2(400, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dak8"]
+atlas = ExtResource("2_crlft")
+region = Rect2(480, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm4py"]
+atlas = ExtResource("1_sdolw")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ekrq8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofa2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tcw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uftvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fvql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew8mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjm3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dak8")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm4py")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rm4py"]
+size = Vector2(33, 39)
+
+[node name="Dummy" type="CharacterBody2D" unique_id=1772807905 node_paths=PackedStringArray("state_machine", "hurt_box", "visuals", "sprite")]
+collision_layer = 4
+script = ExtResource("1_rm4py")
+state_machine = NodePath("StateMachine")
+hurt_box = NodePath("HurtBox")
+visuals = NodePath("AnimatedSprite2D")
+sprite = NodePath("AnimatedSprite2D")
+metadata/_custom_type_script = "uid://w23557yemp8u"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1887227417]
+position = Vector2(1, -19)
+shape = SubResource("RectangleShape2D_yniqp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=326935759]
+position = Vector2(0, -20)
+rotation = -3.1415927
+scale = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_ekrq8")
+animation = &"hurt"
+frame = 6
+frame_progress = 1.0
+
+[node name="HurtBox" parent="." unique_id=1463069577 instance=ExtResource("4_crlft")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=275598928]
+position = Vector2(1.5, -19.5)
+shape = SubResource("RectangleShape2D_rm4py")
+debug_color = Color(0.8117647, 0.30588236, 0.2, 0.41960785)
+
+[node name="StateMachine" type="Node" parent="." unique_id=32684598 node_paths=PackedStringArray("initial")]
+script = ExtResource("4_ekrq8")
+initial = NodePath("Idle")
+metadata/_custom_type_script = "uid://doq0lhrxpcf22"
+
+[node name="Idle" parent="StateMachine" unique_id=331665003 instance=ExtResource("5_mvfgf")]
+
+[node name="Hurt" parent="StateMachine" unique_id=393947758 instance=ExtResource("6_i4rh1")]

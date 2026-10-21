@@ -974,7 +974,6 @@ autoplay = "idle"
 offset = Vector2(0, -63)
 
 [node name="HitBox" parent="Visuals" unique_id=1029822365 instance=ExtResource("166_yn7hy")]
-visible = false
 
 [node name="Attack1" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=815215970]
 position = Vector2(27.5, -23.5)

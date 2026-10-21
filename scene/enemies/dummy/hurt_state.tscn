@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://byxebin6wflxt"]
+
+[ext_resource type="Script" uid="uid://lvqnjfqc7ylt" path="res://script/enemy/dummy/hurt_state.gd" id="1_f6vhg"]
+
+[node name="HurtState" type="Node" unique_id=393947758]
+script = ExtResource("1_f6vhg")
+metadata/_custom_type_script = "uid://bhs7xi0ommry6"
