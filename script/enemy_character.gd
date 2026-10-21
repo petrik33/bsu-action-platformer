@@ -10,6 +10,8 @@ class_name EnemyCharacter extends Actor
 @export var gravity: float = 900
 @export var gravity_enabled: bool = true
 
+var last_hurt: AttackData
+
 
 func _ready() -> void:
 	super._ready()
@@ -29,6 +31,9 @@ func _physics_process(delta: float) -> void:
 
 	state_machine.post_physics()
 
+func hurt(attack: AttackData):
+	last_hurt = attack
+	state_machine.request_transition(&"Hurt")
 
 func move_horizontal(direction: float, speed: float):
 	velocity.x = sign(direction) * speed
@@ -37,5 +42,5 @@ func stop_horizontal() -> void:
 	velocity.x = 0.0
 
 
-func _on_hit_received(_attack: AttackData):
-	state_machine.request_transition(&"Hurt")
+func _on_hit_received(attack: AttackData):
+	call_deferred(&"hurt", attack)

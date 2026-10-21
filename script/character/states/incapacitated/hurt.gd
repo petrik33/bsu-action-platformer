@@ -5,7 +5,7 @@ extends GameCharacterStateBase
 
 func enter():
 	game_character.play_animation(&"hurt")
-	game_character.velocity = game_character.hurt_box.last_hit.knockback
+	game_character.velocity = game_character.last_hurt.knockback
 	game_character.face(signf(-game_character.velocity.x))
 	game_character.lock_movement()
 

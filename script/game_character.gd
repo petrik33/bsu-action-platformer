@@ -15,6 +15,7 @@ class_name GameCharacter extends Actor
 var jumps_left := 2
 var movement_direction := 0.0
 var is_movement_locked := false
+var last_hurt: AttackData
 
 
 func _ready() -> void:
@@ -44,6 +45,10 @@ func _physics_process(delta: float) -> void:
 	
 	state_machine.post_physics()
 
+func hurt(attack_data: AttackData):
+	last_hurt = attack_data
+	state_machine.request_transition(&"Hurt")
+
 func set_invulnerable(value: bool) -> void:
 	if hurt_box:
 		hurt_box.is_invulnerable = value
@@ -68,5 +73,5 @@ func reset_speed():
 	speed = default_speed
 
 
-func _on_hit_received(_attack_data: AttackData):
-	state_machine.request_transition(&"Hurt")
+func _on_hit_received(attack_data: AttackData):
+	call_deferred(&"hurt", attack_data)

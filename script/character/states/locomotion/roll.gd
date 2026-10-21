@@ -30,4 +30,7 @@ func exit() -> void:
 
 
 func _on_character_animation_finished() -> void:
-	_transition(&"Idle")
+	if character.is_on_floor():
+		_transition(&"Idle")
+	else:
+		_transition(&"Fall")

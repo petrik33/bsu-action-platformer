@@ -2,8 +2,8 @@ extends GameCharacterStateBase
 
 
 @export var lock_speed: float = 50
-
-const COMBO_ANIMATIONS: Array[StringName] = [&"attack", &"attack2", &"attack3"]
+@export var combo_animations: Array[StringName] = [&"attack", &"attack2", &"attack3"]
+@export var animation_time: Array[float] = [-1.0, -1.0, -1.0]
 
 var combo_index: int = 0
 var combo_buffered: bool = false
@@ -28,10 +28,10 @@ func process(delta: float) -> StringName:
 
 
 func _start_attack():
-	game_character.play_animation(COMBO_ANIMATIONS[combo_index])
+	game_character.play_animation(combo_animations[combo_index], animation_time[combo_index])
 
 func _on_animation_finished():
-	if combo_buffered and combo_index < COMBO_ANIMATIONS.size() - 1:
+	if combo_buffered and combo_index < combo_animations.size() - 1:
 		combo_index += 1
 		combo_buffered = false
 		_start_attack()

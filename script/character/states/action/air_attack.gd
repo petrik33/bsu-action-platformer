@@ -11,4 +11,7 @@ func exit():
 
 
 func _on_animation_finished():
-	_transition(&"Fall")
+	if character.is_on_floor():
+		_transition(&"Idle")
+	else:
+		_transition(&"Fall")

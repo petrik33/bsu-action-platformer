@@ -308,7 +308,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("29_kvhyq")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2",
 "speed": 21.0
 }, {
@@ -753,13 +753,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nyfsv"]
-size = Vector2(81, 70)
+size = Vector2(63, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtxsk"]
-size = Vector2(101, 62)
+size = Vector2(118, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ynna"]
-size = Vector2(81, 70)
+size = Vector2(110, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_okmev"]
 size = Vector2(9, 36)
@@ -793,6 +793,42 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/HitBox/Attack2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/HitBox/Attack3:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/HitBox/Attack1:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_3kien"]
 resource_name = "attack"
@@ -803,7 +839,7 @@ tracks/0/path = NodePath("Visuals/HitBox/Attack1:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 0.24),
+"times": PackedFloat32Array(0.2143, 0.357),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -845,7 +881,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0, 20]
+"values": [4, 20]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -858,6 +894,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"attack2"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/HitBox/Attack2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5938, 0.6575),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_ytxcy"]
@@ -872,7 +920,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0, 26]
+"values": [16, 26]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -885,6 +933,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"attack3"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/HitBox/Attack3:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4501, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4q8yv"]
@@ -916,19 +976,21 @@ offset = Vector2(0, -63)
 [node name="HitBox" parent="Visuals" unique_id=1029822365 instance=ExtResource("166_yn7hy")]
 
 [node name="Attack1" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=815215970]
-position = Vector2(21.5, -9)
+visible = false
+position = Vector2(27.5, -23.5)
 shape = SubResource("RectangleShape2D_nyfsv")
 disabled = true
 debug_color = Color(0.7019608, 0.1764706, 0, 0.41960785)
 
 [node name="Attack2" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=215208977]
-position = Vector2(30.5, -29)
+position = Vector2(23, -24)
 shape = SubResource("RectangleShape2D_wtxsk")
 disabled = true
 debug_color = Color(0.8633153, 0.3378712, 0.3281017, 0.41960785)
 
 [node name="Attack3" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=1733319239]
-position = Vector2(23.5, -5)
+visible = false
+position = Vector2(47, -27)
 shape = SubResource("RectangleShape2D_4ynna")
 disabled = true
 debug_color = Color(0.7019608, 0.1764706, 0, 0.41960785)
@@ -986,6 +1048,7 @@ roll_animation = &"tumble"
 [node name="Action" parent="StateMachine" unique_id=842032143 instance=ExtResource("170_lp3au")]
 
 [node name="Attack" parent="StateMachine/Action" unique_id=912385043 instance=ExtResource("171_lirr0")]
+animation_time = Array[float]([0.45, 0.35, 0.5])
 
 [node name="Aim" parent="StateMachine/Action" unique_id=109740685 instance=ExtResource("172_jpikk")]
 
@@ -994,5 +1057,6 @@ roll_animation = &"tumble"
 [node name="Incapacitated" parent="StateMachine" unique_id=740572724 instance=ExtResource("173_rr87g")]
 
 [node name="Hurt" parent="StateMachine/Incapacitated" unique_id=33714673 instance=ExtResource("174_2d3a3")]
+knockback_resist = null
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("175_exqgt")]

@@ -6,7 +6,7 @@ extends EnemyCharacterStateBase
 func enter():
 	enemy.stop_horizontal()
 	enemy.play_animation(&"hurt")
-	enemy.velocity = enemy.hurt_box.last_hit.knockback
+	enemy.velocity = enemy.last_hurt.knockback
 	enemy.face(-enemy.velocity.x)
 
 func update_physics(delta: float):
