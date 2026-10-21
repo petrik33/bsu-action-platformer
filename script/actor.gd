@@ -30,8 +30,8 @@ func turn_around():
 	face(-facing_direction())
 
 func play_animation(anim_name: StringName, time: float = -1.0):
+	sprite.stop()
 	if animation_player and animation_player.has_animation(anim_name):
-		sprite.stop()
 		animation_player.play(anim_name, -1, _calc_animation_player_animation_speed(anim_name, time))
 		return
 	if sprite.sprite_frames.has_animation(anim_name):
