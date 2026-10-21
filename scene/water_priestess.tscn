@@ -756,7 +756,7 @@ animations = [{
 size = Vector2(63, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wtxsk"]
-size = Vector2(118, 10)
+size = Vector2(121, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ynna"]
 size = Vector2(110, 54)
@@ -974,22 +974,21 @@ autoplay = "idle"
 offset = Vector2(0, -63)
 
 [node name="HitBox" parent="Visuals" unique_id=1029822365 instance=ExtResource("166_yn7hy")]
+visible = false
 
 [node name="Attack1" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=815215970]
-visible = false
 position = Vector2(27.5, -23.5)
 shape = SubResource("RectangleShape2D_nyfsv")
 disabled = true
 debug_color = Color(0.7019608, 0.1764706, 0, 0.41960785)
 
 [node name="Attack2" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=215208977]
-position = Vector2(23, -24)
+position = Vector2(24.5, -24)
 shape = SubResource("RectangleShape2D_wtxsk")
 disabled = true
 debug_color = Color(0.8633153, 0.3378712, 0.3281017, 0.41960785)
 
 [node name="Attack3" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=1733319239]
-visible = false
 position = Vector2(47, -27)
 shape = SubResource("RectangleShape2D_4ynna")
 disabled = true
