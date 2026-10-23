@@ -17,7 +17,6 @@ var movement_direction := 0.0
 var is_movement_locked := false
 var last_hurt: AttackData
 
-
 func _ready() -> void:
 	super._ready()
 	state_machine.initialize(self)
@@ -25,6 +24,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	super._process(delta)
 	state_machine.process(delta)
 
 

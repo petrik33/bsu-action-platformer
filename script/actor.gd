@@ -7,13 +7,23 @@ signal animation_finished()
 @export var visuals: Node2D
 @export var sprite: AnimatedSprite2D
 @export var animation_player: AnimationPlayer
+@export var collision_shape: CollisionShape2D
+@export var origin: Node2D
+
+var collision_shape_offset := Vector2.ZERO
 
 
 func _ready() -> void:
+	if origin != null:
+		_calc_collision_shape_offset()
 	sprite.animation_finished.connect(_on_sprite_animation_finished)
 	if not animation_player:
 		return
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
+
+func _process(_delta: float) -> void:
+	if origin != null:
+		collision_shape.position = origin.position + collision_shape_offset
 
 func face_movement():
 	face(velocity.x)
@@ -21,7 +31,18 @@ func face_movement():
 func face(direction: float):
 	if is_zero_approx(direction):
 		return
-	visuals.scale.x = signf(direction)
+	if origin == null:
+		visuals.scale.x = signf(direction)
+		return
+	
+	var offset_x = origin.position.x
+	if direction > 0:
+		visuals.scale.x = 1.0
+		visuals.position.x = 0.0
+	else:
+		visuals.scale.x = -1.0
+		visuals.position.x = 2.0 * offset_x
+
 
 func facing_direction() -> float:
 	return sign(visuals.scale.x)
@@ -52,6 +73,12 @@ func reset_animation_player():
 	animation_player.advance(0)
 	animation_player.stop()
 
+
+func _calc_collision_shape_offset():
+	if collision_shape.shape is RectangleShape2D:
+		collision_shape_offset = Vector2(0, -collision_shape.shape.size.y / 2.0)
+	else:
+		collision_shape_offset = collision_shape.position
 
 func _calc_sprite_animation_speed(anim_name: StringName, time: float) -> float:
 	if time <= 0.0 or not sprite.sprite_frames.has_animation(anim_name):
