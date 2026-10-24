@@ -186,7 +186,7 @@
 [ext_resource type="PackedScene" uid="uid://bexnfq44abe3q" path="res://scene/character/states/incapacitated/hurt.tscn" id="174_2d3a3"]
 [ext_resource type="PackedScene" uid="uid://depht2awncffo" path="res://scene/character/states/action/air_attack.tscn" id="175_4q8yv"]
 [ext_resource type="PackedScene" uid="uid://k6fdi54ai135" path="res://scene/character/states/incapacitated/death.tscn" id="175_exqgt"]
-[ext_resource type="Script" uid="uid://c6suu7pvlsi32" path="res://script/tool/keyframes_generator.gd" id="187_lp3au"]
+[ext_resource type="Script" uid="uid://c6suu7pvlsi32" path="res://script/tool/animated_motion_tracker.gd" id="187_lp3au"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dn53k"]
 animations = [{
@@ -833,14 +833,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Visuals/RootMotionTracker:position")
+tracks/5/path = NodePath("Visuals/Origin:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, -31)]
 }
 
 [sub_resource type="Animation" id="Animation_3kien"]
@@ -884,7 +884,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/RootMotionTracker:position")
+tracks/3/path = NodePath("Visuals/Origin:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -935,7 +935,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/RootMotionTracker:position")
+tracks/3/path = NodePath("Visuals/Origin:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -986,14 +986,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/RootMotionTracker:position")
+tracks/3/path = NodePath("Visuals/Origin:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.037037037, 0.074074075, 0.11111111, 0.14814815, 0.18518518, 0.22222222, 0.25925925, 0.2962963, 0.33333334, 0.37037036, 0.4074074, 0.44444445, 0.4814815, 0.5185185, 0.5555556, 0.5925926, 0.6296296, 0.6666667, 0.7037037, 0.7407407, 0.7777778, 0.8148148, 0.8518519, 0.8888889, 0.9259259, 0.962963, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-64, 0), Vector2(-80, 0), Vector2(-96, 0), Vector2(-112, 0), Vector2(-128, 0), Vector2(-144, 0), Vector2(-160, 0), Vector2(-176, 0), Vector2(-192, 0), Vector2(-208, 0), Vector2(-224, 0), Vector2(-240, 0), Vector2(-256, 0), Vector2(-272, 0), Vector2(-288, 0), Vector2(-304, 0), Vector2(-320, 0), Vector2(-336, 0), Vector2(-352, 0), Vector2(-368, 0), Vector2(-384, 0), Vector2(-400, 0), Vector2(-416, 0), Vector2(-432, 0), Vector2(-448, 0), Vector2(-464, 0), Vector2(-480, 0), Vector2(-480, 0)]
+"values": [Vector2(18, -31), Vector2(23, -31), Vector2(25, -31), Vector2(33, -31), Vector2(37, -31), Vector2(39, -31), Vector2(39, -31), Vector2(26, -31), Vector2(11, -31), Vector2(3, -31), Vector2(-1, -31)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4q8yv"]
@@ -1009,12 +1009,12 @@ collision_layer = 2
 script = ExtResource("1_o5o8y")
 state_machine = NodePath("StateMachine")
 hit_box = NodePath("Visuals/HitBox")
-hurt_box = NodePath("Visuals/RootMotionTracker/HurtBox")
+hurt_box = NodePath("Visuals/Origin/HurtBox")
 visuals = NodePath("Visuals")
 sprite = NodePath("Visuals/AnimatedSprite2D")
 animation_player = NodePath("AnimationPlayer")
 collision_shape = NodePath("CollisionShape2D")
-origin = NodePath("Visuals/RootMotionTracker")
+origin = NodePath("Visuals/Origin")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=1260019356]
 
@@ -1022,10 +1022,9 @@ origin = NodePath("Visuals/RootMotionTracker")
 sprite_frames = SubResource("SpriteFrames_dn53k")
 animation = &"idle"
 autoplay = "idle"
-offset = Vector2(0, -63)
+offset = Vector2(-1, -63)
 
 [node name="HitBox" parent="Visuals" unique_id=1029822365 instance=ExtResource("166_yn7hy")]
-visible = false
 
 [node name="Attack1" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=815215970]
 position = Vector2(27.5, -23.5)
@@ -1045,12 +1044,13 @@ shape = SubResource("RectangleShape2D_4ynna")
 disabled = true
 debug_color = Color(0.7019608, 0.1764706, 0, 0.41960785)
 
-[node name="RootMotionTracker" type="Marker2D" parent="Visuals" unique_id=830256226]
+[node name="Origin" type="Marker2D" parent="Visuals" unique_id=830256226]
+position = Vector2(0, -31)
 
-[node name="HurtBox" parent="Visuals/RootMotionTracker" unique_id=1404215644 instance=ExtResource("159_3kien")]
+[node name="HurtBox" parent="Visuals/Origin" unique_id=1404215644 instance=ExtResource("159_3kien")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/RootMotionTracker/HurtBox" unique_id=548224191]
-position = Vector2(0.5, -18)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/Origin/HurtBox" unique_id=548224191]
+position = Vector2(-0.5, 13)
 shape = SubResource("RectangleShape2D_okmev")
 debug_color = Color(0.5890741, 0.5449041, 0.17991158, 0.41960785)
 
@@ -1113,11 +1113,14 @@ knockback_resist = null
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("175_exqgt")]
 
-[node name="KeyframesGeneratorTool" type="Node" parent="." unique_id=715218095 node_paths=PackedStringArray("anim_player", "sprite", "marker")]
+[node name="AnimatedMotionTracker" type="Node" parent="." unique_id=715218095 node_paths=PackedStringArray("anim_player", "sprite", "tracker")]
 script = ExtResource("187_lp3au")
 anim_player = NodePath("../AnimationPlayer")
 sprite = NodePath("../Visuals/AnimatedSprite2D")
-marker = NodePath("../Visuals/RootMotionTracker")
+tracker = NodePath("../Visuals/Origin")
 sprite_anim_name = "attack3"
 anim_player_anim_name = "attack3"
+lock_y = true
+search_radius = 32
+patch_size = 3
 metadata/_custom_type_script = "uid://c6suu7pvlsi32"
