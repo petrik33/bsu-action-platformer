@@ -1,5 +1,5 @@
 @tool
-class_name AnimatedMotionTrackerTool extends Node
+extends Node
 
 @export_group("Target Nodes")
 @export var anim_player: AnimationPlayer:
@@ -71,6 +71,8 @@ func generate_tracker_track() -> void:
 	if track_idx == -1:
 		track_idx = anim.add_track(Animation.TYPE_VALUE)
 		anim.track_set_path(track_idx, track_path)
+	
+	anim.value_track_set_update_mode(track_idx, Animation.UPDATE_DISCRETE)
 
 	while anim.track_get_key_count(track_idx) > 0:
 		anim.track_remove_key(track_idx, 0)

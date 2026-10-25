@@ -186,7 +186,7 @@
 [ext_resource type="PackedScene" uid="uid://bexnfq44abe3q" path="res://scene/character/states/incapacitated/hurt.tscn" id="174_2d3a3"]
 [ext_resource type="PackedScene" uid="uid://depht2awncffo" path="res://scene/character/states/action/air_attack.tscn" id="175_4q8yv"]
 [ext_resource type="PackedScene" uid="uid://k6fdi54ai135" path="res://scene/character/states/incapacitated/death.tscn" id="175_exqgt"]
-[ext_resource type="Script" uid="uid://c6suu7pvlsi32" path="res://script/tool/animated_motion_tracker.gd" id="187_lp3au"]
+[ext_resource type="Script" uid="uid://c6suu7pvlsi32" path="res://addons/animated_motion_tracker/animated_motion_tracker.gd" id="187_lp3au"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dn53k"]
 animations = [{
@@ -1120,7 +1120,6 @@ sprite = NodePath("../Visuals/AnimatedSprite2D")
 tracker = NodePath("../Visuals/Origin")
 sprite_anim_name = "attack1"
 lock_y = true
-update_patch_per_frame = null
 search_radius = 24
 patch_size = 3
 metadata/_custom_type_script = "uid://c6suu7pvlsi32"
