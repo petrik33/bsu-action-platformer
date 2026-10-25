@@ -37,6 +37,8 @@ class_name AnimatedMotionTrackerTool extends Node
 @export_group("Feature Tracking")
 ## Enables pixel pattern matching relative to current setup's sampled pixel anchor.
 @export var enable_pixel_tracking: bool = true
+## If true, updates the reference color patch every frame. Useful when the tracked feature changes shape or lighting over time. If false, strictly searches for the initial frame's patch colors (though the search anchor still moves to the previous found position).
+@export var update_patch_per_frame: bool = true
 ## Radius (in pixels) around the baseline position to search for the pixel pattern match.
 @export_range(2, 64) var search_radius: int = 8
 ## Size of the pixel patch to sample (1 samples a single pixel; odd sizes work best).
@@ -55,30 +57,12 @@ func generate_tracker_track() -> void:
 		return
 	
 	var initial_tracker_pos := tracker.position
-
 	var anim: Animation = anim_player.get_animation(anim_player_anim_name)
 	var frames_res: SpriteFrames = sprite.sprite_frames
 
 	var root_node = anim_player.get_node_or_null(anim_player.root_node)
 	if not root_node:
 		root_node = anim_player.get_parent()
-
-	var relative_sprite_path = root_node.get_path_to(sprite)
-	var sprite_frame_track_path = NodePath(String(relative_sprite_path) + ":frame")
-	var sprite_frame_track_idx = anim.find_track(sprite_frame_track_path, Animation.TYPE_VALUE)
-
-	var start_time: float = anim.track_get_key_time(sprite_frame_track_idx, 0)
-	var start_val: float = float(anim.track_get_key_value(sprite_frame_track_idx, 0))
-
-	var last_key_idx = anim.track_get_key_count(sprite_frame_track_idx) - 1
-	var end_time: float = anim.track_get_key_time(sprite_frame_track_idx, last_key_idx)
-	var end_val: float = float(anim.track_get_key_value(sprite_frame_track_idx, last_key_idx))
-
-	var start_frame: int = int(start_val)
-	var end_frame: int = int(end_val)
-
-	var total_frames_to_process = abs(end_frame - start_frame) + 1
-	var frame_step = 1 if end_frame >= start_frame else -1
 
 	var relative_tracker_path := root_node.get_path_to(tracker)
 	var track_path := NodePath(String(relative_tracker_path) + ":position")
@@ -119,53 +103,65 @@ func generate_tracker_track() -> void:
 
 	var current_pixel_pos := ref_pixel_pos
 	
-	for step in range(total_frames_to_process):
-		var frame_idx = start_frame + (step * frame_step)
-		var current_time = _calculate_keyframe_time(frame_idx, start_val, end_val, start_time, end_time)
+	var original_anim = anim_player.assigned_animation
+	var original_pos = anim_player.current_animation_position
+	
+	anim_player.assigned_animation = anim_player_anim_name
+	
+	var step_resolution = anim.step
+	if step_resolution <= 0.0:
+		step_resolution = 1.0 / 60.0
+		
+	var last_processed_frame := -1
+	var t := 0.0
 
-		var texture = frames_res.get_frame_texture(sprite_anim_name, frame_idx)
-		if texture:
-			var img = texture.get_image()
-			var used_rect = img.get_used_rect()
-			if used_rect.size == Vector2i.ZERO:
-				used_rect = Rect2i(Vector2i.ZERO, img.get_size())
+	while t <= anim.length + (step_resolution / 2.0):
+		anim_player.seek(t, true)
+		var current_frame = sprite.frame
+		
+		if current_frame != last_processed_frame:
+			var texture = frames_res.get_frame_texture(sprite_anim_name, current_frame)
+			if texture:
+				var img = texture.get_image()
+				var used_rect = img.get_used_rect()
+				if used_rect.size == Vector2i.ZERO:
+					used_rect = Rect2i(Vector2i.ZERO, img.get_size())
 
-			var baseline_point: Vector2i
-			if enable_pixel_tracking:
-				baseline_point = Vector2i(round(current_pixel_pos.x), round(current_pixel_pos.y))
-			else:
-				baseline_point = Vector2i(
-					round(used_rect.position.x + (relative_norm_pos.x * used_rect.size.x)),
-					round(used_rect.position.y + (relative_norm_pos.y * used_rect.size.y))
-				)
+				var baseline_point: Vector2i
+				if enable_pixel_tracking:
+					baseline_point = Vector2i(round(current_pixel_pos.x), round(current_pixel_pos.y))
+				else:
+					baseline_point = Vector2i(
+						round(used_rect.position.x + (relative_norm_pos.x * used_rect.size.x)),
+						round(used_rect.position.y + (relative_norm_pos.y * used_rect.size.y))
+					)
 
-			var target_pixel_pos = Vector2(baseline_point)
+				var target_pixel_pos = Vector2(baseline_point)
 
-			if enable_pixel_tracking and not ref_patch.is_empty():
-				target_pixel_pos = _find_best_patch_match(img, baseline_point, ref_patch, half_patch, search_radius, lock_y)
-				current_pixel_pos = target_pixel_pos
-				ref_patch = _sample_patch(img, Vector2i(target_pixel_pos), half_patch)
+				if enable_pixel_tracking and not ref_patch.is_empty():
+					target_pixel_pos = _find_best_patch_match(img, baseline_point, ref_patch, half_patch, search_radius, lock_y)
+					current_pixel_pos = target_pixel_pos
+					if update_patch_per_frame:
+						ref_patch = _sample_patch(img, Vector2i(target_pixel_pos), half_patch)
+				
+				var target_sprite_pos := _image_pixel_to_sprite_local(img, target_pixel_pos)
+				var target_tracker_pos := _convert_sprite_local_to_tracker_parent(target_sprite_pos)
+
+				if lock_y:
+					target_tracker_pos.y = initial_tracker_pos.y
+
+				anim.track_insert_key(track_idx, t, target_tracker_pos)
+				
+			last_processed_frame = current_frame
 			
-			var target_sprite_pos := _image_pixel_to_sprite_local(img, target_pixel_pos)
-			var target_tracker_pos := _convert_sprite_local_to_tracker_parent(target_sprite_pos)
+		t += step_resolution
 
-			if lock_y:
-				target_tracker_pos.y = initial_tracker_pos.y
-
-			anim.track_insert_key(track_idx, current_time, target_tracker_pos)
+	if not original_anim.is_empty():
+		anim_player.assigned_animation = original_anim
+		anim_player.seek(original_pos, true)
 
 	print("Successfully keyframed tracked positions for: ", anim_player_anim_name)
 
-
-func _calculate_keyframe_time(frame_idx: int, start_val: float, end_val: float, start_time: float, end_time: float) -> float:
-	var val_delta = end_val - start_val
-	if absf(val_delta) < 0.0001:
-		return start_time
-		
-	var target_float_val = float(frame_idx)
-	var t_factor = clampf((target_float_val - start_val) / val_delta, 0.0, 1.0)
-	
-	return lerp(start_time, end_time, t_factor)
 
 func _convert_sprite_local_to_tracker_parent(sprite_local_pos: Vector2) -> Vector2:
 	var global_pos = sprite.to_global(sprite_local_pos)
@@ -270,9 +266,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 		if sprite_frame_track_idx == -1:
 			warnings.append("Animation '%s' is missing a '%s' track." % [anim_player_anim_name, sprite_frame_track_path])
-		elif anim.track_get_key_count(sprite_frame_track_idx) < 2:
-			warnings.append("The '%s' track must contain at least 2 keyframes (start and end bounds)." % sprite_frame_track_path)
-		elif anim.track_get_interpolation_type(sprite_frame_track_idx) == Animation.INTERPOLATION_NEAREST:
-			warnings.append("The '%s' track should use continuous (Linear/Cubic) interpolation." % sprite_frame_track_path)
+		elif anim.track_get_key_count(sprite_frame_track_idx) == 0:
+			warnings.append("The '%s' track must contain at least 1 keyframe." % sprite_frame_track_path)
 
 	return warnings

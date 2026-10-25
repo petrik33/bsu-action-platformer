@@ -23,7 +23,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if origin != null:
-		collision_shape.position = origin.position + collision_shape_offset
+		var target_global_pos := origin.to_global(collision_shape_offset)
+		collision_shape.position = to_local(target_global_pos)
 
 func face_movement():
 	face(velocity.x)
@@ -75,10 +76,7 @@ func reset_animation_player():
 
 
 func _calc_collision_shape_offset():
-	if collision_shape.shape is RectangleShape2D:
-		collision_shape_offset = Vector2(0, -collision_shape.shape.size.y / 2.0)
-	else:
-		collision_shape_offset = collision_shape.position
+	collision_shape_offset = origin.to_local(collision_shape.global_position)
 
 func _calc_sprite_animation_speed(anim_name: StringName, time: float) -> float:
 	if time <= 0.0 or not sprite.sprite_frames.has_animation(anim_name):
