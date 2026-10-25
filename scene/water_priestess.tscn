@@ -888,10 +888,10 @@ tracks/3/path = NodePath("Visuals/Origin:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75),
+"times": PackedFloat32Array(0, 0.14285715, 0.2857143, 0.42857143, 0.5714286, 0.71428573, 0.85714287),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-1, -31), Vector2(-8, -31), Vector2(14, -31), Vector2(15, -31), Vector2(11, -31), Vector2(3, -31), Vector2(-1, -31)]
+"values": [Vector2(-1, -31), Vector2(-8, -31), Vector2(14, -31), Vector2(15, -31), Vector2(11, -31), Vector2(4, -31), Vector2(0, -31)]
 }
 
 [sub_resource type="Animation" id="Animation_4q8yv"]
@@ -939,10 +939,10 @@ tracks/3/path = NodePath("Visuals/Origin:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.05882353, 0.11764706, 0.1764706, 0.23529412, 0.29411766, 0.3529412, 0.4117647, 0.47058824, 0.5294118, 0.5882353, 0.64705884, 0.7058824, 0.7647059, 0.8235294, 0.88235295, 0.9411765),
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5, 0.5625, 0.625, 0.6875, 0.75, 0.8125, 0.875, 0.9375, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(13, -31), Vector2(12, -31), Vector2(9, -31), Vector2(8, -31), Vector2(7, -31), Vector2(4, -31), Vector2(3, -31), Vector2(-5, -31), Vector2(-6, -31), Vector2(-6, -31), Vector2(12, -31), Vector2(13, -31), Vector2(14, -31), Vector2(15, -31), Vector2(11, -31), Vector2(3, -31), Vector2(-1, -31)]
+"values": [Vector2(14, -31), Vector2(13, -31), Vector2(10, -31), Vector2(9, -31), Vector2(8, -31), Vector2(5, -31), Vector2(4, -31), Vector2(-3, -31), Vector2(-4, -31), Vector2(-4, -31), Vector2(13, -31), Vector2(14, -31), Vector2(15, -31), Vector2(16, -31), Vector2(12, -31), Vector2(4, -31), Vector2(0, -31)]
 }
 
 [sub_resource type="Animation" id="Animation_ytxcy"]
@@ -990,10 +990,10 @@ tracks/3/path = NodePath("Visuals/Origin:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.09090909, 0.18181819, 0.27272728, 0.36363637, 0.45454547, 0.54545456, 0.6363636, 0.72727275, 0.8181818, 0.90909094),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(18, -31), Vector2(23, -31), Vector2(25, -31), Vector2(33, -31), Vector2(37, -31), Vector2(39, -31), Vector2(39, -31), Vector2(26, -31), Vector2(11, -31), Vector2(3, -31), Vector2(-1, -31)]
+"values": [Vector2(18, -31), Vector2(26, -31), Vector2(28, -31), Vector2(33, -31), Vector2(37, -31), Vector2(39, -31), Vector2(39, -31), Vector2(26, -31), Vector2(11, -31), Vector2(4, -31), Vector2(0, -31)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4q8yv"]
@@ -1118,7 +1118,9 @@ script = ExtResource("187_lp3au")
 anim_player = NodePath("../AnimationPlayer")
 sprite = NodePath("../Visuals/AnimatedSprite2D")
 tracker = NodePath("../Visuals/Origin")
-sprite_anim_name = "attack1"
+sprite_anim_name = "attack3"
+anim_player_anim_name = "attack3"
 lock_y = true
-search_radius = 32
+search_radius = 16
+patch_size = 3
 metadata/_custom_type_script = "uid://c6suu7pvlsi32"

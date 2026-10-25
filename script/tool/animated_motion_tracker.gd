@@ -121,7 +121,7 @@ func generate_tracker_track() -> void:
 	
 	for step in range(total_frames_to_process):
 		var frame_idx = start_frame + (step * frame_step)
-		var current_time = _calculate_keyframe_time(step, total_frames_to_process, start_time, end_time)
+		var current_time = _calculate_keyframe_time(frame_idx, start_val, end_val, start_time, end_time)
 
 		var texture = frames_res.get_frame_texture(sprite_anim_name, frame_idx)
 		if texture:
@@ -157,9 +157,15 @@ func generate_tracker_track() -> void:
 	print("Successfully keyframed tracked positions for: ", anim_player_anim_name)
 
 
-func _calculate_keyframe_time(step: int, total_frames: int, start_time: float, end_time: float) -> float:
-	var total_duration = end_time - start_time
-	return start_time + (float(step) * total_duration / float(total_frames))
+func _calculate_keyframe_time(frame_idx: int, start_val: float, end_val: float, start_time: float, end_time: float) -> float:
+	var val_delta = end_val - start_val
+	if absf(val_delta) < 0.0001:
+		return start_time
+		
+	var target_float_val = float(frame_idx)
+	var t_factor = clampf((target_float_val - start_val) / val_delta, 0.0, 1.0)
+	
+	return lerp(start_time, end_time, t_factor)
 
 func _convert_sprite_local_to_tracker_parent(sprite_local_pos: Vector2) -> Vector2:
 	var global_pos = sprite.to_global(sprite_local_pos)
