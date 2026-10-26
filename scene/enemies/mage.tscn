@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bqkwlevbj2nwh" path="res://scene/enemies/states/attack.tscn" id="11_i4onk"]
 [ext_resource type="PackedScene" uid="uid://8u16f5cw6syf" path="res://scene/enemies/states/hurt.tscn" id="12_0c3hi"]
 [ext_resource type="PackedScene" uid="uid://cu1fyvhsvvnxt" path="res://scene/enemies/states/investigate.tscn" id="13_rtlgi"]
+[ext_resource type="PackedScene" uid="uid://dqk86am2bll74" path="res://scene/enemies/states/alert.tscn" id="17_0c3hi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxxwj"]
 size = Vector2(12, 31)
@@ -272,6 +273,8 @@ perception = NodePath("Visual/Perception")
 navigation = NodePath("Visual/NavigationGrounded")
 hurt_box = NodePath("Visual/HurtBox")
 hit_box = NodePath("Visual/HitBox")
+gravity = null
+gravity_enabled = null
 visuals = NodePath("Visual")
 sprite = NodePath("Visual/AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
@@ -345,3 +348,5 @@ run_animation_name = &"walk"
 [node name="Hurt" parent="StateMachine" unique_id=73280351 instance=ExtResource("12_0c3hi")]
 
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("13_rtlgi")]
+
+[node name="Alert" parent="StateMachine" unique_id=1829192895 instance=ExtResource("17_0c3hi")]

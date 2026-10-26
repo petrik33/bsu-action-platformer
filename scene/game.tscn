@@ -53,18 +53,28 @@ centered = false
 
 [node name="Mage" parent="Bodies/Enemies" unique_id=927593917 instance=ExtResource("7_ll5lq")]
 position = Vector2(445, -134)
+gravity = 900.0
+gravity_enabled = true
 
 [node name="Mage2" parent="Bodies/Enemies" unique_id=475991854 instance=ExtResource("7_ll5lq")]
 position = Vector2(1016, -54)
+gravity = 900.0
+gravity_enabled = true
 
 [node name="Mage3" parent="Bodies/Enemies" unique_id=715703955 instance=ExtResource("7_ll5lq")]
 position = Vector2(1434, -56)
+gravity = 900.0
+gravity_enabled = true
 
 [node name="Mage4" parent="Bodies/Enemies" unique_id=1894983812 instance=ExtResource("7_ll5lq")]
 position = Vector2(1756, -58)
+gravity = 900.0
+gravity_enabled = true
 
 [node name="Mage5" parent="Bodies/Enemies" unique_id=1885897608 instance=ExtResource("7_ll5lq")]
 position = Vector2(2137, -58)
+gravity = 900.0
+gravity_enabled = true
 
 [node name="Dummy" parent="Bodies/Enemies" unique_id=1200216083 instance=ExtResource("6_ll5lq")]
 position = Vector2(170, -54)

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://rv71yjr8di4j"]
+
+[ext_resource type="Script" uid="uid://dlhs7l4jqampk" path="res://script/common/vfx/animated.gd" id="1_jfg5h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jfg5h"]
+
+[node name="AlertVfx" type="Node2D" unique_id=847368615]
+script = ExtResource("1_jfg5h")
+metadata/_custom_type_script = "uid://dlhs7l4jqampk"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=440723621]
+sprite_frames = SubResource("SpriteFrames_jfg5h")

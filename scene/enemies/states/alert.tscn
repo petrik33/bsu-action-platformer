@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dqk86am2bll74"]
+
+[ext_resource type="Script" uid="uid://njqns1fx16ev" path="res://script/enemy/states/alert.gd" id="1_2bo0v"]
+
+[node name="Alert" type="Node" unique_id=1829192895]
+script = ExtResource("1_2bo0v")
+metadata/_custom_type_script = "uid://bhs7xi0ommry6"
+
+[node name="Timer" type="Timer" parent="." unique_id=1672238012]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
