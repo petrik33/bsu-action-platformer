@@ -186,7 +186,6 @@
 [ext_resource type="PackedScene" uid="uid://bexnfq44abe3q" path="res://scene/character/states/incapacitated/hurt.tscn" id="174_2d3a3"]
 [ext_resource type="PackedScene" uid="uid://depht2awncffo" path="res://scene/character/states/action/air_attack.tscn" id="175_4q8yv"]
 [ext_resource type="PackedScene" uid="uid://k6fdi54ai135" path="res://scene/character/states/incapacitated/death.tscn" id="175_exqgt"]
-[ext_resource type="Script" uid="uid://c6suu7pvlsi32" path="res://addons/animated_motion_tracker/animated_motion_tracker.gd" id="187_lp3au"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dn53k"]
 animations = [{
@@ -1004,7 +1003,7 @@ _data = {
 &"attack3": SubResource("Animation_ytxcy")
 }
 
-[node name="WaterPriestess" type="CharacterBody2D" unique_id=1544133711 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "visuals", "sprite", "animation_player", "collision_shape", "origin") groups=["player"]]
+[node name="WaterPriestess" type="CharacterBody2D" unique_id=1544133711 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "visuals", "sprite", "animation_player", "origin") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_o5o8y")
 state_machine = NodePath("StateMachine")
@@ -1013,7 +1012,6 @@ hurt_box = NodePath("Visuals/Origin/HurtBox")
 visuals = NodePath("Visuals")
 sprite = NodePath("Visuals/AnimatedSprite2D")
 animation_player = NodePath("AnimationPlayer")
-collision_shape = NodePath("CollisionShape2D")
 origin = NodePath("Visuals/Origin")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=1260019356]
@@ -1055,7 +1053,6 @@ shape = SubResource("RectangleShape2D_okmev")
 debug_color = Color(0.5890741, 0.5449041, 0.17991158, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=743458432]
-visible = false
 position = Vector2(-0.5, -18)
 shape = SubResource("RectangleShape2D_w8ny5")
 
@@ -1112,14 +1109,3 @@ animation_time = Array[float]([0.45, 0.35, 0.5])
 knockback_resist = null
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("175_exqgt")]
-
-[node name="AnimatedMotionTracker" type="Node" parent="." unique_id=715218095 node_paths=PackedStringArray("anim_player", "sprite", "tracker")]
-script = ExtResource("187_lp3au")
-anim_player = NodePath("../AnimationPlayer")
-sprite = NodePath("../Visuals/AnimatedSprite2D")
-tracker = NodePath("../Visuals/Origin")
-sprite_anim_name = "attack1"
-lock_y = true
-search_radius = 24
-patch_size = 3
-metadata/_custom_type_script = "uid://c6suu7pvlsi32"

@@ -7,30 +7,22 @@ signal animation_finished()
 @export var visuals: Node2D
 @export var sprite: AnimatedSprite2D
 @export var animation_player: AnimationPlayer
-@export var collision_shape: CollisionShape2D
 @export var origin: Node2D
-
-var collision_shape_offset := Vector2.ZERO
 
 
 func _ready() -> void:
-	if origin != null:
-		_calc_collision_shape_offset()
 	sprite.animation_finished.connect(_on_sprite_animation_finished)
 	if not animation_player:
 		return
 	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
-
-func _process(_delta: float) -> void:
-	if origin != null:
-		var target_global_pos := origin.to_global(collision_shape_offset)
-		collision_shape.position = to_local(target_global_pos)
 
 func face_movement():
 	face(velocity.x)
 
 func face(direction: float):
 	if is_zero_approx(direction):
+		return
+	if is_equal_approx(facing_direction(), signf(direction)):
 		return
 	if origin == null:
 		visuals.scale.x = signf(direction)
@@ -73,10 +65,6 @@ func reset_animation_player():
 	animation_player.play(&"RESET")
 	animation_player.advance(0)
 	animation_player.stop()
-
-
-func _calc_collision_shape_offset():
-	collision_shape_offset = origin.to_local(collision_shape.global_position)
 
 func _calc_sprite_animation_speed(anim_name: StringName, time: float) -> float:
 	if time <= 0.0 or not sprite.sprite_frames.has_animation(anim_name):

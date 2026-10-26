@@ -19,7 +19,6 @@ func _ready() -> void:
 	state_machine.initialize(self)
 
 func _process(delta: float) -> void:
-	super._process(delta)
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
