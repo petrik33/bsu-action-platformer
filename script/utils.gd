@@ -25,7 +25,7 @@ static func get_sprite_animation_target_speed(
 static func get_sprite_animation_length(
 	sprite: AnimatedSprite2D, anim_name: StringName
 ) -> float:
-	if sprite.sprite_frames.has_animation(anim_name):
+	if not sprite.sprite_frames.has_animation(anim_name):
 		return 0.0
 	
 	var frame_count := sprite.sprite_frames.get_frame_count(anim_name)

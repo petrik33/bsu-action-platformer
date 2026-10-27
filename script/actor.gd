@@ -19,6 +19,9 @@ func _ready() -> void:
 func face_movement():
 	face(velocity.x)
 
+func face_vector(direction: Vector2):
+	face(direction.x)
+
 func face(direction: float):
 	if is_zero_approx(direction):
 		return
@@ -27,7 +30,7 @@ func face(direction: float):
 	if origin == null:
 		visuals.scale.x = signf(direction)
 		return
-	
+
 	var offset_x = origin.position.x
 	if direction > 0:
 		visuals.scale.x = 1.0
@@ -71,7 +74,7 @@ func reset_animation_player():
 	animation_player.play(&"RESET")
 	animation_player.advance(0)
 	animation_player.stop()
-	
+
 
 func _on_animation_player_animation_finished(_anim_name: StringName):
 	animation_finished.emit()

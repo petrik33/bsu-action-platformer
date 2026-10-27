@@ -1,37 +1,39 @@
-extends EnemyCharacterStateBase
+class_name EnemyChaseState extends EnemyCharacterStateBase
 
 @export var run_animation_name: StringName = &"run"
-@export var arrival_distance := 16.0
-@export var speed := 120.0
-
-
-var to_target: float = 0.0
+@export var arrival_distance: float = 16.0
+@export var speed: float = 120.0
+@export var attack_state: EnemyAttackState
 
 
 func enter() -> void:
-	_update_target()
-	enemy.face(to_target)
-	
-	if absf(to_target) <= arrival_distance:
+	enemy.face_vector(perception.to_target())
+	enemy.play_animation(run_animation_name)
+	if _can_attack():
 		_transition(&"Attack")
 		return
-	
-	enemy.play_animation(run_animation_name)
-	enemy.move_horizontal(signf(to_target), speed)
+
+func update_physics(_delta: float):
+	if absf(perception.to_target().x) > arrival_distance:
+		enemy.move_horizontal(signf(perception.to_target().x), speed)
+	else:
+		enemy.stop_horizontal()
 
 func post_physics() -> StringName:
-	_update_target()
-	
 	enemy.face_movement()
 	
-	if absf(to_target) <= arrival_distance:
-		enemy.stop_horizontal()
-		return &"Attack"
-	
-	if enemy.navigation.has_obstacles_ahead():
+	if not perception.has_target() or enemy.navigation.has_obstacles_ahead():
 		return &"Investigate"
-	
+
+	if _can_attack():
+		return &"Attack"
+
 	return &""
 
-func _update_target():
-	to_target = enemy.perception.last_known_position.x - enemy.global_position.x
+
+func _can_attack() -> bool:
+	if absf(perception.to_target().x) > arrival_distance:
+		return false
+	if not attack_state.is_ready():
+		return false
+	return true

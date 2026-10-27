@@ -16,12 +16,12 @@ var _candidates: Array[CharacterBody2D] = []
 var _lost_time: float = 0.0
 
 
-func _physics_process(delta: float) -> void:
+func update(delta: float) -> void:
 	if not is_instance_valid(target):
 		var found_target := _check_candidates()
 		if not found_target:
 			return
-	
+
 	if _can_see(target):
 		last_known_position = target.global_position
 		_lost_time = 0.0
@@ -34,11 +34,11 @@ func _physics_process(delta: float) -> void:
 		target_lost.emit(target)
 		target = null
 
-
-
 func has_target() -> bool:
 	return is_instance_valid(target)
 
+func to_target() -> Vector2:
+	return last_known_position - global_position
 
 func _check_candidates() -> bool:
 	for candidate in _candidates:
@@ -53,12 +53,11 @@ func _check_candidates() -> bool:
 			return true
 	return false
 
-
 func _can_see(candidate: CharacterBody2D) -> bool:
 	var see_from := global_position
 	if visibility_origin != null:
 		see_from = visibility_origin.global_position
-	
+
 	var query := PhysicsRayQueryParameters2D.create(
 		see_from,
 		candidate.global_position,
@@ -69,11 +68,9 @@ func _can_see(candidate: CharacterBody2D) -> bool:
 
 	return result.get("collider") == candidate
 
-
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.is_in_group(target_group):
 		_candidates.append(body)
-
 
 func _on_body_exited(body: Node2D) -> void:
 	_candidates.erase(body)

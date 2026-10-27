@@ -5,6 +5,14 @@ var enemy: EnemyCharacter:
 	get():
 		return character as EnemyCharacter
 
+var perception: EnemyPerception:
+	get():
+		return enemy.perception
+
+var navigation: EnemyNavigationBsae:
+	get():
+		return enemy.navigation
+
 
 func init(character_owner: CharacterBody2D):
 	super.init(character_owner)

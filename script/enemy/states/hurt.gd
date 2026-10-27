@@ -17,7 +17,9 @@ func update_physics(delta: float):
 	)
 
 func post_physics() -> StringName:
-	if is_zero_approx(enemy.velocity.x):
-		enemy.stop_horizontal()
-		return &"Idle"
-	return &""
+	if not is_zero_approx(enemy.velocity.x):
+		return &""
+	elif perception.has_target():
+		return &"Chase"
+	else:
+		return &"Investigate"

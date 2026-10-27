@@ -344,10 +344,12 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 
 [node name="Patrol" parent="StateMachine/Passive" unique_id=1114917989 instance=ExtResource("9_srgcj")]
 
-[node name="Chase" parent="StateMachine" unique_id=1942010174 instance=ExtResource("10_8l2p6")]
+[node name="Chase" parent="StateMachine" unique_id=1942010174 node_paths=PackedStringArray("attack_state") instance=ExtResource("10_8l2p6")]
 run_animation_name = &"walk"
+attack_state = NodePath("../Attack")
 
 [node name="Attack" parent="StateMachine" unique_id=1140714920 instance=ExtResource("11_i4onk")]
+cooldown = 2.0
 
 [node name="Hurt" parent="StateMachine" unique_id=73280351 instance=ExtResource("12_0c3hi")]
 

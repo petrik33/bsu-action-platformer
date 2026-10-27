@@ -8,6 +8,9 @@ class_name CharacterStateMachine extends Node
 var states: Dictionary[StringName, CharacterStateBase] = {}
 var active_path: Array[CharacterStateBase] = []
 
+var _state_timers: Dictionary[StringName, float] = {}
+var _state_callbacks: Dictionary[StringName, Callable] = {}
+
 
 func is_active(state_name: StringName) -> bool:
 	for state in active_path:
@@ -28,6 +31,7 @@ func initialize(character: CharacterBody2D) -> void:
 		transition_to(initial)
 
 func process(delta: float) -> void:
+	_progress_state_timers(delta)
 	var state_requested := _evaluate_active_path_reverse(func(state: CharacterStateBase):
 		return state.process(delta)
 	)
@@ -57,10 +61,10 @@ func transition_to(target_state: CharacterStateBase) -> void:
 		return
 
 	var target_path := build_state_path(target_state)
-	
+
 	var lca_index := 0
 	var min_length := mini(active_path.size(), target_path.size())
-	
+
 	while lca_index < min_length and active_path[lca_index] == target_path[lca_index]:
 		if active_path[lca_index] == target_state:
 			break
@@ -69,6 +73,8 @@ func transition_to(target_state: CharacterStateBase) -> void:
 	while active_path.size() > lca_index:
 		var state_to_exit = active_path.pop_back()
 		state_to_exit.exit()
+		if _has_existing_timer(state_to_exit.name):
+			_remove_state_timer(state_to_exit.name)
 
 	for i in range(lca_index, target_path.size()):
 		var state_to_enter := target_path[i]
@@ -87,12 +93,27 @@ func build_state_path(target: CharacterStateBase) -> Array[CharacterStateBase]:
 	return result
 
 
+func _progress_state_timers(delta: float):
+	var triggered: Array[StringName] = []
+	for state_name in _state_timers:
+		_state_timers[state_name] -= delta
+		if _state_timers[state_name] <= 0:
+			_state_callbacks[state_name].call()
+			triggered.push_back(state_name)
+	for state_name in triggered:
+		_remove_state_timer(state_name)
+
+
+func _has_existing_timer(state_name: StringName) -> bool:
+	return _state_timers.has(state_name)
+
+func _remove_state_timer(state_name: StringName):
+	_state_timers.erase(state_name)
+	_state_callbacks.erase(state_name)
+
 func _on_state_timer_requested(state_name: StringName, time: float, callable: Callable):
-	get_tree().create_timer(time, false).timeout.connect(func(): 
-		if not is_active(state_name):
-			return
-		callable.call()
-	)
+	_state_timers[state_name] = time
+	_state_callbacks[state_name] = callable
 
 func _evaluate_active_path_reverse(action: Callable) -> StringName:
 	for i in range(active_path.size() - 1, -1, -1):

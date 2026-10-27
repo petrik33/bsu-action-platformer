@@ -29,7 +29,10 @@ func _physics_process(delta: float) -> void:
 	state_machine.update_physics(delta)
 
 	move_and_slide()
-
+	
+	if perception:
+		perception.update(delta)
+	
 	state_machine.post_physics()
 
 func play_alert_vfx(time: float):
