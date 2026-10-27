@@ -2,6 +2,7 @@ class_name CharacterStateBase extends Node
 
 
 signal transition_requested(to: StringName)
+signal timer_requested(time: float, callable: Callable)
 
 
 var character: CharacterBody2D
@@ -27,3 +28,6 @@ func post_physics() -> StringName:
 
 func _transition(to: StringName):
 	transition_requested.emit(to)
+
+func _state_timer(time: float, callable: Callable):
+	timer_requested.emit(time, callable)

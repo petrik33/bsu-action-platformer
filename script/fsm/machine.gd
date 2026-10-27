@@ -9,12 +9,21 @@ var states: Dictionary[StringName, CharacterStateBase] = {}
 var active_path: Array[CharacterStateBase] = []
 
 
+func is_active(state_name: StringName) -> bool:
+	for state in active_path:
+		if state.name == state_name:
+			return true
+	return false
+
 func initialize(character: CharacterBody2D) -> void:
 	for child in find_children("*", "CharacterStateBase"):
 		var state = child as CharacterStateBase
 		states[state.name] = state
 		state.init(character)
 		state.transition_requested.connect(request_transition)
+		state.timer_requested.connect(
+			func(time, callable): _on_state_timer_requested(state.name, time, callable)
+		)
 	if initial != null:
 		transition_to(initial)
 
@@ -77,6 +86,13 @@ func build_state_path(target: CharacterStateBase) -> Array[CharacterStateBase]:
 
 	return result
 
+
+func _on_state_timer_requested(state_name: StringName, time: float, callable: Callable):
+	get_tree().create_timer(time, false).timeout.connect(func(): 
+		if not is_active(state_name):
+			return
+		callable.call()
+	)
 
 func _evaluate_active_path_reverse(action: Callable) -> StringName:
 	for i in range(active_path.size() - 1, -1, -1):

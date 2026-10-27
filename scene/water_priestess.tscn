@@ -1106,6 +1106,5 @@ animation_time = Array[float]([0.45, 0.35, 0.5])
 [node name="Incapacitated" parent="StateMachine" unique_id=740572724 instance=ExtResource("173_rr87g")]
 
 [node name="Hurt" parent="StateMachine/Incapacitated" unique_id=33714673 instance=ExtResource("174_2d3a3")]
-knockback_resist = null
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("175_exqgt")]

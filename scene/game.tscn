@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c4t7amkr4f87p" path="res://asset/texture/environment/Foreground.png" id="4_qpk70"]
 [ext_resource type="PackedScene" uid="uid://ca4ta3fmrmdte" path="res://scene/enemies/dummy.tscn" id="6_ll5lq"]
 [ext_resource type="TileSet" uid="uid://0i4n4wh6626b" path="res://resource/tileset.tres" id="6_xlg7c"]
-[ext_resource type="PackedScene" uid="uid://b3wc0hno02c02" path="res://scene/water_priestess.tscn" id="7_17rxn"]
+[ext_resource type="PackedScene" uid="uid://dw4q416nx8pd5" path="res://scene/character.tscn" id="7_17rxn"]
 [ext_resource type="PackedScene" uid="uid://cpo4adxkqyhuw" path="res://scene/enemies/mage.tscn" id="7_ll5lq"]
 
 [node name="Game" type="Node2D" unique_id=220446193]
@@ -53,37 +53,27 @@ centered = false
 
 [node name="Mage" parent="Bodies/Enemies" unique_id=927593917 instance=ExtResource("7_ll5lq")]
 position = Vector2(445, -134)
-gravity = 900.0
-gravity_enabled = true
 
 [node name="Mage2" parent="Bodies/Enemies" unique_id=475991854 instance=ExtResource("7_ll5lq")]
 position = Vector2(1016, -54)
-gravity = 900.0
-gravity_enabled = true
 
 [node name="Mage3" parent="Bodies/Enemies" unique_id=715703955 instance=ExtResource("7_ll5lq")]
 position = Vector2(1434, -56)
-gravity = 900.0
-gravity_enabled = true
 
 [node name="Mage4" parent="Bodies/Enemies" unique_id=1894983812 instance=ExtResource("7_ll5lq")]
 position = Vector2(1756, -58)
-gravity = 900.0
-gravity_enabled = true
 
 [node name="Mage5" parent="Bodies/Enemies" unique_id=1885897608 instance=ExtResource("7_ll5lq")]
 position = Vector2(2137, -58)
-gravity = 900.0
-gravity_enabled = true
 
 [node name="Dummy" parent="Bodies/Enemies" unique_id=1200216083 instance=ExtResource("6_ll5lq")]
 position = Vector2(170, -54)
 
-[node name="WaterPriestess" parent="Bodies" unique_id=1544133711 instance=ExtResource("7_17rxn")]
-position = Vector2(78, -53)
+[node name="Character" parent="Bodies" unique_id=213064435 instance=ExtResource("7_17rxn")]
+position = Vector2(84, -60)
 
-[node name="Camera2D" type="Camera2D" parent="Bodies/WaterPriestess" unique_id=745299939]
-position = Vector2(0, -32)
+[node name="Camera2D" type="Camera2D" parent="Bodies/Character" unique_id=745299939]
+position = Vector2(1, -18)
 zoom = Vector2(2, 2)
 limit_left = 0
 limit_bottom = 0

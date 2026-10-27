@@ -285,6 +285,7 @@ position = Vector2(0, -15.5)
 shape = SubResource("RectangleShape2D_vxxwj")
 
 [node name="AlertVfx" parent="." unique_id=892914976 instance=ExtResource("7_lkhaw")]
+visible = false
 position = Vector2(0, -40)
 
 [node name="Visual" type="Node2D" parent="." unique_id=538338525]
