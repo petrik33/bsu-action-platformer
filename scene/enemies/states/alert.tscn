@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dqk86am2bll74"]
 
-[ext_resource type="Script" uid="uid://njqns1fx16ev" path="res://script/enemy/states/alert.gd" id="1_2bo0v"]
+[ext_resource type="Script" path="res://script/enemy/states/alert.gd" id="1_2bo0v"]
 
-[node name="Alert" type="Node" unique_id=1829192895]
+[node name="Alert" type="Node" unique_id=1829192895 node_paths=PackedStringArray("timer")]
 script = ExtResource("1_2bo0v")
+timer = NodePath("Timer")
 metadata/_custom_type_script = "uid://bhs7xi0ommry6"
 
 [node name="Timer" type="Timer" parent="." unique_id=1672238012]

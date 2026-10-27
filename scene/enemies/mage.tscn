@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/fsm/machine.gd" id="6_bxxyc"]
 [ext_resource type="PackedScene" uid="uid://i0rj2sedr07y" path="res://scene/enemies/common/hit_box.tscn" id="6_srgcj"]
 [ext_resource type="Script" uid="uid://wvhuys2w10ds" path="res://script/common/animation_observer.gd" id="7_8l2p6"]
+[ext_resource type="PackedScene" uid="uid://dwk4ubs07kedw" path="res://scene/enemies/common/alert_vfx.tscn" id="7_lkhaw"]
 [ext_resource type="PackedScene" uid="uid://dgr0braecu28y" path="res://scene/enemies/states/passive.tscn" id="7_xydch"]
 [ext_resource type="Script" uid="uid://dmmphqi33l40c" path="res://script/combat/attack_handler.gd" id="8_i4onk"]
 [ext_resource type="PackedScene" uid="uid://cp38i6pqejveu" path="res://scene/enemies/states/passive/idle.tscn" id="8_rtlgi"]
@@ -265,7 +266,7 @@ size = Vector2(16, 31)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srgcj"]
 size = Vector2(105, 44)
 
-[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "hit_box", "visuals", "sprite")]
+[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "hit_box", "alert_vfx", "visuals", "sprite")]
 collision_layer = 4
 script = ExtResource("1_oqubo")
 state_machine = NodePath("StateMachine")
@@ -273,8 +274,7 @@ perception = NodePath("Visual/Perception")
 navigation = NodePath("Visual/NavigationGrounded")
 hurt_box = NodePath("Visual/HurtBox")
 hit_box = NodePath("Visual/HitBox")
-gravity = null
-gravity_enabled = null
+alert_vfx = NodePath("AlertVfx")
 visuals = NodePath("Visual")
 sprite = NodePath("Visual/AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
@@ -283,6 +283,9 @@ metadata/_custom_type_script = "uid://w23557yemp8u"
 visible = false
 position = Vector2(0, -15.5)
 shape = SubResource("RectangleShape2D_vxxwj")
+
+[node name="AlertVfx" parent="." unique_id=892914976 instance=ExtResource("7_lkhaw")]
+position = Vector2(0, -40)
 
 [node name="Visual" type="Node2D" parent="." unique_id=538338525]
 

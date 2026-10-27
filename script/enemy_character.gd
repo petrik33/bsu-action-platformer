@@ -6,7 +6,7 @@ class_name EnemyCharacter extends Actor
 @export var navigation: EnemyNavigationBsae
 @export var hurt_box: HurtBox
 @export var hit_box: HitBox
-@export var alert_vfx: AnimatedSprite2D
+@export var alert_vfx: VfxBase
 
 @export var gravity: float = 900
 @export var gravity_enabled: bool = true
@@ -33,8 +33,7 @@ func _physics_process(delta: float) -> void:
 	state_machine.post_physics()
 
 func play_alert_vfx(time: float):
-	var anim_speed := Utils.get_sprite_animation_target_speed(alert_vfx, &"alert", time)
-	alert_vfx.play(&"alert", anim_speed)
+	alert_vfx.play(time)
 
 func stop_alert_vfx():
 	alert_vfx.stop()

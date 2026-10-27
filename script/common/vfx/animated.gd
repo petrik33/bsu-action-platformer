@@ -1,4 +1,4 @@
-class_name VfxAnimated extends VfxBase
+class_name AnimatedVfx extends VfxBase
 
 @export var sprite: AnimatedSprite2D
 

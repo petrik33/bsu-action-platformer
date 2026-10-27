@@ -1,12 +1,26 @@
-[gd_scene format=3 uid="uid://rv71yjr8di4j"]
+[gd_scene format=3 uid="uid://dwk4ubs07kedw"]
 
-[ext_resource type="Script" uid="uid://dlhs7l4jqampk" path="res://script/common/vfx/animated.gd" id="1_jfg5h"]
+[ext_resource type="Script" uid="uid://2mjbo4c7acwb" path="res://script/enemy/alert_vfx.gd" id="1_xuhpp"]
+[ext_resource type="Texture2D" uid="uid://ceytsvso1crbc" path="res://asset/texture/bloody-words.png" id="2_5jdcp"]
+[ext_resource type="Shader" uid="uid://dwaa4xk14rk4k" path="res://shader/blood_alert.gdshader" id="2_xuhpp"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_jfg5h"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7xno"]
+resource_local_to_scene = true
+shader = ExtResource("2_xuhpp")
+shader_parameter/progress = 0.0
+shader_parameter/blood_tint = Color(0.85, 0.02, 0.02, 1)
+shader_parameter/drip_intensity = 0.08
+shader_parameter/pulse_speed = 18.0
+shader_parameter/pulse_intensity = 0.35
 
-[node name="AlertVfx" type="Node2D" unique_id=847368615]
-script = ExtResource("1_jfg5h")
-metadata/_custom_type_script = "uid://dlhs7l4jqampk"
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jdcp"]
+atlas = ExtResource("2_5jdcp")
+region = Rect2(34.720608, 0, 25.52195, 16)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=440723621]
-sprite_frames = SubResource("SpriteFrames_jfg5h")
+[node name="AlertVfx" type="Node2D" unique_id=892914976 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_xuhpp")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1098073784]
+material = SubResource("ShaderMaterial_v7xno")
+texture = SubResource("AtlasTexture_5jdcp")
