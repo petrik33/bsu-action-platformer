@@ -1,9 +1,8 @@
 extends GameCharacterStateBase
 
 
-func process(_delta: float) -> StringName:
+func process(_delta: float):
 	game_character.face_movement()
-	return &""
 
 
 func update(_delta: float) -> StringName:
