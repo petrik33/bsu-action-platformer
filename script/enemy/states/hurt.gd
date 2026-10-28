@@ -1,4 +1,4 @@
-extends EnemyCharacterStateBase
+extends EnemyStateBase
 
 @export var knockback_resist := 500
 

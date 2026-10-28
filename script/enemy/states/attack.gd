@@ -1,4 +1,4 @@
-class_name EnemyAttackState extends EnemyCharacterStateBase
+class_name EnemyAttackState extends EnemyStateBase
 
 @export var cooldown: float = 1.2
 @export var time: float = 0.5

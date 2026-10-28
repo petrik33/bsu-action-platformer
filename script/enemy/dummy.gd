@@ -1,1 +1,1 @@
-extends EnemyCharacter
+extends Enemy

@@ -1,9 +1,9 @@
-class_name EnemyCharacterStateBase extends CharacterStateBase
+class_name EnemyStateBase extends CharacterStateBase
 
 
-var enemy: EnemyCharacter:
+var enemy: Enemy:
 	get():
-		return character as EnemyCharacter
+		return character as Enemy
 
 var perception: EnemyPerception:
 	get():
@@ -16,4 +16,4 @@ var navigation: EnemyNavigationBsae:
 
 func init(character_owner: CharacterBody2D):
 	super.init(character_owner)
-	assert(enemy != null, "Can't use EnemyCharacterState in non-enemy FSM")
+	assert(enemy != null, "Can't use EnemyState in non-enemy FSM")

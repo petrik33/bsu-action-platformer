@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cpo4adxkqyhuw"]
 
-[ext_resource type="Script" uid="uid://w23557yemp8u" path="res://script/enemy_character.gd" id="1_oqubo"]
+[ext_resource type="Script" uid="uid://w23557yemp8u" path="res://script/enemy.gd" id="1_oqubo"]
 [ext_resource type="Texture2D" uid="uid://b3pvn82o3xh5o" path="res://asset/texture/enemies/Mage/Mage-Sheet Separated Tags.png" id="1_vxxwj"]
 [ext_resource type="PackedScene" uid="uid://5ngj1n3q6rd" path="res://scene/enemies/common/hurt_box.tscn" id="3_dp037"]
 [ext_resource type="PackedScene" uid="uid://dbijohyvc6go" path="res://scene/enemies/common/navigation_grounded.tscn" id="4_h2iyk"]

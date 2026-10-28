@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ca4ta3fmrmdte"]
 
-[ext_resource type="Script" uid="uid://w23557yemp8u" path="res://script/enemy_character.gd" id="1_rm4py"]
+[ext_resource type="Script" uid="uid://w23557yemp8u" path="res://script/enemy.gd" id="1_rm4py"]
 [ext_resource type="Texture2D" uid="uid://cwj05aevg6c4e" path="res://asset/texture/dummy/IDLE.png" id="1_sdolw"]
 [ext_resource type="Texture2D" uid="uid://dndkh24n3qmri" path="res://asset/texture/dummy/HIT.png" id="2_crlft"]
 [ext_resource type="PackedScene" uid="uid://5ngj1n3q6rd" path="res://scene/enemies/common/hurt_box.tscn" id="4_crlft"]

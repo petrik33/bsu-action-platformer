@@ -1,4 +1,4 @@
-class_name EnemyChaseState extends EnemyCharacterStateBase
+class_name EnemyChaseState extends EnemyStateBase
 
 @export var run_animation_name: StringName = &"run"
 @export var arrival_distance: float = 16.0

@@ -1,4 +1,4 @@
-extends EnemyCharacterStateBase
+extends EnemyStateBase
 
 
 

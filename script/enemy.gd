@@ -1,4 +1,4 @@
-class_name EnemyCharacter extends Actor
+class_name Enemy extends Actor
 
 
 @export var state_machine: CharacterStateMachine

@@ -1,4 +1,4 @@
-extends EnemyCharacterStateBase
+extends EnemyStateBase
 
 
 @export var min_time: float = 0.8

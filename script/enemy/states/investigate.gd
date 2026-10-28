@@ -1,4 +1,4 @@
-extends EnemyCharacterStateBase
+extends EnemyStateBase
 
 @export var walk_animation_name: StringName = &"walk"
 @export var search_animation_name: StringName = &"walk"
