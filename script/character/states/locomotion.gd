@@ -1,5 +1,5 @@
 extends GameCharacterStateBase
 
 
-func process(delta: float) -> void:
+func process(_delta: float) -> void:
 	game_character.face_movement()
