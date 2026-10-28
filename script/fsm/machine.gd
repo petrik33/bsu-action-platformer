@@ -31,20 +31,13 @@ func initialize(character: CharacterBody2D) -> void:
 		transition_to(initial)
 
 func process(delta: float) -> void:
+	for state in active_path:
+		state.process(delta)
+
+func update(delta: float) -> void:
 	_progress_state_timers(delta)
 	var state_requested := _evaluate_active_path_reverse(func(state: CharacterStateBase):
-		return state.process(delta)
-	)
-	if not state_requested.is_empty():
-		request_transition(state_requested)
-
-func update_physics(delta: float) -> void:
-	for state in active_path:
-		state.update_physics(delta)
-
-func post_physics() -> void:
-	var state_requested := _evaluate_active_path_reverse(func(state: CharacterStateBase):
-		return state.post_physics()
+		return state.update(delta)
 	)
 	if not state_requested.is_empty():
 		request_transition(state_requested)

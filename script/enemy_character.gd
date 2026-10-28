@@ -26,14 +26,12 @@ func _physics_process(delta: float) -> void:
 	if gravity_enabled and not is_on_floor():
 		velocity.y += gravity * delta
 
-	state_machine.update_physics(delta)
+	state_machine.update(delta)
 
 	move_and_slide()
-	
+
 	if perception:
 		perception.update(delta)
-	
-	state_machine.post_physics()
 
 func play_alert_vfx(time: float):
 	alert_vfx.play(time)

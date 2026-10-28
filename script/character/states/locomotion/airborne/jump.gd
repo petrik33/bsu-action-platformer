@@ -7,7 +7,7 @@ func enter():
 	game_character.jump()
 
 
-func post_physics() -> StringName:
+func update(_delta: float) -> StringName:
 	if game_character.velocity.y > 0:
 		return "Fall"
-	return ""
+	return &""

@@ -29,20 +29,18 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	movement_direction = signf(Input.get_axis("left", "right"))
-	
-	state_machine.update_physics(delta)
-	
+
 	if not is_on_floor():
 		velocity.y += float(gravity_enabled) * get_gravity().y * delta
 	else:
 		jumps_left = 2
-	
+
+	state_machine.update(delta)
+
 	if not is_movement_locked:
 		velocity.x = movement_direction * speed
-	
+
 	move_and_slide()
-	
-	state_machine.post_physics()
 
 func hurt(attack_data: AttackData):
 	last_hurt = attack_data

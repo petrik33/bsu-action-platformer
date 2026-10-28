@@ -12,14 +12,14 @@ func enter():
 func exit():
 	game_character.unlock_movement()
 
-func update_physics(delta: float):
+func update(delta: float) -> StringName:
 	game_character.velocity.x = move_toward(
 		game_character.velocity.x,
 		0.0,
 		knockback_resist * delta
 	)
-
-func post_physics() -> StringName:
+	
 	if is_zero_approx(game_character.velocity.x):
 		return &"Idle"
+	
 	return &""

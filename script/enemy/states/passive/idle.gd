@@ -12,10 +12,14 @@ func enter():
 	enemy.play_animation(&"idle")
 	remaining_time = randf_range(min_time,max_time)
 
-func process(delta: float) -> StringName:
+
+
+
+func update(delta: float) -> StringName:
 	remaining_time -= delta
 	if remaining_time <= 0:
 		enemy.face(-enemy.facing_direction())
 		return &"Patrol"
+	
 	return &""
 	

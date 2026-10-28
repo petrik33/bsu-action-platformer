@@ -12,7 +12,7 @@ var combo_buffered: bool = false
 func enter():
 	game_character.animation_finished.connect(_on_animation_finished)
 	game_character.speed = lock_speed
-	
+
 	combo_index = 0
 	combo_buffered = false
 	_start_attack()
@@ -21,10 +21,11 @@ func exit():
 	game_character.reset_speed()
 	game_character.animation_finished.disconnect(_on_animation_finished)
 
-func process(delta: float) -> StringName:
+
+func update(_delta: float) -> StringName:
 	if Input.is_action_just_pressed("click"):
 		combo_buffered = true
-	return ""
+	return &""
 
 
 func _start_attack():

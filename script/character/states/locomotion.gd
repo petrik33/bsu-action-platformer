@@ -1,6 +1,5 @@
 extends GameCharacterStateBase
 
 
-func post_physics() -> StringName:
+func process(delta: float) -> void:
 	game_character.face_movement()
-	return &""

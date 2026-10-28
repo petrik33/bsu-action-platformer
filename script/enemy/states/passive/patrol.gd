@@ -13,23 +13,24 @@ func enter() -> void:
 	enemy.play_animation(&"walk")
 	enemy.navigation.force_update()
 
-func update_physics(_delta: float):
+func process(delta: float) -> void:
+	enemy.face_movement()
+
+
+func update(_delta: float) -> StringName:
 	if enemy.navigation.has_obstacles_ahead():
 		enemy.stop_horizontal()
-		return
-
+		return &"Idle"
+	
 	enemy.move_horizontal(
 		direction,
 		speed
 	)
-
-func post_physics() -> StringName:
-	enemy.face_movement()
 	
 	if absf(enemy.global_position.x - origin_x) >= max_distance:
 		return &"Idle"
 	
 	if enemy.navigation.has_obstacles_ahead():
 		return &"Idle"
-
+	
 	return &""

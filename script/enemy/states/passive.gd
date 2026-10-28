@@ -1,8 +1,11 @@
 extends EnemyCharacterStateBase
 
 
-func process(delta: float) -> StringName:
+
+
+
+func update(_delta: float) -> StringName:
 	if perception.has_target():
 		return &"Alert"
-
+	
 	return &""

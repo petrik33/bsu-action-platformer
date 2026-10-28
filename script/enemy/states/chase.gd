@@ -13,21 +13,22 @@ func enter() -> void:
 		_transition(&"Attack")
 		return
 
-func update_physics(_delta: float):
+func process(delta: float) -> void:
+	enemy.face_movement()
+
+
+func update(_delta: float) -> StringName:
 	if absf(perception.to_target().x) > arrival_distance:
 		enemy.move_horizontal(signf(perception.to_target().x), speed)
 	else:
 		enemy.stop_horizontal()
-
-func post_physics() -> StringName:
-	enemy.face_movement()
 	
 	if not perception.has_target() or enemy.navigation.has_obstacles_ahead():
 		return &"Investigate"
-
+	
 	if _can_attack():
 		return &"Attack"
-
+	
 	return &""
 
 

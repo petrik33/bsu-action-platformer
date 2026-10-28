@@ -27,13 +27,13 @@ func enter() -> void:
 		return
 	_transition(&"Idle")
 
-func process(delta: float) -> StringName:
+
+
+func update(delta: float) -> StringName:
 	_remaining_search_time -= delta
 	if _remaining_search_time <= 0.0:
 		return &"Idle"
-	return &""
-
-func post_physics() -> StringName:
+	
 	if perception.has_target():
 		return &"Chase"
 	
@@ -41,7 +41,7 @@ func post_physics() -> StringName:
 		_look_direction = -_look_direction
 		if not _try_search():
 			return &"Idle"
-
+	
 	return &""
 
 

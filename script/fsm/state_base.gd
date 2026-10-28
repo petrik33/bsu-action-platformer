@@ -17,13 +17,10 @@ func enter():
 func exit():
 	pass
 
-func process(delta: float) -> StringName:
-	return &""
-
-func update_physics(delta: float):
+func process(delta: float) -> void:
 	pass
 
-func post_physics() -> StringName:
+func update(delta: float) -> StringName:
 	return &""
 
 func _transition(to: StringName):
