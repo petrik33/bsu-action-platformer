@@ -15,7 +15,6 @@ var last_hurt: AttackData
 
 
 func _ready() -> void:
-	super._ready()
 	hurt_box.hit_received.connect(_on_hit_received)
 	state_machine.initialize(self)
 

@@ -18,7 +18,6 @@ var is_movement_locked := false
 var last_hurt: AttackData
 
 func _ready() -> void:
-	super._ready()
 	state_machine.initialize(self)
 	hurt_box.hit_received.connect(_on_hit_received)
 

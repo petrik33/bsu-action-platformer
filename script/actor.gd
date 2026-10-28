@@ -1,20 +1,9 @@
 class_name Actor extends CharacterBody2D
 
-
-signal animation_finished()
-
-
 @export var visuals: Node2D
 @export var sprite: AnimatedSprite2D
 @export var animation_player: AnimationPlayer
 @export var origin: Node2D
-
-
-func _ready() -> void:
-	sprite.animation_finished.connect(_on_sprite_animation_finished)
-	if not animation_player:
-		return
-	animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 
 func face_movement():
 	face(velocity.x)
@@ -38,7 +27,6 @@ func face(direction: float):
 	else:
 		visuals.scale.x = -1.0
 		visuals.position.x = 2.0 * offset_x
-
 
 func facing_direction() -> float:
 	return sign(visuals.scale.x)
@@ -74,10 +62,3 @@ func reset_animation_player():
 	animation_player.play(&"RESET")
 	animation_player.advance(0)
 	animation_player.stop()
-
-
-func _on_animation_player_animation_finished(_anim_name: StringName):
-	animation_finished.emit()
-
-func _on_sprite_animation_finished():
-	animation_finished.emit()
