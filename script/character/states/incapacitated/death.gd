@@ -1,12 +1,11 @@
 extends GameCharacterStateBase
 
+@export var time: float = 1.0
+
 func enter():
-	game_character.animation_finished.connect(_on_animation_finished)
-	game_character.play_animation("death")
-
-func exit():
-	game_character.animation_finished.disconnect(_on_animation_finished)
+	game_character.play_animation("death", time)
+	_state_timer(time, _on_finished)
 
 
-func _on_animation_finished():
+func _on_finished():
 	_transition(&"Idle")

@@ -1,16 +1,14 @@
 extends GameCharacterStateBase
 
 @export var animation_name: StringName = &"air_attack"
+@export var time: float = 0.4
 
 func enter():
-	game_character.animation_finished.connect(_on_animation_finished)
-	game_character.play_animation(animation_name)
-
-func exit():
-	game_character.animation_finished.disconnect(_on_animation_finished)
+	game_character.play_animation(animation_name, time)
+	_state_timer(time, _on_finished)
 
 
-func _on_animation_finished():
+func _on_finished():
 	if character.is_on_floor():
 		_transition(&"Idle")
 	else:

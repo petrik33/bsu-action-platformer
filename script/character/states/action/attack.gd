@@ -10,7 +10,6 @@ var combo_buffered: bool = false
 
 
 func enter():
-	game_character.animation_finished.connect(_on_animation_finished)
 	game_character.speed = lock_speed
 
 	combo_index = 0
@@ -19,8 +18,6 @@ func enter():
 
 func exit():
 	game_character.reset_speed()
-	game_character.animation_finished.disconnect(_on_animation_finished)
-
 
 func update(_delta: float) -> StringName:
 	if Input.is_action_just_pressed("click"):
@@ -29,9 +26,15 @@ func update(_delta: float) -> StringName:
 
 
 func _start_attack():
-	game_character.play_animation(combo_animations[combo_index], animation_time[combo_index])
+	var anim_name := combo_animations[combo_index]
+	var time := animation_time[combo_index]
+	if time < 0:
+		time = 0.4
+	
+	game_character.play_animation(anim_name, time)
+	_state_timer(time, _on_finished)
 
-func _on_animation_finished():
+func _on_finished():
 	if combo_buffered and combo_index < combo_animations.size() - 1:
 		combo_index += 1
 		combo_buffered = false
