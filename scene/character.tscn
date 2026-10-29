@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dw4q416nx8pd5"]
 
-[ext_resource type="Script" uid="uid://bowr4smo7rude" path="res://script/game_character.gd" id="1_0qvrh"]
+[ext_resource type="Script" uid="uid://dwik25yehg46n" path="res://script/hero.gd" id="1_7s5o7"]
 [ext_resource type="Texture2D" uid="uid://cyems2rhg4r7" path="res://asset/texture/character/character_recolored_no_vfx.png" id="2_d7vt2"]
 [ext_resource type="Texture2D" uid="uid://bctpt2ofrqnlf" path="res://asset/texture/character/sword/Attack1.png" id="3_d7vt2"]
 [ext_resource type="Texture2D" uid="uid://dmawkigs4d5gs" path="res://asset/texture/character/sword/Attack2.png" id="4_a748v"]
@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://t40f4mawxn56" path="res://scene/character/states/incapacitated.tscn" id="18_7u363"]
 [ext_resource type="PackedScene" uid="uid://bexnfq44abe3q" path="res://scene/character/states/incapacitated/hurt.tscn" id="19_ud0a3"]
 [ext_resource type="PackedScene" uid="uid://k6fdi54ai135" path="res://scene/character/states/incapacitated/death.tscn" id="20_0qvrh"]
+[ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="26_sdelk"]
+[ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="27_ckk4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lp7ui"]
 size = Vector2(7, 20)
@@ -1376,13 +1378,18 @@ _data = {
 &"attack3": SubResource("Animation_cnvcp")
 }
 
-[node name="Character" type="CharacterBody2D" unique_id=213064435 node_paths=PackedStringArray("visuals", "sprite", "animation_player") groups=["player"]]
+[node name="Character" type="CharacterBody2D" unique_id=649276059 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "visuals", "sprite", "animation_player") groups=["player"]]
 collision_layer = 2
-script = ExtResource("1_0qvrh")
+script = ExtResource("1_7s5o7")
+state_machine = NodePath("StateMachine")
+hit_box = NodePath("Visuals/HitBox")
+hurt_box = NodePath("Visuals/HurtBox")
+steering = NodePath("Steering")
+gravity = NodePath("Gravity")
 visuals = NodePath("Visuals")
 sprite = NodePath("Visuals/Base")
 animation_player = NodePath("AnimationPlayer")
-metadata/_custom_type_script = "uid://bowr4smo7rude"
+metadata/_custom_type_script = "uid://dwik25yehg46n"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=726962726]
 position = Vector2(0, -10)
@@ -1448,7 +1455,6 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 roll_speed = 400.0
 roll_duration = 0.4
 roll_animation = &"dash"
-invulnerable_during_roll = null
 
 [node name="Grounded" parent="StateMachine/Locomotion" unique_id=2122582834 instance=ExtResource("6_5hcsl")]
 
@@ -1480,3 +1486,9 @@ animation_time = Array[float]([0.4, 0.4, 0.4])
 [node name="Hurt" parent="StateMachine/Incapacitated" unique_id=33714673 instance=ExtResource("19_ud0a3")]
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("20_0qvrh")]
+
+[node name="Steering" type="Node" parent="." unique_id=878888465]
+script = ExtResource("26_sdelk")
+metadata/_custom_type_script = "uid://buji1uw4mpk74"
+
+[node name="Gravity" parent="." unique_id=80762626 instance=ExtResource("27_ckk4y")]

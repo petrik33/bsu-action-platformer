@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d2sud346rxdoh"]
+
+[ext_resource type="Script" uid="uid://b8m6bpovmu8cu" path="res://script/physics/gravity.gd" id="1_rwsdb"]
+
+[node name="Gravity" type="Node" unique_id=80762626]
+script = ExtResource("1_rwsdb")
+metadata/_custom_type_script = "uid://b8m6bpovmu8cu"
