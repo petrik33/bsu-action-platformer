@@ -19,9 +19,9 @@ func process(_delta: float) -> void:
 
 func update(delta: float) -> StringName:
 	if absf(perception.to_target().x) > arrival_distance:
-		steering.steer(delta, signf(perception.to_target().x) * speed)
+		steering.apply(delta, signf(perception.to_target().x) * speed)
 	else:
-		steering.steer(delta, 0)
+		steering.apply(delta, 0)
 	
 	if not perception.has_target() or enemy.navigation.has_obstacles_ahead():
 		return &"Investigate"

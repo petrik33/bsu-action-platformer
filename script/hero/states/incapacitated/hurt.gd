@@ -9,7 +9,7 @@ func enter():
 	hero.face(signf(-hero.velocity.x))
 
 func update(delta: float) -> StringName:
-	steering.apply(delta, 0, knockback_resist)
+	steering.apply_custom(delta, 0, knockback_resist)
 	
 	if is_zero_approx(hero.velocity.x):
 		return &"Idle"

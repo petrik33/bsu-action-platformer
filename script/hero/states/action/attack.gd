@@ -20,7 +20,7 @@ func enter():
 	_start_attack()
 
 func update(delta: float) -> StringName:
-	steering.steer(delta, hero.movement_direction * lock_speed)
+	steering.apply(delta, hero.movement_direction * lock_speed)
 	
 	if Input.is_action_just_pressed("click"):
 		hero.combo_buffered = true

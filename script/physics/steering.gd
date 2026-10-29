@@ -23,18 +23,18 @@ func dash_vec(velocity: Vector2):
 func dash(velocity: float):
 	body.velocity.x = velocity
 
-func steer_vec(delta: float, velocity: Vector2):
+func apply_vec(delta: float, velocity: Vector2):
 	var accel_to_use = acceleration if velocity.length() > 0 else deceleration
-	apply_vec(delta, velocity, accel_to_use)
+	apply_custom_vec(delta, velocity, accel_to_use)
 
-func steer(delta: float, velocity: float):
+func apply(delta: float, velocity: float):
 	var accel_to_use = acceleration if velocity != 0 else deceleration
-	apply(delta, velocity, accel_to_use)
+	apply_custom(delta, velocity, accel_to_use)
 
-func apply_vec(delta: float, velocity: Vector2, value: float):
+func apply_custom_vec(delta: float, velocity: Vector2, value: float):
 	var target_velocity = velocity.limit_length(max_speed)
 	body.velocity = body.velocity.move_toward(target_velocity, delta * value)
 
-func apply(delta: float, velocity: float, value: float):
+func apply_custom(delta: float, velocity: float, value: float):
 	var target_velocity = clamp(velocity, -max_speed, max_speed)
 	body.velocity = body.velocity.move_toward(target_velocity, delta * value)

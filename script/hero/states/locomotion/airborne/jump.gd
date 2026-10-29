@@ -8,7 +8,7 @@ func enter():
 
 
 func update(delta: float) -> StringName:
-	steering.steer(delta, 0)
+	steering.apply(delta, 0)
 	if hero.velocity.y > 0:
 		return "Fall"
 	return &""
