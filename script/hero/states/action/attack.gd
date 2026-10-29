@@ -6,18 +6,16 @@ class_name HeroAttackState extends HeroStateBase
 @export var animation_time: Array[float] = [-1.0, -1.0, -1.0]
 
 var combo_index: int = 0
+var combo_buffered: bool = false
 
 
 func enter():
-	if hero.combo_buffered:
+	if combo_buffered and combo_index < combo_animations.size() - 1:
 		combo_index += 1
-		hero.combo_buffered = false
 	else:
 		combo_index = 0
 	
-	if combo_index >= combo_animations.size():
-		_transition(&"Idle")
-		return
+	combo_buffered = false
 
 	_start_attack()
 
@@ -25,7 +23,7 @@ func update(_delta: float) -> StringName:
 	steering.set_horizontal_velocity(hero.movement_direction * lock_speed)
 	
 	if Input.is_action_just_pressed("click"):
-		hero.combo_buffered = true
+		combo_buffered = true
 		
 	return &""
 
@@ -39,7 +37,7 @@ func _start_attack():
 	_state_timer(time, _on_finished)
 
 func _on_finished():
-	if hero.combo_buffered:
+	if combo_buffered:
 		_transition(&"Attack")
 	else:
 		_transition(&"Idle")

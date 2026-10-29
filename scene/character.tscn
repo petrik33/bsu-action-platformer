@@ -1407,7 +1407,7 @@ offset = Vector2(2, -15.5)
 visible = false
 position = Vector2(26, -15)
 sprite_frames = SubResource("SpriteFrames_aqmka")
-animation = &"attack1"
+animation = &"attack3"
 frame = 1
 
 [node name="HitBox" type="Area2D" parent="Visuals" unique_id=1342386439]

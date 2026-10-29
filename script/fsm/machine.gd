@@ -91,7 +91,7 @@ func _progress_state_timers(delta: float):
 	for state_name in _state_timers:
 		_state_timers[state_name] -= delta
 		if _state_timers[state_name] <= 0:
-			_state_callbacks[state_name].call()
+			_state_callbacks[state_name].call_deferred()
 			triggered.push_back(state_name)
 	for state_name in triggered:
 		_remove_state_timer(state_name)

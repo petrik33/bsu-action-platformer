@@ -12,7 +12,6 @@ class_name Hero extends Actor
 
 var jumps_left := 2
 var movement_direction := 0.0
-var combo_buffered := false
 var last_hurt: AttackData
 
 

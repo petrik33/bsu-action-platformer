@@ -11,12 +11,8 @@ func enter():
 		hero.velocity = hero.last_hurt.knockback
 	hero.face(signf(-hero.velocity.x))
 
-func exit():
-	hero.unlock_movement()
-
 func update(delta: float) -> StringName:
 	if steering:
-		# Use steering to slow down to 0
 		steering.set_horizontal_velocity(0)
 	else:
 		hero.velocity.x = move_toward(
