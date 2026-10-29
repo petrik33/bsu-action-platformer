@@ -6,47 +6,35 @@ class_name GhostChaseState extends EnemyStateBase
 @export var attack_state: EnemyAttackState
 
 func enter() -> void:
-	# Ensure the ghost is facing the target initially
 	if perception.has_target():
 		enemy.face_vector(perception.to_target())
-	
-	# Use generic ghost chase animation if available, otherwise "idle"
-	enemy.play_animation(&"chase")
+
+func process(_delta: float) -> void:
+	enemy.face_movement()
 
 func update(delta: float) -> StringName:
 	if not perception.has_target():
-		return &"Passive"
+		return &"Investigate"
 	
 	var target_pos = perception.target.global_position
 	var current_pos = enemy.global_position
 	var to_target = target_pos - current_pos
 	var direction = to_target.normalized()
 	
-	# 1. Seek: Basic move towards target (Horizontal only)
-	# We isolate X to let the FloatingComponent handle the Y-axis (bobbing/ground-follow)
-	var desired_velocity = Vector2(direction.x * speed, 0)
+	var desired_velocity = Vector2(direction * speed)
 	
-	# 2. Avoidance: Modify velocity based on obstacles
 	if navigation is EnemyNavigationFlying:
 		var avoid_vec = navigation.get_avoidance_vector()
 		if avoid_vec != Vector2.ZERO:
-			# Blend avoid_vec into desired_velocity
 			desired_velocity += avoid_vec * speed * avoidance_weight
 	
-	# Update facing direction based on movement
-	if enemy.velocity.length() > 10:
-		enemy.face_vector(enemy.velocity.normalized())
+	steering.apply_vec(delta, desired_velocity)
 	
-	# Apply the calculated velocity through the steering component
-	steering.apply_forced_vec(delta, desired_velocity, steering.acceleration)
-	
-	# Transition to Attack state if close enough
 	if to_target.length() < arrival_distance:
 		if _can_attack():
 			return &"Attack"
 		else:
-			# Decelerate when arriving at target but not yet attacking
-			steering.apply_forced_vec(delta, Vector2.ZERO, steering.deceleration)
+			steering.stop_vec(delta)
 	
 	return &""
 

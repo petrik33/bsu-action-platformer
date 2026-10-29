@@ -273,7 +273,7 @@ collision_layer = 4
 script = ExtResource("1_oqubo")
 state_machine = NodePath("StateMachine")
 perception = NodePath("Visual/Perception")
-navigation = NodePath("Visual/NavigationGrounded")
+navigation = NodePath("NavigationGrounded")
 hurt_box = NodePath("Visual/HurtBox")
 hit_box = NodePath("Visual/HitBox")
 alert_vfx = NodePath("AlertVfx")
@@ -292,16 +292,15 @@ shape = SubResource("RectangleShape2D_vxxwj")
 visible = false
 position = Vector2(0, -40)
 
+[node name="NavigationGrounded" parent="." unique_id=2085862437 instance=ExtResource("4_h2iyk")]
+visible = false
+
 [node name="Visual" type="Node2D" parent="." unique_id=538338525]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual" unique_id=1063587671]
 sprite_frames = SubResource("SpriteFrames_bxxyc")
-animation = &"attack"
-frame = 8
+animation = &"hurt"
 offset = Vector2(0, -24)
-
-[node name="NavigationGrounded" parent="Visual" unique_id=2085862437 instance=ExtResource("4_h2iyk")]
-visible = false
 
 [node name="HurtBox" parent="Visual" unique_id=1463069577 instance=ExtResource("3_dp037")]
 visible = false

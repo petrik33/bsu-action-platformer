@@ -3,9 +3,9 @@ class_name EnemyNavigationFlying extends EnemyNavigationBsae
 @export var avoidance_ray_length: float = 64.0
 @export var side_ray_angle: float = deg_to_rad(30)
 
-@onready var front_ray: RayCast2D = $FrontRay
-@onready var left_ray: RayCast2D = $LeftRay
-@onready var right_ray: RayCast2D = $RightRay
+@export var front_ray: RayCast2D
+@export var left_ray: RayCast2D
+@export var right_ray: RayCast2D
 
 func force_update() -> void:
 	# Update ray directions based on movement
