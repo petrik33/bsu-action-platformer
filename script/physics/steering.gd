@@ -23,6 +23,12 @@ func dash_vec(velocity: Vector2):
 func dash(velocity: float):
 	body.velocity.x = velocity
 
+func stop_vec(delta: float):
+	apply_vec(delta, Vector2.ZERO)
+
+func stop(delta: float):
+	apply(delta, 0)
+
 func apply_vec(delta: float, velocity: Vector2):
 	var accel_to_use = acceleration if velocity.length() > 0 else deceleration
 	apply_forced_vec(delta, velocity, accel_to_use)

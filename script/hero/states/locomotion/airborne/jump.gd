@@ -7,7 +7,7 @@ func enter():
 	hero.jump()
 
 
-func update(delta: float) -> StringName:
+func update(_delta: float) -> StringName:
 	if hero.velocity.y > 0:
 		return "Fall"
 	return &""

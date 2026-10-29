@@ -8,18 +8,14 @@ var remaining_time: float = 0.0
 
 
 func enter():
-	steering.dash(0)
 	enemy.play_animation(&"idle")
 	remaining_time = randf_range(min_time,max_time)
 
-
-
-
 func update(delta: float) -> StringName:
+	steering.stop(delta)
 	remaining_time -= delta
 	if remaining_time <= 0:
 		enemy.face(-enemy.facing_direction())
 		return &"Patrol"
-	
+
 	return &""
-	
