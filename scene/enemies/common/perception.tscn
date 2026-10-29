@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://25sdyppolkpd" path="res://script/enemy/perception.gd" id="1_otuoh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otuoh"]
-size = Vector2(400, 200)
+size = Vector2(300, 150)
 
 [node name="Perception" type="Area2D" unique_id=855897802]
 collision_layer = 0
