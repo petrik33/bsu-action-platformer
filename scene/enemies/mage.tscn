@@ -268,14 +268,13 @@ size = Vector2(16, 31)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srgcj"]
 size = Vector2(105, 44)
 
-[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "hit_box", "alert_vfx", "steering", "gravity", "visuals", "sprite")]
+[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "alert_vfx", "steering", "gravity", "visuals", "sprite")]
 collision_layer = 4
 script = ExtResource("1_oqubo")
 state_machine = NodePath("StateMachine")
 perception = NodePath("Visual/Perception")
 navigation = NodePath("NavigationGrounded")
 hurt_box = NodePath("Visual/HurtBox")
-hit_box = NodePath("Visual/HitBox")
 alert_vfx = NodePath("AlertVfx")
 steering = NodePath("Steering")
 gravity = NodePath("Gravity")
@@ -299,7 +298,7 @@ visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual" unique_id=1063587671]
 sprite_frames = SubResource("SpriteFrames_bxxyc")
-animation = &"hurt"
+animation = &"idle"
 offset = Vector2(0, -24)
 
 [node name="HurtBox" parent="Visual" unique_id=1463069577 instance=ExtResource("3_dp037")]
@@ -347,10 +346,6 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 
 [node name="Patrol" parent="StateMachine/Passive" unique_id=1114917989 instance=ExtResource("9_srgcj")]
 
-[node name="Chase" parent="StateMachine" unique_id=1942010174 node_paths=PackedStringArray("attack_state") instance=ExtResource("10_8l2p6")]
-run_animation_name = &"walk"
-attack_state = NodePath("../Attack")
-
 [node name="Attack" parent="StateMachine" unique_id=1140714920 instance=ExtResource("11_i4onk")]
 cooldown = 2.0
 
@@ -359,6 +354,10 @@ cooldown = 2.0
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("13_rtlgi")]
 
 [node name="Alert" parent="StateMachine" unique_id=1829192895 instance=ExtResource("17_0c3hi")]
+
+[node name="Chase" parent="StateMachine" unique_id=1942010174 node_paths=PackedStringArray("attack_state") instance=ExtResource("10_8l2p6")]
+run_animation_name = &"walk"
+attack_state = NodePath("../Attack")
 
 [node name="Steering" type="Node" parent="." unique_id=791649668]
 script = ExtResource("19_oulf2")

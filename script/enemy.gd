@@ -5,7 +5,6 @@ class_name Enemy extends Actor
 @export var perception: EnemyPerception
 @export var navigation: EnemyNavigationBsae
 @export var hurt_box: HurtBox
-@export var hit_box: HitBox
 @export var alert_vfx: VfxBase
 @export var steering: Steering
 @export var gravity: Gravity

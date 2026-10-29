@@ -1,4 +1,4 @@
-class_name GhostPassiveState extends EnemyStateBase
+class_name GhostFloatingState extends EnemyStateBase
 
 @export var floating: Floating
 

@@ -7,18 +7,29 @@ class_name EnemyNavigationFlying extends EnemyNavigationBsae
 @export var left_ray: RayCast2D
 @export var right_ray: RayCast2D
 
+var body: CharacterBody2D
+
+func _ready() -> void:
+	body = get_parent() as CharacterBody2D
+	if not body:
+		push_error("Flying navigation must be a child of CharacterBody2D")
+
+func _get_configuration_warnings():
+	if not get_parent() is CharacterBody2D:
+		return ["Flying navigation must be a child of CharacterBody2D"]
+	return []
+
+
 func force_update() -> void:
-	# Update ray directions based on movement
-	var velocity = get_parent().velocity
-	if velocity.length() > 0:
-		var dir = velocity.normalized()
-		front_ray.target_position = dir * avoidance_ray_length
+	var dir = body.velocity.normalized()
+	
+	front_ray.target_position = dir * avoidance_ray_length
 		
-		var left_dir = dir.rotated(side_ray_angle)
-		left_ray.target_position = left_dir * avoidance_ray_length
-		
-		var right_dir = dir.rotated(-side_ray_angle)
-		right_ray.target_position = right_dir * avoidance_ray_length
+	var left_dir = dir.rotated(side_ray_angle)
+	left_ray.target_position = left_dir * avoidance_ray_length
+	
+	var right_dir = dir.rotated(-side_ray_angle)
+	right_ray.target_position = right_dir * avoidance_ray_length
 	
 	front_ray.force_raycast_update()
 	left_ray.force_raycast_update()

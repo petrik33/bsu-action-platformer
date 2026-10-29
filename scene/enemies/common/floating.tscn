@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dufyjp8k4vnht"]
+
+[ext_resource type="Script" uid="uid://cjm7m7xdugopm" path="res://script/physics/floating.gd" id="1_3wwqm"]
+
+[node name="Floating" type="Node2D" unique_id=1488304905 node_paths=PackedStringArray("ground_ray")]
+script = ExtResource("1_3wwqm")
+ground_ray = NodePath("GroundRay")
+metadata/_custom_type_script = "uid://cjm7m7xdugopm"
+
+[node name="GroundRay" type="RayCast2D" parent="." unique_id=2064377282]
+target_position = Vector2(0, 24)

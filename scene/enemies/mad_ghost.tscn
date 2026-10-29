@@ -1,21 +1,23 @@
 [gd_scene format=3 uid="uid://cv0nc1nnyjsh0"]
 
 [ext_resource type="PackedScene" uid="uid://dwk4ubs07kedw" path="res://scene/enemies/common/alert_vfx.tscn" id="1_i5ct6"]
+[ext_resource type="Script" uid="uid://w23557yemp8u" path="res://script/enemy.gd" id="1_j4lwb"]
 [ext_resource type="Texture2D" uid="uid://ddpi7h3eqkmal" path="res://asset/texture/enemies/Mad Ghost/Mad Ghost-Sheet Separated tags.png" id="2_qfdwy"]
 [ext_resource type="PackedScene" uid="uid://5ngj1n3q6rd" path="res://scene/enemies/common/hurt_box.tscn" id="2_xpdev"]
 [ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/fsm/machine.gd" id="4_fpfe2"]
+[ext_resource type="PackedScene" uid="uid://dlgm3haqibyaw" path="res://scene/enemies/common/perception.tscn" id="4_j4lwb"]
 [ext_resource type="PackedScene" uid="uid://dgr0braecu28y" path="res://scene/enemies/states/passive.tscn" id="5_j4lwb"]
+[ext_resource type="PackedScene" uid="uid://cgq6io0faa8nr" path="res://scene/enemies/common/navigation_flying.tscn" id="6_50wr2"]
 [ext_resource type="PackedScene" uid="uid://cp38i6pqejveu" path="res://scene/enemies/states/passive/idle.tscn" id="6_te2bj"]
 [ext_resource type="PackedScene" uid="uid://dtgvyec0183ks" path="res://scene/enemies/states/passive/patrol.tscn" id="7_50wr2"]
-[ext_resource type="PackedScene" uid="uid://dyr6nh4ibjwua" path="res://scene/enemies/states/chase.tscn" id="8_sk2cx"]
+[ext_resource type="PackedScene" uid="uid://dufyjp8k4vnht" path="res://scene/enemies/common/floating.tscn" id="7_sk2cx"]
 [ext_resource type="PackedScene" uid="uid://bqkwlevbj2nwh" path="res://scene/enemies/states/attack.tscn" id="9_5deos"]
+[ext_resource type="PackedScene" uid="uid://c10drp52d326n" path="res://scene/enemies/states/ghost/floating.tscn" id="10_50wr2"]
 [ext_resource type="PackedScene" uid="uid://8u16f5cw6syf" path="res://scene/enemies/states/hurt.tscn" id="10_j8b0m"]
 [ext_resource type="PackedScene" uid="uid://cu1fyvhsvvnxt" path="res://scene/enemies/states/investigate.tscn" id="11_qjv1p"]
 [ext_resource type="PackedScene" uid="uid://dqk86am2bll74" path="res://scene/enemies/states/alert.tscn" id="12_at3yh"]
 [ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="13_8a8uj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuwl0"]
-size = Vector2(8, 37)
+[ext_resource type="PackedScene" uid="uid://bv03a32jqwaoq" path="res://scene/enemies/states/ghost/chase.tscn" id="15_te2bj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpdev"]
 atlas = ExtResource("2_qfdwy")
@@ -206,13 +208,40 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuwl0"]
+size = Vector2(8, 37)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1sfn"]
 size = Vector2(24, 37.5)
 
-[node name="MadGhost" type="CharacterBody2D" unique_id=1439942586]
+[node name="MadGhost" type="CharacterBody2D" unique_id=265532546 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "alert_vfx", "steering", "visuals", "sprite")]
 collision_layer = 4
+script = ExtResource("1_j4lwb")
+state_machine = NodePath("StateMachine")
+perception = NodePath("Perception")
+navigation = NodePath("NavigationFlying")
+hurt_box = NodePath("HurtBox")
+alert_vfx = NodePath("AlertVfx")
+steering = NodePath("Steering")
+visuals = NodePath("Visual")
+sprite = NodePath("Visual/AnimatedSprite2D")
+metadata/_custom_type_script = "uid://w23557yemp8u"
+
+[node name="NavigationFlying" parent="." unique_id=712196497 instance=ExtResource("6_50wr2")]
+position = Vector2(0, -22)
+avoidance_ray_length = 64.0
+side_ray_angle = 0.5235987755982988
+
+[node name="Visual" type="Node2D" parent="." unique_id=809263730]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual" unique_id=1272308513]
+sprite_frames = SubResource("SpriteFrames_3a8sd")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(-3, -36)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1859505110]
+visible = false
 position = Vector2(0, -23.5)
 shape = SubResource("RectangleShape2D_tuwl0")
 
@@ -220,41 +249,33 @@ shape = SubResource("RectangleShape2D_tuwl0")
 visible = false
 position = Vector2(0, -40)
 
-[node name="Visual" type="Node2D" parent="." unique_id=809263730]
+[node name="HurtBox" parent="." unique_id=1463069577 instance=ExtResource("2_xpdev")]
+visible = false
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual" unique_id=1272308513]
-sprite_frames = SubResource("SpriteFrames_3a8sd")
-animation = &"attack"
-autoplay = "idle"
-frame = 1
-frame_progress = 0.13385923
-offset = Vector2(-3, -36)
-
-[node name="HurtBox" parent="Visual" unique_id=1463069577 instance=ExtResource("2_xpdev")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Visual/HurtBox" unique_id=1472894442]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1472894442]
 position = Vector2(0, -23.25)
 shape = SubResource("RectangleShape2D_g1sfn")
 debug_color = Color(0.7, 0.05833332, 0, 0.41960785)
 
-[node name="GroundRayCast" type="RayCast2D" parent="." unique_id=1143814937]
-position = Vector2(0, -5)
-target_position = Vector2(0, 200)
+[node name="Perception" parent="." unique_id=855897802 instance=ExtResource("4_j4lwb")]
+visible = false
+
+[node name="Floating" parent="." unique_id=1488304905 instance=ExtResource("7_sk2cx")]
+position = Vector2(0, -22)
 
 [node name="StateMachine" type="Node" parent="." unique_id=1406640932 node_paths=PackedStringArray("initial")]
 script = ExtResource("4_fpfe2")
-initial = NodePath("Passive/Idle")
+initial = NodePath("Passive/Floating/Idle")
 metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 
 [node name="Passive" parent="StateMachine" unique_id=228852256 instance=ExtResource("5_j4lwb")]
 
-[node name="Idle" parent="StateMachine/Passive" unique_id=2005035550 instance=ExtResource("6_te2bj")]
-
 [node name="Patrol" parent="StateMachine/Passive" unique_id=1114917989 instance=ExtResource("7_50wr2")]
 
-[node name="Chase" parent="StateMachine" unique_id=1942010174 node_paths=PackedStringArray("attack_state") instance=ExtResource("8_sk2cx")]
-run_animation_name = &"walk"
-attack_state = NodePath("../Attack")
+[node name="Floating" parent="StateMachine/Passive" unique_id=1921040041 node_paths=PackedStringArray("floating") instance=ExtResource("10_50wr2")]
+floating = NodePath("../../../Floating")
+
+[node name="Idle" parent="StateMachine/Passive/Floating" unique_id=2005035550 instance=ExtResource("6_te2bj")]
 
 [node name="Attack" parent="StateMachine" unique_id=1140714920 instance=ExtResource("9_5deos")]
 cooldown = 2.0
@@ -264,6 +285,9 @@ cooldown = 2.0
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("11_qjv1p")]
 
 [node name="Alert" parent="StateMachine" unique_id=1829192895 instance=ExtResource("12_at3yh")]
+
+[node name="Chase" parent="StateMachine" unique_id=755686241 node_paths=PackedStringArray("attack_state") instance=ExtResource("15_te2bj")]
+attack_state = NodePath("../Attack")
 
 [node name="Steering" type="Node" parent="." unique_id=66857283]
 script = ExtResource("13_8a8uj")

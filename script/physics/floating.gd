@@ -1,4 +1,4 @@
-class_name Floating extends Node
+class_name Floating extends Node2D
 
 @export_group("Hover Settings")
 @export var hover_height: float = 20.0

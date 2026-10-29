@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bv03a32jqwaoq"]
+
+[ext_resource type="Script" uid="uid://bgo7x2mxrbylm" path="res://script/enemy/states/ghost/chase.gd" id="1_e31te"]
+
+[node name="Chase" type="Node" unique_id=755686241]
+script = ExtResource("1_e31te")
+metadata/_custom_type_script = "uid://bgo7x2mxrbylm"
