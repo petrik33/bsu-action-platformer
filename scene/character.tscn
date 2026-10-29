@@ -1453,9 +1453,7 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 
 [node name="Roll" parent="StateMachine/Locomotion" unique_id=185626220 instance=ExtResource("15_x2uf3")]
 roll_speed = 400.0
-roll_duration = 0.4
 roll_animation = &"dash"
-invulnerable_during_roll = null
 
 [node name="Grounded" parent="StateMachine/Locomotion" unique_id=2122582834 instance=ExtResource("6_5hcsl")]
 

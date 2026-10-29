@@ -37,4 +37,4 @@ func apply_forced_vec(delta: float, velocity: Vector2, value: float):
 
 func apply_forced(delta: float, velocity: float, value: float):
 	var target_velocity = clamp(velocity, -max_speed, max_speed)
-	body.velocity = body.velocity.move_toward(target_velocity, delta * value)
+	body.velocity.x = move_toward(body.velocity.x, target_velocity, delta * value)

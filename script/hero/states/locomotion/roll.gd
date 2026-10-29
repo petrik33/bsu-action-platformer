@@ -1,7 +1,7 @@
 extends HeroStateBase
 
 @export var roll_speed: float = 300.0
-@export var roll_duration: float = 0.5
+@export var roll_duration: float = 0.4
 @export var roll_animation: StringName = &"roll"
 @export var invulnerable_during_roll: bool = true
 
@@ -11,7 +11,7 @@ func enter() -> void:
 	if is_zero_approx(_roll_direction):
 		_roll_direction = hero.facing_direction()
 	
-	steering.dash_vec(Vector2(_roll_direction * roll_speed, 0))
+	steering.dash(_roll_direction * roll_speed)
 	
 	if invulnerable_during_roll:
 		hero.set_invulnerable(true)
