@@ -7,7 +7,7 @@ var _next_attack_time_msec: int = 0
 
 
 func enter() -> void:
-	steering.set_horizontal_velocity(0)
+	steering.dash(0)
 	enemy.face_vector(perception.to_target())
 	enemy.play_animation(&"attack", time)
 	_state_timer(time, _on_finished)

@@ -17,11 +17,11 @@ func process(_delta: float) -> void:
 	enemy.face_movement()
 
 
-func update(_delta: float) -> StringName:
+func update(delta: float) -> StringName:
 	if absf(perception.to_target().x) > arrival_distance:
-		steering.set_horizontal_velocity(signf(perception.to_target().x) * speed)
+		steering.steer(delta, signf(perception.to_target().x) * speed)
 	else:
-		steering.set_horizontal_velocity(0)
+		steering.steer(delta, 0)
 	
 	if not perception.has_target() or enemy.navigation.has_obstacles_ahead():
 		return &"Investigate"

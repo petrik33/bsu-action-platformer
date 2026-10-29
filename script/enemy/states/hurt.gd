@@ -4,13 +4,13 @@ extends EnemyStateBase
 
 
 func enter():
-	steering.set_horizontal_velocity(0)
+	steering.steer(0, 0)
 	enemy.play_animation(&"hurt")
-	steering.set_instant_velocity(enemy.last_hurt.knockback)
+	steering.dash_vec(enemy.last_hurt.knockback)
 	enemy.face(-enemy.velocity.x)
 
 func update(delta: float) -> StringName:
-	steering.set_horizontal_velocity(0)
+	steering.apply(delta, 0, knockback_resist)
 	
 	if not is_zero_approx(enemy.velocity.x):
 		return &""

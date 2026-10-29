@@ -11,10 +11,7 @@ func enter() -> void:
 	if is_zero_approx(_roll_direction):
 		_roll_direction = hero.facing_direction()
 	
-	if steering:
-		steering.set_instant_velocity(Vector2(_roll_direction * roll_speed, 0))
-	else:
-		hero.velocity.x = _roll_direction * roll_speed
+	steering.dash_vec(Vector2(_roll_direction * roll_speed, 0))
 	
 	if invulnerable_during_roll:
 		hero.set_invulnerable(true)

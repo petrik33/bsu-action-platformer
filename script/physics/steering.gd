@@ -3,10 +3,8 @@ class_name Steering extends Node
 @export var max_speed: float = 400
 @export var acceleration: float = 2000
 @export var deceleration: float = 2000
-@export var horizontal_only: bool = true
 
 var body: CharacterBody2D
-var desired_velocity: Vector2 = Vector2.ZERO
 
 
 func _ready():
@@ -19,24 +17,24 @@ func _get_configuration_warnings():
 		return ["Steering component must be a child of CharacterBody2D"]
 	return []
 
-
-func set_desired_velocity(velocity: Vector2):
-	desired_velocity = velocity.limit_length(max_speed)
-
-func set_horizontal_velocity(value: float):
-	desired_velocity.x = clamp(value, -max_speed, max_speed)
-
-func set_instant_velocity(velocity: Vector2):
+func dash_vec(velocity: Vector2):
 	body.velocity = velocity
-	desired_velocity = velocity
 
-func apply(delta: float):
-	if not body:
-		return
+func dash(velocity: float):
+	body.velocity.x = velocity
 
-	var target_velocity = desired_velocity
-	if horizontal_only:
-		target_velocity.y = body.velocity.y
-	
-	var accel_to_use = acceleration if desired_velocity.length() > 0 else deceleration
-	body.velocity = body.velocity.move_toward(target_velocity, accel_to_use * delta)
+func steer_vec(delta: float, velocity: Vector2):
+	var accel_to_use = acceleration if velocity.length() > 0 else deceleration
+	apply_vec(delta, velocity, accel_to_use)
+
+func steer(delta: float, velocity: float):
+	var accel_to_use = acceleration if velocity != 0 else deceleration
+	apply(delta, velocity, accel_to_use)
+
+func apply_vec(delta: float, velocity: Vector2, value: float):
+	var target_velocity = velocity.limit_length(max_speed)
+	body.velocity = body.velocity.move_toward(target_velocity, delta * value)
+
+func apply(delta: float, velocity: float, value: float):
+	var target_velocity = clamp(velocity, -max_speed, max_speed)
+	body.velocity = body.velocity.move_toward(target_velocity, delta * value)

@@ -4,7 +4,7 @@ extends EnemyStateBase
 
 
 func enter() -> void:
-	steering.set_horizontal_velocity(0)
+	steering.dash(0)
 	enemy.face_vector(perception.to_target())
 	enemy.play_alert_vfx(alert_time)
 	_state_timer(alert_time, _on_finished)

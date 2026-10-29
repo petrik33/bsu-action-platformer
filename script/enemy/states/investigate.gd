@@ -52,7 +52,7 @@ func _try_search() -> bool:
 	return false
 
 func _begin_search() -> void:
-	steering.set_horizontal_velocity(_look_direction * search_speed)
+	steering.dash(_look_direction * search_speed)
 	enemy.face(_look_direction)
 
 func _can_search() -> bool:

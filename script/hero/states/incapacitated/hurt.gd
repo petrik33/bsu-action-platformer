@@ -5,21 +5,11 @@ extends HeroStateBase
 
 func enter():
 	hero.play_animation(&"hurt")
-	if steering:
-		steering.set_instant_velocity(hero.last_hurt.knockback)
-	else:
-		hero.velocity = hero.last_hurt.knockback
+	steering.dash_vec(hero.last_hurt.knockback)
 	hero.face(signf(-hero.velocity.x))
 
 func update(delta: float) -> StringName:
-	if steering:
-		steering.set_horizontal_velocity(0)
-	else:
-		hero.velocity.x = move_toward(
-			hero.velocity.x,
-			0.0,
-			knockback_resist * delta
-		)
+	steering.apply(delta, 0, knockback_resist)
 	
 	if is_zero_approx(hero.velocity.x):
 		return &"Idle"
