@@ -1464,29 +1464,20 @@ invulnerable_during_roll = null
 [node name="Move" parent="StateMachine/Locomotion/Grounded" unique_id=2105850077 instance=ExtResource("8_0qvrh")]
 
 [node name="Run" parent="StateMachine/Locomotion/Grounded/Move" unique_id=1608890109 instance=ExtResource("9_a748v")]
-animation_name = null
 
 [node name="Sprint" parent="StateMachine/Locomotion/Grounded/Move" unique_id=101147460 instance=ExtResource("10_cnvcp")]
-speed_multiplier = null
-animation_name = null
 
 [node name="Walk" parent="StateMachine/Locomotion/Grounded/Move" unique_id=227761043 instance=ExtResource("11_x2uf3")]
-speed_multiplier = null
-animation_name = null
 
 [node name="Airborne" parent="StateMachine/Locomotion" unique_id=1304592049 instance=ExtResource("12_7s5o7")]
-attack_transition = null
 
 [node name="Jump" parent="StateMachine/Locomotion/Airborne" unique_id=533408498 instance=ExtResource("13_w420j")]
-animation_name = null
 
 [node name="Fall" parent="StateMachine/Locomotion/Airborne" unique_id=946198965 instance=ExtResource("14_sdelk")]
 
 [node name="Action" parent="StateMachine" unique_id=842032143 instance=ExtResource("15_ckk4y")]
 
 [node name="Attack" parent="StateMachine/Action" unique_id=912385043 instance=ExtResource("16_3lse3")]
-lock_speed = null
-combo_animations = null
 animation_time = Array[float]([0.4, 0.4, 0.4])
 
 [node name="Aim" parent="StateMachine/Action" unique_id=109740685 instance=ExtResource("17_g6y8q")]
@@ -1494,12 +1485,13 @@ animation_time = Array[float]([0.4, 0.4, 0.4])
 [node name="Incapacitated" parent="StateMachine" unique_id=740572724 instance=ExtResource("18_7u363")]
 
 [node name="Hurt" parent="StateMachine/Incapacitated" unique_id=33714673 instance=ExtResource("19_ud0a3")]
-knockback_resist = null
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("20_0qvrh")]
 
 [node name="Steering" type="Node" parent="." unique_id=878888465]
 script = ExtResource("26_sdelk")
+acceleration = 2500.0
+deceleration = 2500.0
 metadata/_custom_type_script = "uid://buji1uw4mpk74"
 
 [node name="Gravity" parent="." unique_id=80762626 instance=ExtResource("27_ckk4y")]

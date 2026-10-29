@@ -10,8 +10,8 @@ func enter():
 	enemy.face(-enemy.velocity.x)
 
 func update(delta: float) -> StringName:
-	steering.apply_custom(delta, 0, knockback_resist)
-	
+	steering.apply_forced(delta, 0, knockback_resist)
+
 	if not is_zero_approx(enemy.velocity.x):
 		return &""
 	elif perception.has_target():
