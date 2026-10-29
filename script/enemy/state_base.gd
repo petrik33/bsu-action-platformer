@@ -13,6 +13,10 @@ var navigation: EnemyNavigationBsae:
 	get():
 		return enemy.navigation
 
+var steering: Steering:
+	get():
+		return enemy.steering
+
 
 func init(character_owner: CharacterBody2D):
 	super.init(character_owner)

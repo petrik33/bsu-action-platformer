@@ -6,12 +6,8 @@ extends HeroStateBase
 func enter():
 	hero.play_animation(animation_name)
 
-
-
-
 func update(_delta: float) -> StringName:
-	if steering:
-		steering.set_horizontal_velocity(hero.movement_direction * hero.default_speed)
+	steering.set_horizontal_velocity(hero.movement_direction * hero.base_speed)
 
 	if Input.is_action_just_pressed("walk"):
 		return "Walk"

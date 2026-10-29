@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://8u16f5cw6syf" path="res://scene/enemies/states/hurt.tscn" id="12_0c3hi"]
 [ext_resource type="PackedScene" uid="uid://cu1fyvhsvvnxt" path="res://scene/enemies/states/investigate.tscn" id="13_rtlgi"]
 [ext_resource type="PackedScene" uid="uid://dqk86am2bll74" path="res://scene/enemies/states/alert.tscn" id="17_0c3hi"]
+[ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="19_oulf2"]
+[ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="20_rj7a1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxxwj"]
 size = Vector2(12, 31)
@@ -266,7 +268,7 @@ size = Vector2(16, 31)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srgcj"]
 size = Vector2(105, 44)
 
-[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "hit_box", "alert_vfx", "visuals", "sprite")]
+[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "hit_box", "alert_vfx", "steering", "gravity", "visuals", "sprite")]
 collision_layer = 4
 script = ExtResource("1_oqubo")
 state_machine = NodePath("StateMachine")
@@ -275,6 +277,8 @@ navigation = NodePath("Visual/NavigationGrounded")
 hurt_box = NodePath("Visual/HurtBox")
 hit_box = NodePath("Visual/HitBox")
 alert_vfx = NodePath("AlertVfx")
+steering = NodePath("Steering")
+gravity = NodePath("Gravity")
 visuals = NodePath("Visual")
 sprite = NodePath("Visual/AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
@@ -356,3 +360,9 @@ cooldown = 2.0
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("13_rtlgi")]
 
 [node name="Alert" parent="StateMachine" unique_id=1829192895 instance=ExtResource("17_0c3hi")]
+
+[node name="Steering" type="Node" parent="." unique_id=791649668]
+script = ExtResource("19_oulf2")
+metadata/_custom_type_script = "uid://buji1uw4mpk74"
+
+[node name="Gravity" parent="." unique_id=80762626 instance=ExtResource("20_rj7a1")]

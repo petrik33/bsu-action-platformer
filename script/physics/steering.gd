@@ -8,6 +8,7 @@ class_name Steering extends Node
 var body: CharacterBody2D
 var desired_velocity: Vector2 = Vector2.ZERO
 
+
 func _ready():
 	body = get_parent() as CharacterBody2D
 	if not body:
@@ -18,6 +19,7 @@ func _get_configuration_warnings():
 		return ["Steering component must be a child of CharacterBody2D"]
 	return []
 
+
 func set_desired_velocity(velocity: Vector2):
 	desired_velocity = velocity.limit_length(max_speed)
 
@@ -25,9 +27,8 @@ func set_horizontal_velocity(value: float):
 	desired_velocity.x = clamp(value, -max_speed, max_speed)
 
 func set_instant_velocity(velocity: Vector2):
-	if body:
-		body.velocity = velocity
-		desired_velocity = velocity
+	body.velocity = velocity
+	desired_velocity = velocity
 
 func apply(delta: float):
 	if not body:

@@ -52,9 +52,8 @@ func _try_search() -> bool:
 	return false
 
 func _begin_search() -> void:
-	enemy.move_horizontal(_look_direction, search_speed)
+	steering.set_horizontal_velocity(_look_direction * search_speed)
 	enemy.face(_look_direction)
-	enemy.stop_horizontal()
 
 func _can_search() -> bool:
 	if absf(perception.to_target().x) <= arrival_distance:

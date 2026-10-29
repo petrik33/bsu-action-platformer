@@ -1,21 +1,14 @@
 extends HeroStateBase
 
-@export var walk_speed: float = 200
+@export var speed_multiplier: float = 0.5
 @export var animation_name: StringName = &"walk"
 
 
 func enter():
 	hero.play_animation(animation_name)
 
-func exit():
-	pass
-
-
-
-
 func update(_delta: float) -> StringName:
-	if steering:
-		steering.set_horizontal_velocity(hero.movement_direction * walk_speed)
+	steering.set_horizontal_velocity(hero.movement_direction * hero.base_speed * speed_multiplier)
 
 	if Input.is_action_just_pressed("walk"):
 		return "Run"

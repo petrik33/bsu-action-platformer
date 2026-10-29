@@ -15,7 +15,6 @@ func enter() -> void:
 		steering.set_instant_velocity(Vector2(_roll_direction * roll_speed, 0))
 	else:
 		hero.velocity.x = _roll_direction * roll_speed
-	hero.lock_movement()
 	
 	if invulnerable_during_roll:
 		hero.set_invulnerable(true)
@@ -27,8 +26,6 @@ func enter() -> void:
 func exit() -> void:
 	if invulnerable_during_roll:
 		hero.set_invulnerable(false)
-	
-	hero.unlock_movement()
 
 
 func _on_finished() -> void:

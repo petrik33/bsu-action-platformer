@@ -10,7 +10,6 @@ func enter():
 	else:
 		hero.velocity = hero.last_hurt.knockback
 	hero.face(signf(-hero.velocity.x))
-	hero.lock_movement()
 
 func exit():
 	hero.unlock_movement()

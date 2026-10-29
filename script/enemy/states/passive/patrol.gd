@@ -19,18 +19,17 @@ func process(_delta: float) -> void:
 
 func update(_delta: float) -> StringName:
 	if enemy.navigation.has_obstacles_ahead():
-		enemy.stop_horizontal()
+		steering.set_horizontal_velocity(0)
 		return &"Idle"
-
-	enemy.move_horizontal(
-		direction,
-		speed
+	
+	steering.set_horizontal_velocity(
+		direction * speed
 	)
-
+	
 	if absf(enemy.global_position.x - origin_x) >= max_distance:
 		return &"Idle"
-
+	
 	if enemy.navigation.has_obstacles_ahead():
 		return &"Idle"
-
+	
 	return &""

@@ -3,8 +3,6 @@ extends HeroStateBase
 @export var attack_transition: StringName = &"Attack"
 
 
-
-
 func update(_delta: float) -> StringName:
 	if Input.is_action_just_pressed("jump") and hero.can_jump():
 		return "Jump"

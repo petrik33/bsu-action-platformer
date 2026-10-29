@@ -14,6 +14,7 @@ func _get_configuration_warnings():
 		return ["Gravity component must be a child of CharacterBody2D"]
 	return []
 
+
 func apply(delta: float):
 	if body:
 		body.velocity.y += value * delta

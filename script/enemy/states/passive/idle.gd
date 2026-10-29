@@ -8,7 +8,7 @@ var remaining_time: float = 0.0
 
 
 func enter():
-	enemy.stop_horizontal()
+	steering.set_horizontal_velocity(0)
 	enemy.play_animation(&"idle")
 	remaining_time = randf_range(min_time,max_time)
 
