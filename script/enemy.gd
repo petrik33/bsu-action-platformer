@@ -20,14 +20,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	state_machine.process(delta)
 
-	func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if gravity:
 		gravity.apply(delta)
-	
+
 	state_machine.update(delta)
-	
+
 	move_and_slide()
-	
+
 	if perception:
 		perception.update(delta)
 
