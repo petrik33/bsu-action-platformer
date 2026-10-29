@@ -1376,12 +1376,9 @@ _data = {
 &"attack3": SubResource("Animation_cnvcp")
 }
 
-[node name="Character" type="CharacterBody2D" unique_id=213064435 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "visuals", "sprite", "animation_player") groups=["player"]]
+[node name="Character" type="CharacterBody2D" unique_id=213064435 node_paths=PackedStringArray("visuals", "sprite", "animation_player") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_0qvrh")
-state_machine = NodePath("StateMachine")
-hit_box = NodePath("Visuals/HitBox")
-hurt_box = NodePath("Visuals/HurtBox")
 visuals = NodePath("Visuals")
 sprite = NodePath("Visuals/Base")
 animation_player = NodePath("AnimationPlayer")
@@ -1451,6 +1448,7 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 roll_speed = 400.0
 roll_duration = 0.4
 roll_animation = &"dash"
+invulnerable_during_roll = null
 
 [node name="Grounded" parent="StateMachine/Locomotion" unique_id=2122582834 instance=ExtResource("6_5hcsl")]
 

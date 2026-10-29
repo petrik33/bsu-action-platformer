@@ -1,4 +1,4 @@
-extends GameCharacterStateBase
+extends HeroStateBase
 
 
 @export var lock_speed: float = 50
@@ -10,16 +10,17 @@ var combo_buffered: bool = false
 
 
 func enter():
-	game_character.speed = lock_speed
-
 	combo_index = 0
 	combo_buffered = false
 	_start_attack()
 
 func exit():
-	game_character.reset_speed()
+	pass
 
 func update(_delta: float) -> StringName:
+	if steering:
+		steering.set_horizontal_velocity(hero.movement_direction * lock_speed)
+
 	if Input.is_action_just_pressed("click"):
 		combo_buffered = true
 	return &""
@@ -31,7 +32,7 @@ func _start_attack():
 	if time < 0:
 		time = 0.4
 	
-	game_character.play_animation(anim_name, time)
+	hero.play_animation(anim_name, time)
 	_state_timer(time, _on_finished)
 
 func _on_finished():

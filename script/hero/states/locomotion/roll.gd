@@ -1,4 +1,4 @@
-extends GameCharacterStateBase
+extends HeroStateBase
 
 @export var roll_speed: float = 300.0
 @export var roll_duration: float = 0.5
@@ -7,25 +7,28 @@ extends GameCharacterStateBase
 
 
 func enter() -> void:
-	var _roll_direction := game_character.movement_direction
+	var _roll_direction := hero.movement_direction
 	if is_zero_approx(_roll_direction):
-		_roll_direction = game_character.facing_direction()
+		_roll_direction = hero.facing_direction()
 	
-	game_character.velocity.x = _roll_direction * roll_speed
-	game_character.lock_movement()
+	if steering:
+		steering.set_instant_velocity(Vector2(_roll_direction * roll_speed, 0))
+	else:
+		hero.velocity.x = _roll_direction * roll_speed
+	hero.lock_movement()
 	
 	if invulnerable_during_roll:
-		game_character.set_invulnerable(true)
+		hero.set_invulnerable(true)
 	
-	game_character.play_animation(roll_animation)
+	hero.play_animation(roll_animation)
 	_state_timer(roll_duration, _on_finished)
 
 
 func exit() -> void:
 	if invulnerable_during_roll:
-		game_character.set_invulnerable(false)
+		hero.set_invulnerable(false)
 	
-	game_character.unlock_movement()
+	hero.unlock_movement()
 
 
 func _on_finished() -> void:

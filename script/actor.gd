@@ -59,6 +59,7 @@ func stop_animation():
 func reset_animation_player():
 	if not animation_player:
 		return
+
 	animation_player.play(&"RESET")
 	animation_player.advance(0)
 	animation_player.stop()

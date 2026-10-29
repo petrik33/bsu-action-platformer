@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d0cfhvoyngupi"]
 
-[ext_resource type="Script" uid="uid://dm0vgahfdouwx" path="res://script/character/states/locomotion/roll.gd" id="1_ts0he"]
+[ext_resource type="Script" uid="uid://dm0vgahfdouwx" path="res://script/hero/states/locomotion/roll.gd" id="1_ts0he"]
 
 [node name="Roll" type="Node" unique_id=185626220]
 script = ExtResource("1_ts0he")

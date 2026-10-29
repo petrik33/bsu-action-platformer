@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dsjj74yffpddg"]
 
-[ext_resource type="Script" uid="uid://dpfoubwur3a28" path="res://script/character/states/locomotion/grounded/idle.gd" id="1_uawpv"]
+[ext_resource type="Script" uid="uid://dpfoubwur3a28" path="res://script/hero/states/locomotion/grounded/idle.gd" id="1_uawpv"]
 
 [node name="Idle" type="Node" unique_id=1808960593]
 script = ExtResource("1_uawpv")

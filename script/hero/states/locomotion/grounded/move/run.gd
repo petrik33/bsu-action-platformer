@@ -1,16 +1,18 @@
-extends GameCharacterStateBase
+extends HeroStateBase
 
 @export var animation_name: StringName = &"run"
 
 
 func enter():
-	game_character.reset_speed()
-	game_character.play_animation(animation_name)
+	hero.play_animation(animation_name)
 
 
 
 
 func update(_delta: float) -> StringName:
+	if steering:
+		steering.set_horizontal_velocity(hero.movement_direction * hero.default_speed)
+
 	if Input.is_action_just_pressed("walk"):
 		return "Walk"
 	

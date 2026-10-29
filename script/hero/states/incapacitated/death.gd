@@ -1,9 +1,9 @@
-extends GameCharacterStateBase
+extends HeroStateBase
 
 @export var time: float = 1.0
 
 func enter():
-	game_character.play_animation("death", time)
+	hero.play_animation("death", time)
 	_state_timer(time, _on_finished)
 
 

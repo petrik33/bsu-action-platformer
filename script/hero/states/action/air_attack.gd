@@ -1,10 +1,10 @@
-extends GameCharacterStateBase
+extends HeroStateBase
 
 @export var animation_name: StringName = &"air_attack"
 @export var time: float = 0.4
 
 func enter():
-	game_character.play_animation(animation_name, time)
+	hero.play_animation(animation_name, time)
 	_state_timer(time, _on_finished)
 
 

@@ -1,4 +1,4 @@
-extends GameCharacterStateBase
+extends HeroStateBase
 
 @export var attack_transition: StringName = &"Attack"
 
@@ -6,7 +6,7 @@ extends GameCharacterStateBase
 
 
 func update(_delta: float) -> StringName:
-	if Input.is_action_just_pressed("jump") and game_character.can_jump():
+	if Input.is_action_just_pressed("jump") and hero.can_jump():
 		return "Jump"
 		
 	if Input.is_action_just_pressed("click"):
@@ -15,7 +15,7 @@ func update(_delta: float) -> StringName:
 	if Input.is_action_just_pressed("roll"):
 		return "Roll"
 		
-	if game_character.is_on_floor():
+	if hero.is_on_floor():
 		return "Idle"
 	
 	return &""

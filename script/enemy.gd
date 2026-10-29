@@ -7,9 +7,8 @@ class_name Enemy extends Actor
 @export var hurt_box: HurtBox
 @export var hit_box: HitBox
 @export var alert_vfx: VfxBase
-
-@export var gravity: float = 900
-@export var gravity_enabled: bool = true
+@export var steering: Steering
+@export var gravity: Gravity
 
 var last_hurt: AttackData
 
@@ -22,8 +21,11 @@ func _process(delta: float) -> void:
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
-	if gravity_enabled and not is_on_floor():
-		velocity.y += gravity * delta
+	if gravity:
+		gravity.apply(delta)
+
+	if steering:
+		steering.apply(delta)
 
 	state_machine.update(delta)
 
