@@ -10,9 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cgq6io0faa8nr" path="res://scene/enemies/common/navigation_flying.tscn" id="6_50wr2"]
 [ext_resource type="PackedScene" uid="uid://cp38i6pqejveu" path="res://scene/enemies/states/passive/idle.tscn" id="6_te2bj"]
 [ext_resource type="PackedScene" uid="uid://dtgvyec0183ks" path="res://scene/enemies/states/passive/patrol.tscn" id="7_50wr2"]
-[ext_resource type="PackedScene" uid="uid://dufyjp8k4vnht" path="res://scene/enemies/common/floating.tscn" id="7_sk2cx"]
 [ext_resource type="PackedScene" uid="uid://bqkwlevbj2nwh" path="res://scene/enemies/states/attack.tscn" id="9_5deos"]
-[ext_resource type="PackedScene" uid="uid://c10drp52d326n" path="res://scene/enemies/states/ghost/floating.tscn" id="10_50wr2"]
 [ext_resource type="PackedScene" uid="uid://8u16f5cw6syf" path="res://scene/enemies/states/hurt.tscn" id="10_j8b0m"]
 [ext_resource type="PackedScene" uid="uid://cu1fyvhsvvnxt" path="res://scene/enemies/states/investigate.tscn" id="11_qjv1p"]
 [ext_resource type="PackedScene" uid="uid://dqk86am2bll74" path="res://scene/enemies/states/alert.tscn" id="12_at3yh"]
@@ -260,27 +258,22 @@ debug_color = Color(0.7, 0.05833332, 0, 0.41960785)
 [node name="Perception" parent="." unique_id=855897802 instance=ExtResource("4_j4lwb")]
 visible = false
 
-[node name="Floating" parent="." unique_id=1488304905 instance=ExtResource("7_sk2cx")]
-position = Vector2(0, -22)
-
 [node name="StateMachine" type="Node" parent="." unique_id=1406640932 node_paths=PackedStringArray("initial")]
 script = ExtResource("4_fpfe2")
-initial = NodePath("Passive/Floating/Idle")
+initial = NodePath("Passive/Idle")
 metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 
 [node name="Passive" parent="StateMachine" unique_id=228852256 instance=ExtResource("5_j4lwb")]
 
 [node name="Patrol" parent="StateMachine/Passive" unique_id=1114917989 instance=ExtResource("7_50wr2")]
 
-[node name="Floating" parent="StateMachine/Passive" unique_id=1921040041 node_paths=PackedStringArray("floating") instance=ExtResource("10_50wr2")]
-floating = NodePath("../../../Floating")
-
-[node name="Idle" parent="StateMachine/Passive/Floating" unique_id=2005035550 instance=ExtResource("6_te2bj")]
+[node name="Idle" parent="StateMachine/Passive" unique_id=2005035550 instance=ExtResource("6_te2bj")]
 
 [node name="Attack" parent="StateMachine" unique_id=1140714920 instance=ExtResource("9_5deos")]
 cooldown = 2.0
 
 [node name="Hurt" parent="StateMachine" unique_id=73280351 instance=ExtResource("10_j8b0m")]
+knockback_vertically = false
 
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("11_qjv1p")]
 
