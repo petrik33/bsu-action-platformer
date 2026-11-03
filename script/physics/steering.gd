@@ -1,13 +1,12 @@
 class_name Steering extends Node
 
 @export var max_speed: float = 400
-@export var acceleration: float = 2000
+@export var max_acceleration: float = 2000
 @export var deceleration: float = 2000
 @export var horizontal_only: bool = true
 
 var body: CharacterBody2D
-var target_velocity: Vector2 = Vector2.ZERO
-var current_acceleration: float = -1.0
+var force: Vector2 = Vector2.ZERO
 
 
 func _ready():
@@ -21,42 +20,64 @@ func _get_configuration_warnings():
 	return []
 
 
+func update(applied_force: Vector2):
+	force = applied_force
+
 func apply(delta: float):
-	if current_acceleration < 0:
-		return
-	var final_target = target_velocity.limit_length(max_speed)
-	if not horizontal_only:
-		body.velocity = body.velocity.move_toward(final_target, delta * current_acceleration)
-	else:
-		body.velocity.x = move_toward(body.velocity.x, final_target, delta * current_acceleration)
+	if horizontal_only:
+		force.y = 0
+	body.velocity += force * delta
+	body.velocity = body.velocity.limit_length(max_speed)
+	force = Vector2.ZERO
 
-func clear_target():
-	target_velocity = Vector2.ZERO
-	current_acceleration = -1.0
+?func seek(target_position: Vector2, acceleration := -1.0) -> Vector2:
+	if acceleration < 0:
+		acceleration = max_acceleration
+	return (target_position - body.global_position).normalized() * acceleration
 
-func seek(target_position: Vector2):
-	var desired_velocity = (target_position - body.global_position).normalized() * max_speed
-	target_velocity += desired_velocity
-
-func arrive(target_position: Vector2, slowing_radius: float):
+func arrive(
+	target_position: Vector2,
+	target_radius: float = 4.0,
+	slowing_radius: float = 40.0,
+	time_to_target: float = 0.1,
+	acceleration: float = -1.0
+) -> Vector2:
 	var to_target = target_position - body.global_position
 	var distance = to_target.length()
 
-	var speed = max_speed
-	if distance < slowing_radius:
-		speed = max_speed * (distance / slowing_radius)
+	if distance < target_radius:
+		return Vector2.ZERO
 
-	var desired_velocity = to_target.normalized() * speed
-	target_velocity += desired_velocity
+	var target_speed := max_speed
+	if distance <= slowing_radius:
+		target_speed *= distance / slowing_radius
+	
+	var target_velocity := to_target.normalized() * target_speed
+	var output := target_velocity - body.velocity
+	output /= time_to_target
+	
+	if acceleration < 0:
+		acceleration = max_acceleration
+	
+	output = output.limit_length(acceleration)
+	
+	return output
 
-func stop():
-	target_velocity = Vector2.ZERO
-	current_acceleration = deceleration
+func velocity_match(target: Vector2,
+	time_to_target: float = 0.1,
+	acceleration: float = -1.0
+) -> Vector2:
+	var output := target - body.velocity
+	output /= time_to_target
+	
+	if acceleration < 0:
+		acceleration = max_acceleration
+		
+	output = output.limit_length(acceleration)
+	return output
 
-func match_velocity(value: Vector2):
-	target_velocity = value
-	current_acceleration = acceleration
+func stop() -> Vector2:
+	return velocity_match(Vector2.ZERO, 0.1, deceleration)
 
-func dash(velocity: Vector2):
-	body.velocity = velocity
-	current_acceleration = -1.0
+func dash(velocity: Vector2) -> Vector2:
+	return velocity - body.velocity
