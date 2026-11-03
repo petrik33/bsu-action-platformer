@@ -12,7 +12,6 @@ func enter():
 	remaining_time = randf_range(min_time,max_time)
 
 func update(delta: float) -> StringName:
-	steering.stop(delta)
 	remaining_time -= delta
 	if remaining_time <= 0:
 		enemy.face(-enemy.facing_direction())

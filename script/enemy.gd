@@ -22,11 +22,14 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if gravity:
 		gravity.apply(delta)
-
+	
 	state_machine.update(delta)
-
+	
+	if steering:
+		steering.apply(delta)
+	
 	move_and_slide()
-
+	
 	if perception:
 		perception.update(delta)
 

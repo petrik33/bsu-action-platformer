@@ -4,8 +4,7 @@ extends EnemyStateBase
 @export var knockback_vertically := true
 
 
-func enter():
-	steering.apply(0, 0)
+	func enter():
 	enemy.play_animation(&"hurt")
 	if knockback_vertically:
 		steering.dash_vec(enemy.last_hurt.knockback)
@@ -14,7 +13,7 @@ func enter():
 	enemy.face(-enemy.velocity.x)
 
 func update(delta: float) -> StringName:
-	steering.apply_forced(delta, 0, knockback_resist)
+	steering.set_acceleration_override(knockback_resist)
 
 	if not is_zero_approx(enemy.velocity.x):
 		return &""

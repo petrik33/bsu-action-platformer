@@ -42,7 +42,7 @@ func update(delta: float) -> StringName:
 		if not _try_search():
 			return &"Idle"
 
-	steering.apply(delta, _look_direction * search_speed)
+	steering.target_velocity.x = _look_direction * search_speed
 
 	return &""
 

@@ -8,8 +8,8 @@ func enter():
 	steering.dash_vec(hero.last_hurt.knockback)
 	hero.face(signf(-hero.velocity.x))
 
-func update(delta: float) -> StringName:
-	steering.apply_forced(delta, 0, knockback_resist)
+	func update(delta: float) -> StringName:
+	steering.set_acceleration_override(knockback_resist)
 
 	if is_zero_approx(hero.velocity.x):
 		return &"Idle"

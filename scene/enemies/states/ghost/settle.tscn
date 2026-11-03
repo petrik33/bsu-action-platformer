@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c10drp52d326n"]
+
+[ext_resource type="Script" uid="uid://3xkmp3caci8g" path="res://script/enemy/states/ghost/idle.gd" id="1_5putt"]
+
+[node name="Idle" type="Node" unique_id=1921040041]
+script = ExtResource("1_5putt")
+metadata/_custom_type_script = "uid://3xkmp3caci8g"

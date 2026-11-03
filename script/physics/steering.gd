@@ -3,8 +3,11 @@ class_name Steering extends Node
 @export var max_speed: float = 400
 @export var acceleration: float = 2000
 @export var deceleration: float = 2000
+@export var horizontal_only: bool = true
 
 var body: CharacterBody2D
+var target_velocity: Vector2 = Vector2.ZERO
+var current_acceleration: float = -1.0
 
 
 func _ready():
@@ -17,30 +20,43 @@ func _get_configuration_warnings():
 		return ["Steering component must be a child of CharacterBody2D"]
 	return []
 
-func dash_vec(velocity: Vector2):
+
+func apply(delta: float):
+	if current_acceleration < 0:
+		return
+	var final_target = target_velocity.limit_length(max_speed)
+	if not horizontal_only:
+		body.velocity = body.velocity.move_toward(final_target, delta * current_acceleration)
+	else:
+		body.velocity.x = move_toward(body.velocity.x, final_target, delta * current_acceleration)
+
+func clear_target():
+	target_velocity = Vector2.ZERO
+	current_acceleration = -1.0
+
+func seek(target_position: Vector2):
+	var desired_velocity = (target_position - body.global_position).normalized() * max_speed
+	target_velocity += desired_velocity
+
+func arrive(target_position: Vector2, slowing_radius: float):
+	var to_target = target_position - body.global_position
+	var distance = to_target.length()
+
+	var speed = max_speed
+	if distance < slowing_radius:
+		speed = max_speed * (distance / slowing_radius)
+
+	var desired_velocity = to_target.normalized() * speed
+	target_velocity += desired_velocity
+
+func stop():
+	target_velocity = Vector2.ZERO
+	current_acceleration = deceleration
+
+func match_velocity(value: Vector2):
+	target_velocity = value
+	current_acceleration = acceleration
+
+func dash(velocity: Vector2):
 	body.velocity = velocity
-
-func dash(velocity: float):
-	body.velocity.x = velocity
-
-func stop_vec(delta: float):
-	apply_vec(delta, Vector2.ZERO)
-
-func stop(delta: float):
-	apply(delta, 0)
-
-func apply_vec(delta: float, velocity: Vector2):
-	var accel_to_use = acceleration if velocity.length() > 0 else deceleration
-	apply_forced_vec(delta, velocity, accel_to_use)
-
-func apply(delta: float, velocity: float):
-	var accel_to_use = acceleration if velocity != 0 else deceleration
-	apply_forced(delta, velocity, accel_to_use)
-
-func apply_forced_vec(delta: float, velocity: Vector2, value: float):
-	var target_velocity = velocity.limit_length(max_speed)
-	body.velocity = body.velocity.move_toward(target_velocity, delta * value)
-
-func apply_forced(delta: float, velocity: float, value: float):
-	var target_velocity = clamp(velocity, -max_speed, max_speed)
-	body.velocity.x = move_toward(body.velocity.x, target_velocity, delta * value)
+	current_acceleration = -1.0

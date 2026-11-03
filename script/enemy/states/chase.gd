@@ -25,9 +25,10 @@ func update(delta: float) -> StringName:
 		return &"Attack"
 	
 	if absf(perception.to_target().x) > arrival_distance:
-		steering.apply(delta, signf(perception.to_target().x) * speed)
+		steering.target_velocity.x = signf(perception.to_target().x) * speed
 	else:
-		steering.apply(delta, 0)
+		# target_velocity is already zeroed by clear_target()
+		pass
 	
 	return &""
 

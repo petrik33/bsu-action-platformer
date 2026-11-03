@@ -19,10 +19,9 @@ func process(_delta: float) -> void:
 
 func update(delta: float) -> StringName:
 	if enemy.navigation.has_obstacles_ahead():
-		steering.apply(delta, 0)
 		return &"Idle"
 	
-	steering.apply(delta, direction * speed)
+	steering.target_velocity.x = direction * speed
 	
 	if absf(enemy.global_position.x - origin_x) >= max_distance:
 		return &"Idle"

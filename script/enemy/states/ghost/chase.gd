@@ -28,13 +28,13 @@ func update(delta: float) -> StringName:
 		if avoid_vec != Vector2.ZERO:
 			desired_velocity += avoid_vec * speed * avoidance_weight
 	
-	steering.apply_vec(delta, desired_velocity)
+	steering.target_velocity += desired_velocity
 	
 	if to_target.length() < arrival_distance:
 		if _can_attack():
 			return &"Attack"
 		else:
-			steering.stop_vec(delta)
+			pass
 	
 	return &""
 

@@ -22,16 +22,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	state_machine.process(delta)
 
-func _physics_process(delta: float) -> void:
+	func _physics_process(delta: float) -> void:
 	movement_direction = signf(Input.get_axis("left", "right"))
-	
+		
 	if gravity:
 		gravity.apply(delta)
-	
+		
+	steering.clear_target()
 	state_machine.update(delta)
-		
+	steering.apply(delta)
+			
 	move_and_slide()
-		
+			
 	if is_on_floor():
 		jumps_left = 2
 
