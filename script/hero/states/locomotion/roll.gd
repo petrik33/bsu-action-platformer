@@ -11,14 +11,13 @@ func enter() -> void:
 	if is_zero_approx(_roll_direction):
 		_roll_direction = hero.facing_direction()
 	
-	steering.dash(_roll_direction * roll_speed)
+	kinematic.dash(Vector2(_roll_direction * roll_speed, character.velocity.y))
 	
 	if invulnerable_during_roll:
 		hero.set_invulnerable(true)
 	
 	hero.play_animation(roll_animation)
 	_state_timer(roll_duration, _on_finished)
-
 
 func exit() -> void:
 	if invulnerable_during_roll:

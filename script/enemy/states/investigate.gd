@@ -7,22 +7,23 @@ extends EnemyStateBase
 @export var search_duration: float = 3.5
 
 var _remaining_search_time: float = 0.0
-var _look_direction: float = 1.0
+var _look_direction := Vector2.RIGHT
 
 
 func enter() -> void:
-	if perception.has_target():
+	if enemy.can_chase():
 		_transition(&"Chase")
 		return
 
 	_remaining_search_time = search_duration
 
 	var to_target := perception.to_target()
-	_look_direction = signf(to_target.x)
+	_look_direction = to_target.normalized()
 
 	if _try_search():
 		return
 	_look_direction = -_look_direction
+	enemy.face_vector(_look_direction)
 	if _try_search():
 		return
 	_transition(&"Idle")
@@ -34,15 +35,16 @@ func update(delta: float) -> StringName:
 	if _remaining_search_time <= 0.0:
 		return &"Idle"
 
-	if perception.has_target():
+	if enemy.can_chase():
 		return &"Chase"
 
 	if not _can_search():
 		_look_direction = -_look_direction
+		enemy.face_vector(_look_direction)
 		if not _try_search():
 			return &"Idle"
 
-	steering.target_velocity.x = _look_direction * search_speed
+	kinematic.add_steering(steering.velocity_match(_look_direction * search_speed))
 
 	return &""
 
@@ -54,7 +56,7 @@ func _try_search() -> bool:
 	return false
 
 func _begin_search() -> void:
-	enemy.face(_look_direction)
+	enemy.face_vector(_look_direction)
 
 func _can_search() -> bool:
 	if absf(perception.to_target().x) <= arrival_distance:

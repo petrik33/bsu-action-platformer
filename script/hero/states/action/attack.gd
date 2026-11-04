@@ -1,7 +1,7 @@
 class_name HeroAttackState extends HeroStateBase
 
 
-@export var lock_speed: float = 50
+@export var lock_speed_multiplier: float = 0.1
 @export var combo_animations: Array[StringName] = [&"attack", &"attack2", &"attack3"]
 @export var animation_time: Array[float] = [-1.0, -1.0, -1.0]
 
@@ -20,7 +20,7 @@ func enter():
 	_start_attack()
 
 func update(delta: float) -> StringName:
-	steering.target_velocity.x = hero.movement_direction * lock_speed
+	hero.move_horizontally(delta, lock_speed_multiplier)
 	
 	if Input.is_action_just_pressed("click"):
 		combo_buffered = true

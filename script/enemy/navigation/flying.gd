@@ -13,6 +13,8 @@ func _ready() -> void:
 	body = get_parent() as CharacterBody2D
 	if not body:
 		push_error("Flying navigation must be a child of CharacterBody2D")
+		return
+	force_update()
 
 func _get_configuration_warnings():
 	if not get_parent() is CharacterBody2D:
@@ -39,15 +41,14 @@ func has_obstacles_ahead() -> bool:
 	force_update()
 	return front_ray.is_colliding() or left_ray.is_colliding() or right_ray.is_colliding()
 
-func get_avoidance_vector() -> Vector2:
+func get_collision_ray() -> RayCast2D:
 	force_update()
-	var avoidance = Vector2.ZERO
 	
 	if front_ray.is_colliding():
-		avoidance -= front_ray.get_collision_normal()
+		return front_ray
 	if left_ray.is_colliding():
-		avoidance -= left_ray.get_collision_normal()
+		return left_ray
 	if right_ray.is_colliding():
-		avoidance -= right_ray.get_collision_normal()
+		return right_ray
 		
-	return avoidance.normalized()
+	return null

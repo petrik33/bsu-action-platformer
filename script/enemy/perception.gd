@@ -8,6 +8,7 @@ signal target_lost(target: CharacterBody2D)
 @export var target_group: StringName = &"player"
 @export var forget_delay: float = 0.5
 @export var visibility_origin: Node2D
+@export var horizontal_only: bool = true
 
 var target: CharacterBody2D
 var last_known_position: Vector2
@@ -38,7 +39,10 @@ func has_target() -> bool:
 	return is_instance_valid(target)
 
 func to_target() -> Vector2:
-	return last_known_position - global_position
+	var direction := last_known_position - global_position
+	if horizontal_only:
+		return Vector2(direction.x, 0)
+	return direction
 
 func _check_candidates() -> bool:
 	for candidate in _candidates:

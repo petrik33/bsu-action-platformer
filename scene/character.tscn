@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://k6fdi54ai135" path="res://scene/character/states/incapacitated/death.tscn" id="20_0qvrh"]
 [ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="26_sdelk"]
 [ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="27_ckk4y"]
+[ext_resource type="Script" uid="uid://bnysn8a45c22a" path="res://script/physics/kinematic.gd" id="28_ckk4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lp7ui"]
 size = Vector2(7, 20)
@@ -1378,14 +1379,15 @@ _data = {
 &"attack3": SubResource("Animation_cnvcp")
 }
 
-[node name="Character" type="CharacterBody2D" unique_id=649276059 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "visuals", "sprite", "animation_player") groups=["player"]]
+[node name="Character" type="CharacterBody2D" unique_id=649276059 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "kinematic", "visuals", "sprite", "animation_player") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_7s5o7")
 state_machine = NodePath("StateMachine")
 hit_box = NodePath("Visuals/HitBox")
 hurt_box = NodePath("Visuals/HurtBox")
-steering = NodePath("Steering")
-gravity = NodePath("Gravity")
+steering = NodePath("Physics/Steering")
+gravity = NodePath("Physics/Gravity")
+kinematic = NodePath("Physics/Kinematic")
 visuals = NodePath("Visuals")
 sprite = NodePath("Visuals/Base")
 animation_player = NodePath("AnimationPlayer")
@@ -1486,10 +1488,14 @@ animation_time = Array[float]([0.4, 0.4, 0.4])
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("20_0qvrh")]
 
-[node name="Steering" type="Node" parent="." unique_id=878888465]
+[node name="Physics" type="Node" parent="." unique_id=561106528]
+
+[node name="Steering" type="Node" parent="Physics" unique_id=878888465]
 script = ExtResource("26_sdelk")
-acceleration = 2500.0
-deceleration = 2500.0
 metadata/_custom_type_script = "uid://buji1uw4mpk74"
 
-[node name="Gravity" parent="." unique_id=80762626 instance=ExtResource("27_ckk4y")]
+[node name="Gravity" parent="Physics" unique_id=80762626 instance=ExtResource("27_ckk4y")]
+
+[node name="Kinematic" type="Node" parent="Physics" unique_id=1869120004]
+script = ExtResource("28_ckk4y")
+metadata/_custom_type_script = "uid://bnysn8a45c22a"

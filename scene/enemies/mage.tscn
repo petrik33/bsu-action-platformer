@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dqk86am2bll74" path="res://scene/enemies/states/alert.tscn" id="17_0c3hi"]
 [ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="19_oulf2"]
 [ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="20_rj7a1"]
+[ext_resource type="Script" uid="uid://bnysn8a45c22a" path="res://script/physics/kinematic.gd" id="21_rj7a1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxxwj"]
 size = Vector2(12, 31)
@@ -268,7 +269,7 @@ size = Vector2(16, 31)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srgcj"]
 size = Vector2(105, 44)
 
-[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "alert_vfx", "steering", "gravity", "visuals", "sprite")]
+[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "alert_vfx", "steering", "gravity", "kinematic", "visuals", "sprite")]
 collision_layer = 4
 script = ExtResource("1_oqubo")
 state_machine = NodePath("StateMachine")
@@ -276,8 +277,9 @@ perception = NodePath("Visual/Perception")
 navigation = NodePath("NavigationGrounded")
 hurt_box = NodePath("Visual/HurtBox")
 alert_vfx = NodePath("AlertVfx")
-steering = NodePath("Steering")
-gravity = NodePath("Gravity")
+steering = NodePath("Physics/Steering")
+gravity = NodePath("Physics/Gravity")
+kinematic = NodePath("Physics/Kinematic")
 visuals = NodePath("Visual")
 sprite = NodePath("Visual/AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
@@ -292,7 +294,7 @@ visible = false
 position = Vector2(0, -40)
 
 [node name="NavigationGrounded" parent="." unique_id=2085862437 instance=ExtResource("4_h2iyk")]
-visible = false
+position = Vector2(0, -8)
 
 [node name="Visual" type="Node2D" parent="." unique_id=538338525]
 
@@ -359,8 +361,15 @@ cooldown = 2.0
 run_animation_name = &"walk"
 attack_state = NodePath("../Attack")
 
-[node name="Steering" type="Node" parent="." unique_id=791649668]
+[node name="Physics" type="Node" parent="." unique_id=1691308413]
+
+[node name="Steering" type="Node" parent="Physics" unique_id=791649668]
 script = ExtResource("19_oulf2")
 metadata/_custom_type_script = "uid://buji1uw4mpk74"
 
-[node name="Gravity" parent="." unique_id=80762626 instance=ExtResource("20_rj7a1")]
+[node name="Gravity" parent="Physics" unique_id=80762626 instance=ExtResource("20_rj7a1")]
+
+[node name="Kinematic" type="Node" parent="Physics" unique_id=1910419053]
+script = ExtResource("21_rj7a1")
+max_speed = 200.0
+metadata/_custom_type_script = "uid://bnysn8a45c22a"

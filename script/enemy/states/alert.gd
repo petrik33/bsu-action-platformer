@@ -9,6 +9,7 @@ func enter() -> void:
 	_state_timer(alert_time, _on_finished)
 
 func update(delta: float) -> StringName:
+	kinematic.add_steering(steering.hstop())
 	return &""
 
 
