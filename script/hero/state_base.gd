@@ -9,6 +9,10 @@ var steering: Steering:
 	get():
 		return hero.steering
 
+var kinematic: Kinematic:
+	get():
+		return hero.kinematic
+
 
 func init(character_owner: CharacterBody2D):
 	super.init(character_owner)

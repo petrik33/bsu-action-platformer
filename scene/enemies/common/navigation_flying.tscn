@@ -4,8 +4,6 @@
 
 [node name="NavigationFlying" type="Node2D" unique_id=712196497 node_paths=PackedStringArray("front_ray", "left_ray", "right_ray")]
 script = ExtResource("1_qs5qx")
-avoidance_ray_length = null
-side_ray_angle = null
 front_ray = NodePath("Front")
 left_ray = NodePath("Left")
 right_ray = NodePath("Right")

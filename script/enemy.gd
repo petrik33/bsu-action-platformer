@@ -8,6 +8,7 @@ class_name Enemy extends Actor
 @export var alert_vfx: VfxBase
 @export var steering: Steering
 @export var gravity: Gravity
+@export var kinematic: Kinematic
 
 var last_hurt: AttackData
 
@@ -20,18 +21,22 @@ func _process(delta: float) -> void:
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
-	if gravity:
-		gravity.apply(delta)
-	
-	state_machine.update(delta)
-	
-	if steering:
-		steering.apply(delta)
-	
 	move_and_slide()
-	
+		
 	if perception:
 		perception.update(delta)
+		
+	if gravity:
+		gravity.apply(delta)
+		
+	state_machine.update(delta)
+		
+	if kinematic:
+		kinematic.apply_steering(delta, steering.max_acceleration)
+
+
+func can_chase() -> bool:
+	return perception.has_target() and not navigation.has_obstacles_ahead()
 
 func play_alert_vfx(time: float):
 	alert_vfx.play(time)

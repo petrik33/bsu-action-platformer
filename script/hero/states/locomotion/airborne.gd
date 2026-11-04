@@ -4,7 +4,7 @@ extends HeroStateBase
 
 
 func update(delta: float) -> StringName:
-	steering.target_velocity.x = hero.movement_direction * hero.base_speed
+	hero.move_horizontally(delta)
 
 	if Input.is_action_just_pressed("jump") and hero.can_jump():
 		return "Jump"

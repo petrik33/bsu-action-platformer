@@ -17,6 +17,10 @@ var steering: Steering:
 	get():
 		return enemy.steering
 
+var kinematic: Kinematic:
+	get():
+		return enemy.kinematic
+
 
 func init(character_owner: CharacterBody2D):
 	super.init(character_owner)
