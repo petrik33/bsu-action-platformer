@@ -274,7 +274,7 @@ collision_layer = 4
 script = ExtResource("1_oqubo")
 state_machine = NodePath("StateMachine")
 perception = NodePath("Visual/Perception")
-navigation = NodePath("NavigationGrounded")
+navigation = NodePath("Visual/NavigationGrounded")
 hurt_box = NodePath("Visual/HurtBox")
 alert_vfx = NodePath("AlertVfx")
 steering = NodePath("Physics/Steering")
@@ -292,9 +292,6 @@ shape = SubResource("RectangleShape2D_vxxwj")
 [node name="AlertVfx" parent="." unique_id=892914976 instance=ExtResource("7_lkhaw")]
 visible = false
 position = Vector2(0, -40)
-
-[node name="NavigationGrounded" parent="." unique_id=2085862437 instance=ExtResource("4_h2iyk")]
-position = Vector2(0, -8)
 
 [node name="Visual" type="Node2D" parent="." unique_id=538338525]
 
@@ -321,6 +318,9 @@ position = Vector2(0.5, -22)
 shape = SubResource("RectangleShape2D_srgcj")
 disabled = true
 debug_color = Color(0.52554315, 0.5724057, 0.06283313, 0.41960785)
+
+[node name="NavigationGrounded" parent="Visual" unique_id=2085862437 instance=ExtResource("4_h2iyk")]
+position = Vector2(0, -8)
 
 [node name="Components" type="Node" parent="." unique_id=1478823250]
 
@@ -371,5 +371,5 @@ metadata/_custom_type_script = "uid://buji1uw4mpk74"
 
 [node name="Kinematic" type="Node" parent="Physics" unique_id=1910419053]
 script = ExtResource("21_rj7a1")
-max_speed = 200.0
+max_speed = 150.0
 metadata/_custom_type_script = "uid://bnysn8a45c22a"

@@ -2,6 +2,9 @@ class_name Steering extends PhysicsNodeBase
 
 @export var max_acceleration: float = 2000
 
+const TTT_DEFAULT := 0.05
+
+
 func seek(target_position: Vector2) -> Vector2:
 	var desired_velocity = _get_target_vector(target_position).normalized()
 	return (desired_velocity - body.velocity).limit_length(max_acceleration)
@@ -14,7 +17,7 @@ func arrive(
 	max_speed: float,
 	arrival_radius: float,
 	slowing_radius: float,
-	time_to_target: float = 0.1
+	time_to_target: float = TTT_DEFAULT
 ) -> Vector2:
 	var to_target = _get_target_vector(target_position)
 	var distance = to_target.length()
@@ -33,7 +36,7 @@ func pursue(
 	max_speed: float,
 	arrival_radius: float,
 	slowing_radius: float,
-	max_prediction: float = 0.1
+	max_prediction: float = TTT_DEFAULT
 ) -> Vector2:
 	var direction := _get_target_vector(target)
 	var dist := direction.length()
@@ -46,19 +49,19 @@ func pursue(
 
 	return arrive(arrive_target, max_speed, arrival_radius, slowing_radius, prediction)
 
-func hvelocity_match(target: float, time_to_target: float = 0.1) -> Vector2:
+func hvelocity_match(target: float, time_to_target: float = TTT_DEFAULT) -> Vector2:
 	return velocity_match(Vector2(target, body.velocity.y), time_to_target)
 
-func velocity_match(target: Vector2, time_to_target: float = 0.1) -> Vector2:
+func velocity_match(target: Vector2, time_to_target: float = TTT_DEFAULT) -> Vector2:
 	var target_acceleration := (target - body.velocity)
 	if time_to_target > 0:
 		target_acceleration /= time_to_target
 	return target_acceleration.limit_length(max_acceleration)
 
-func stop(time_to_target: float = 0.1) -> Vector2:
+func stop(time_to_target: float = TTT_DEFAULT) -> Vector2:
 	return velocity_match(Vector2.ZERO, time_to_target)
 
-func hstop(time_to_target: float = 0.1) -> Vector2:
+func hstop(time_to_target: float = TTT_DEFAULT) -> Vector2:
 	return hvelocity_match(0, time_to_target)
 
 func avoid_obstacles(collision_ray: RayCast2D, distance: float) -> Vector2:

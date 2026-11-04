@@ -4,6 +4,7 @@ extends EnemyStateBase
 @export var knockback_vertically := true
 
 func enter():
+	_state_timer(knockback_time, _on_finished)
 	enemy.play_animation(&"hurt")
 	if knockback_vertically:
 		kinematic.dash(enemy.last_hurt.knockback)
@@ -12,11 +13,12 @@ func enter():
 	enemy.face(-enemy.velocity.x)
 
 func update(delta: float) -> StringName:
-	if not is_zero_approx(enemy.velocity.x):
-		kinematic.add_steering(steering.hstop(knockback_time))
-		return &""
-	
+	kinematic.add_steering(steering.hstop(knockback_time))
+	return &""
+
+
+func _on_finished():
 	if perception.has_target():
-		return &"Chase"
+		_transition(&"Chase")
 	else:
-		return &"Investigate"
+		_transition(&"Investigate")

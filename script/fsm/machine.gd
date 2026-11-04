@@ -23,7 +23,7 @@ func initialize(character: CharacterBody2D) -> void:
 		var state = child as CharacterStateBase
 		states[state.name] = state
 		state.init(character)
-		state.transition_requested.connect(request_transition)
+		state.transition_requested.connect(_on_state_transition_requested)
 		state.timer_requested.connect(
 			func(time, callable): _on_state_timer_requested(state.name, time, callable)
 		)
@@ -90,9 +90,10 @@ func _progress_state_timers(delta: float):
 	var triggered: Array[StringName] = []
 	for state_name in _state_timers:
 		_state_timers[state_name] -= delta
-		if _state_timers[state_name] <= 0:
-			_state_callbacks[state_name].call_deferred()
-			triggered.push_back(state_name)
+		if _state_timers[state_name] > 0:
+			continue
+		_state_callbacks[state_name].call()
+		triggered.push_back(state_name)
 	for state_name in triggered:
 		_remove_state_timer(state_name)
 
@@ -103,6 +104,9 @@ func _has_existing_timer(state_name: StringName) -> bool:
 func _remove_state_timer(state_name: StringName):
 	_state_timers.erase(state_name)
 	_state_callbacks.erase(state_name)
+
+func _on_state_transition_requested(state_name: StringName):
+	call_deferred("request_transition", state_name)
 
 func _on_state_timer_requested(state_name: StringName, time: float, callable: Callable):
 	_state_timers[state_name] = time
