@@ -1,6 +1,7 @@
 class_name EnemyAttackState extends EnemyStateBase
 
 @export var cooldown: float = 1.2
+@export var attack_animation: StringName = &"attack"
 @export var time: float = 0.5
 @export var attack_distance := 16.0
 
@@ -10,7 +11,7 @@ var _last_attack_time_msec: int = 0
 func enter() -> void:
 	_last_attack_time_msec = Time.get_ticks_msec()
 	enemy.face_vector(perception.to_target())
-	enemy.play_animation(&"attack", time)
+	enemy.play_animation(attack_animation, time)
 	_state_timer(time, _on_finished)
 
 func update(delta: float) -> StringName:

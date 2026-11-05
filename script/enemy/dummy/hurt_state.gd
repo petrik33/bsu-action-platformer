@@ -1,9 +1,10 @@
 extends EnemyStateBase
 
+@export var hurt_animation: StringName = &"hurt"
 @export var time: float = 0.3
 
 func enter():
-	enemy.play_animation(&"hurt", time)
+	enemy.play_animation(hurt_animation, time)
 	_state_timer(time, _on_finished)
 
 

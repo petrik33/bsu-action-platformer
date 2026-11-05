@@ -1,11 +1,12 @@
 extends EnemyStateBase
 
+@export var hurt_animation: StringName = &"hurt"
 @export var knockback_time := 0.2
 @export var knockback_vertically := true
 
 func enter():
 	_state_timer(knockback_time, _on_finished)
-	enemy.play_animation(&"hurt")
+	enemy.play_animation(hurt_animation)
 	if knockback_vertically:
 		kinematic.dash(enemy.last_hurt.knockback)
 	else:

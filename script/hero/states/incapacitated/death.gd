@@ -1,9 +1,10 @@
 extends HeroStateBase
 
-@export var time: float = 1.0
+@export var death_animation: StringName = &"death"
+@export var time: float = 0.4
 
 func enter():
-	hero.play_animation("death", time)
+	hero.play_animation(death_animation, time)
 	_state_timer(time, _on_finished)
 
 

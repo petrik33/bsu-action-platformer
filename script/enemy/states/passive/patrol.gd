@@ -6,10 +6,12 @@ extends EnemyStateBase
 var direction := Vector2.RIGHT
 var origin_x: float
 
+@export var walk_animation: StringName = &"walk"
+
 func enter() -> void:
 	origin_x = enemy.global_position.x
 	direction = Vector2(enemy.facing_direction(), 0.0)
-	enemy.play_animation(&"walk")
+	enemy.play_animation(walk_animation)
 	enemy.navigation.force_update()
 
 func process(_delta: float) -> void:
