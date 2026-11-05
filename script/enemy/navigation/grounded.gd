@@ -9,8 +9,10 @@ func force_update():
 	wall_check.force_raycast_update()
 	floor_check.force_raycast_update()
 
-
 func has_obstacles_ahead() -> bool:
 	var wall_ahead = wall_check.is_colliding()
 	var no_floor_ahead = not floor_check.is_colliding()
-	return wall_ahead or no_floor_ahead 
+	return wall_ahead or no_floor_ahead
+
+func can_avoid_obstacles() -> bool:
+	return false

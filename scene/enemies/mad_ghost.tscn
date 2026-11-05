@@ -278,6 +278,8 @@ cooldown = 2.0
 knockback_vertically = false
 
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("11_qjv1p")]
+walk_animation_name = &"idle"
+search_animation_name = &"idle"
 
 [node name="Alert" parent="StateMachine" unique_id=1829192895 instance=ExtResource("12_at3yh")]
 
@@ -294,4 +296,5 @@ metadata/_custom_type_script = "uid://buji1uw4mpk74"
 
 [node name="Kinematic" type="Node" parent="Physics" unique_id=854605792]
 script = ExtResource("17_50wr2")
+horizontal_only = false
 metadata/_custom_type_script = "uid://bnysn8a45c22a"

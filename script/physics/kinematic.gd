@@ -7,6 +7,18 @@ class_name Kinematic extends PhysicsNodeBase
 var _steering_accumulator := Vector2.ZERO
 var _weight_accumulator := 0.0
 
+func current_speed() -> float:
+	if horizontal_only:
+		return absf(body.velocity.x)
+	else:
+		return body.velocity.length()
+
+func full_stop():
+	if horizontal_only:
+		body.velocity.x = 0
+	else:
+		body.velocity = Vector2.ZERO
+
 func dash(velocity: Vector2):
 	if horizontal_only:
 		body.velocity.x = velocity.x
@@ -28,14 +40,24 @@ func apply_steering(delta: float, max_acceleration: float):
 
 	var blended_steering := _steering_accumulator / _weight_accumulator
 	blended_steering = blended_steering.limit_length(max_acceleration)
-
-	body.velocity.x += (blended_steering * delta).x
-	var resulting_speed := absf(body.velocity.x)
-
-	if resulting_speed <= stop_buffer:
-		body.velocity.x = 0
+	var resulting_steering := blended_steering * delta
+	
+	if horizontal_only:
+		body.velocity.x += resulting_steering.x
 	else:
-		body.velocity.x = signf(body.velocity.x) * min(resulting_speed, max_speed)
+		body.velocity += resulting_steering
+	
+	if current_speed() <= stop_buffer:
+		full_stop()
+	else:
+		_limit_speed()
 
 	_steering_accumulator = Vector2.ZERO
 	_weight_accumulator = 0.0
+
+
+func _limit_speed():
+	if horizontal_only:
+		body.velocity.x = signf(body.velocity.x) * min(current_speed(), max_speed)
+	else:
+		body.velocity.limit_length(max_speed)

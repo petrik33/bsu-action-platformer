@@ -36,7 +36,9 @@ func _physics_process(delta: float) -> void:
 
 
 func can_chase() -> bool:
-	return perception.has_target() and not navigation.has_obstacles_ahead()
+	if not perception.has_target():
+		return false
+	return navigation.can_avoid_obstacles() or not navigation.has_obstacles_ahead()
 
 func play_alert_vfx(time: float):
 	alert_vfx.play(time)

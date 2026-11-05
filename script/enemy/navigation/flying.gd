@@ -41,6 +41,9 @@ func has_obstacles_ahead() -> bool:
 	force_update()
 	return front_ray.is_colliding() or left_ray.is_colliding() or right_ray.is_colliding()
 
+func can_avoid_obstacles() -> bool:
+	return true
+
 func get_collision_ray() -> RayCast2D:
 	force_update()
 	

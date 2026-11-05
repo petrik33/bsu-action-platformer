@@ -53,6 +53,7 @@ centered = false
 [node name="Enemies" type="Node2D" parent="Bodies" unique_id=1601694248]
 
 [node name="Mage" parent="Bodies/Enemies" unique_id=927593917 instance=ExtResource("7_ll5lq")]
+visible = false
 position = Vector2(445, -134)
 
 [node name="Mage2" parent="Bodies/Enemies" unique_id=475991854 instance=ExtResource("7_ll5lq")]

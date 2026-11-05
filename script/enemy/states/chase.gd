@@ -5,6 +5,7 @@ class_name EnemyChaseState extends EnemyStateBase
 @export var slowing_distance: float = 40.0
 @export var speed: float = 120.0
 @export var attack_state: EnemyAttackState
+@export var can_avoid_obstacles: bool = false
 
 
 func enter() -> void:
