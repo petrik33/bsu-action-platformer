@@ -270,6 +270,7 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 [node name="Passive" parent="StateMachine" unique_id=228852256 instance=ExtResource("5_j4lwb")]
 
 [node name="Patrol" parent="StateMachine/Passive" unique_id=1114917989 instance=ExtResource("7_50wr2")]
+walk_animation = &"idle"
 
 [node name="Idle" parent="StateMachine/Passive" unique_id=2005035550 instance=ExtResource("6_te2bj")]
 
@@ -288,6 +289,7 @@ search_animation_name = &"idle"
 [node name="AvoidWalls" parent="StateMachine" unique_id=1257777284 instance=ExtResource("15_sk2cx")]
 
 [node name="Chase" parent="StateMachine/AvoidWalls" unique_id=1942010174 node_paths=PackedStringArray("attack_state") instance=ExtResource("16_5deos")]
+run_animation_name = &"idle"
 attack_state = NodePath("../../Attack")
 
 [node name="Physics" type="Node" parent="." unique_id=1559413533]
