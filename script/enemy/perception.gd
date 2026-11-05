@@ -10,21 +10,20 @@ signal target_lost(target: CharacterBody2D)
 @export var visibility_origin: Node2D
 @export var horizontal_only: bool = true
 
-var target: CharacterBody2D
-var last_known_position: Vector2
-
+var _target: CharacterBody2D
+var _last_known_position: Vector2
 var _candidates: Array[CharacterBody2D] = []
 var _lost_time: float = 0.0
 
 
 func update(delta: float) -> void:
-	if not is_instance_valid(target):
+	if not has_target():
 		var found_target := _check_candidates()
 		if not found_target:
 			return
 
-	if _can_see(target):
-		last_known_position = target.global_position
+	if _can_see(_target):
+		_last_known_position = _target.global_position
 		_lost_time = 0.0
 	else:
 		_lost_time += delta
@@ -32,14 +31,22 @@ func update(delta: float) -> void:
 		if _lost_time < forget_delay:
 			return
 
-		target_lost.emit(target)
-		target = null
+		target_lost.emit(_target)
+		_target = null
 
 func has_target() -> bool:
-	return is_instance_valid(target)
+	return is_instance_valid(_target)
+
+func target() -> CharacterBody2D:
+	return _target
+
+func last_known_position() -> Vector2:
+	if not horizontal_only:
+		return _last_known_position
+	return Vector2(_last_known_position.x, global_position.y)
 
 func to_target() -> Vector2:
-	var direction := last_known_position - global_position
+	var direction := _last_known_position - global_position
 	if horizontal_only:
 		return Vector2(direction.x, 0)
 	return direction
@@ -50,8 +57,8 @@ func _check_candidates() -> bool:
 			continue
 
 		if _can_see(candidate):
-			target = candidate
-			last_known_position = candidate.global_position
+			_target = candidate
+			_last_known_position = candidate.global_position
 			_lost_time = 0.0
 			target_spotted.emit(candidate)
 			return true

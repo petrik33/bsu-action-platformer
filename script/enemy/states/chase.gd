@@ -28,8 +28,8 @@ func update(delta: float) -> StringName:
 		return &"Attack"
 	
 	kinematic.add_steering(steering.pursue(
-		perception.last_known_position,
-		perception.target.velocity,
+		perception.last_known_position(),
+		perception.target().velocity,
 		kinematic.max_speed,
 		arrival_distance,
 		slowing_distance
