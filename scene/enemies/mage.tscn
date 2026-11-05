@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dqk86am2bll74" path="res://scene/enemies/states/alert.tscn" id="17_0c3hi"]
 [ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="19_oulf2"]
 [ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="20_rj7a1"]
-[ext_resource type="Script" uid="uid://bnysn8a45c22a" path="res://script/physics/kinematic.gd" id="21_rj7a1"]
+[ext_resource type="Script" uid="uid://67q1hh18rykp" path="res://script/physics/kinematic/grounded.gd" id="21_rj7a1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxxwj"]
 size = Vector2(12, 31)
@@ -279,7 +279,7 @@ hurt_box = NodePath("Visual/HurtBox")
 alert_vfx = NodePath("AlertVfx")
 steering = NodePath("Physics/Steering")
 gravity = NodePath("Physics/Gravity")
-kinematic = NodePath("Physics/Kinematic")
+kinematic = NodePath("Physics/KinematicGrounded")
 visuals = NodePath("Visual")
 sprite = NodePath("Visual/AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
@@ -369,7 +369,6 @@ metadata/_custom_type_script = "uid://buji1uw4mpk74"
 
 [node name="Gravity" parent="Physics" unique_id=80762626 instance=ExtResource("20_rj7a1")]
 
-[node name="Kinematic" type="Node" parent="Physics" unique_id=1910419053]
+[node name="KinematicGrounded" type="Node" parent="Physics" unique_id=861509849]
 script = ExtResource("21_rj7a1")
-max_speed = 150.0
-metadata/_custom_type_script = "uid://bnysn8a45c22a"
+metadata/_custom_type_script = "uid://67q1hh18rykp"

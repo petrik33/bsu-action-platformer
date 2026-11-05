@@ -17,7 +17,7 @@ var steering: Steering:
 	get():
 		return enemy.steering
 
-var kinematic: Kinematic:
+var kinematic: KinematicBase:
 	get():
 		return enemy.kinematic
 

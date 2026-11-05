@@ -6,7 +6,7 @@ class_name Hero extends Actor
 @export var hurt_box: HurtBox
 @export var steering: Steering
 @export var gravity: Gravity
-@export var kinematic: Kinematic
+@export var kinematic: KinematicGrounded
 
 @export var base_speed: float = 400
 @export var jump_speed: float = 350

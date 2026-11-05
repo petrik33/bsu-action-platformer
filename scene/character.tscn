@@ -22,9 +22,9 @@
 [ext_resource type="PackedScene" uid="uid://t40f4mawxn56" path="res://scene/character/states/incapacitated.tscn" id="18_7u363"]
 [ext_resource type="PackedScene" uid="uid://bexnfq44abe3q" path="res://scene/character/states/incapacitated/hurt.tscn" id="19_ud0a3"]
 [ext_resource type="PackedScene" uid="uid://k6fdi54ai135" path="res://scene/character/states/incapacitated/death.tscn" id="20_0qvrh"]
+[ext_resource type="Script" uid="uid://67q1hh18rykp" path="res://script/physics/kinematic/grounded.gd" id="25_7s5o7"]
 [ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="26_sdelk"]
 [ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="27_ckk4y"]
-[ext_resource type="Script" uid="uid://bnysn8a45c22a" path="res://script/physics/kinematic.gd" id="28_ckk4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lp7ui"]
 size = Vector2(7, 20)
@@ -1384,7 +1384,7 @@ hit_box = NodePath("Visuals/HitBox")
 hurt_box = NodePath("Visuals/HurtBox")
 steering = NodePath("Physics/Steering")
 gravity = NodePath("Physics/Gravity")
-kinematic = NodePath("Physics/Kinematic")
+kinematic = NodePath("Physics/KinematicGrounded")
 visuals = NodePath("Visuals")
 sprite = NodePath("Visuals/Base")
 animation_player = NodePath("AnimationPlayer")
@@ -1488,7 +1488,7 @@ metadata/_custom_type_script = "uid://buji1uw4mpk74"
 
 [node name="Gravity" parent="Physics" unique_id=80762626 instance=ExtResource("27_ckk4y")]
 
-[node name="Kinematic" type="Node" parent="Physics" unique_id=1869120004]
-script = ExtResource("28_ckk4y")
+[node name="KinematicGrounded" type="Node" parent="Physics" unique_id=1387047291]
+script = ExtResource("25_7s5o7")
 max_speed = 600.0
-metadata/_custom_type_script = "uid://bnysn8a45c22a"
+metadata/_custom_type_script = "uid://67q1hh18rykp"

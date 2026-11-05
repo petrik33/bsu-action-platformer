@@ -8,7 +8,7 @@ class_name Enemy extends Actor
 @export var alert_vfx: VfxBase
 @export var steering: Steering
 @export var gravity: Gravity
-@export var kinematic: Kinematic
+@export var kinematic: KinematicBase
 
 var last_hurt: AttackData
 

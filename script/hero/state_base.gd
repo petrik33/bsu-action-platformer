@@ -9,7 +9,7 @@ var steering: Steering:
 	get():
 		return hero.steering
 
-var kinematic: Kinematic:
+var kinematic: KinematicBase:
 	get():
 		return hero.kinematic
 

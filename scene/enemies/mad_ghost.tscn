@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="13_8a8uj"]
 [ext_resource type="PackedScene" uid="uid://cdydofk5ri86o" path="res://scene/enemies/states/ghost/avoid_walls.tscn" id="15_sk2cx"]
 [ext_resource type="PackedScene" uid="uid://dyr6nh4ibjwua" path="res://scene/enemies/states/chase.tscn" id="16_5deos"]
-[ext_resource type="Script" uid="uid://bnysn8a45c22a" path="res://script/physics/kinematic.gd" id="17_50wr2"]
+[ext_resource type="Script" uid="uid://b5s7k4t1gnu42" path="res://script/physics/kinematic/flying.gd" id="18_sk2cx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tuwl0"]
 size = Vector2(8, 37)
@@ -223,7 +223,7 @@ navigation = NodePath("Visual/NavigationFlying")
 hurt_box = NodePath("HurtBox")
 alert_vfx = NodePath("AlertVfx")
 steering = NodePath("Physics/Steering")
-kinematic = NodePath("Physics/Kinematic")
+kinematic = NodePath("Physics/KinematicFlying")
 visuals = NodePath("Visual")
 sprite = NodePath("Visual/AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
@@ -237,8 +237,10 @@ shape = SubResource("RectangleShape2D_tuwl0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual" unique_id=1272308513]
 sprite_frames = SubResource("SpriteFrames_3a8sd")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
+frame = 1
+frame_progress = 0.24904722
 offset = Vector2(-3, -36)
 
 [node name="NavigationFlying" parent="Visual" unique_id=712196497 instance=ExtResource("6_50wr2")]
@@ -294,7 +296,7 @@ attack_state = NodePath("../../Attack")
 script = ExtResource("13_8a8uj")
 metadata/_custom_type_script = "uid://buji1uw4mpk74"
 
-[node name="Kinematic" type="Node" parent="Physics" unique_id=854605792]
-script = ExtResource("17_50wr2")
-horizontal_only = false
-metadata/_custom_type_script = "uid://bnysn8a45c22a"
+[node name="KinematicFlying" type="Node" parent="Physics" unique_id=947072571]
+script = ExtResource("18_sk2cx")
+max_speed = 200.0
+metadata/_custom_type_script = "uid://b5s7k4t1gnu42"
