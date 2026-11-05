@@ -171,9 +171,6 @@
 [ext_resource type="PackedScene" uid="uid://df4en8hdjyeb" path="res://scene/character/states/locomotion/grounded.tscn" id="161_4q8yv"]
 [ext_resource type="PackedScene" uid="uid://dsjj74yffpddg" path="res://scene/character/states/locomotion/grounded/idle.tscn" id="162_ytxcy"]
 [ext_resource type="PackedScene" uid="uid://bejmpipnu481a" path="res://scene/character/states/locomotion/grounded/move.tscn" id="163_2o33o"]
-[ext_resource type="PackedScene" uid="uid://bnx84ttdi5rpr" path="res://scene/character/states/locomotion/grounded/move/run.tscn" id="164_ucjog"]
-[ext_resource type="PackedScene" uid="uid://0fb41j0ms7y3" path="res://scene/character/states/locomotion/grounded/move/sprint.tscn" id="165_8vw2g"]
-[ext_resource type="PackedScene" uid="uid://cu47872cwivvj" path="res://scene/character/states/locomotion/grounded/move/walk.tscn" id="166_8y4jm"]
 [ext_resource type="PackedScene" uid="uid://dhdj53ixvhfeb" path="res://scene/character/hit_box.tscn" id="166_yn7hy"]
 [ext_resource type="PackedScene" uid="uid://cgbn8bkj1hks5" path="res://scene/character/states/locomotion/airborne.tscn" id="167_mifu2"]
 [ext_resource type="PackedScene" uid="uid://dsflokmpqtns7" path="res://scene/character/states/locomotion/airborne/jump.tscn" id="168_7ehhp"]
@@ -1078,14 +1075,8 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 [node name="Idle" parent="StateMachine/Locomotion/Grounded" unique_id=1808960593 instance=ExtResource("162_ytxcy")]
 
 [node name="Move" parent="StateMachine/Locomotion/Grounded" unique_id=2105850077 instance=ExtResource("163_2o33o")]
-
-[node name="Run" parent="StateMachine/Locomotion/Grounded/Move" unique_id=1608890109 instance=ExtResource("164_ucjog")]
-animation_name = &"walk"
-
-[node name="Sprint" parent="StateMachine/Locomotion/Grounded/Move" unique_id=101147460 instance=ExtResource("165_8vw2g")]
-animation_name = &"surf"
-
-[node name="Walk" parent="StateMachine/Locomotion/Grounded/Move" unique_id=227761043 instance=ExtResource("166_8y4jm")]
+sprint_animation = &"surf"
+run_animation = &"walk"
 
 [node name="Airborne" parent="StateMachine/Locomotion" unique_id=1304592049 instance=ExtResource("167_mifu2")]
 attack_transition = &"AirAttack"

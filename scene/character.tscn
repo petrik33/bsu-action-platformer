@@ -12,9 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bqxdqohr17scx" path="res://scene/character/hurt_box.tscn" id="7_7s5o7"]
 [ext_resource type="PackedScene" uid="uid://dsjj74yffpddg" path="res://scene/character/states/locomotion/grounded/idle.tscn" id="7_ud0a3"]
 [ext_resource type="PackedScene" uid="uid://bejmpipnu481a" path="res://scene/character/states/locomotion/grounded/move.tscn" id="8_0qvrh"]
-[ext_resource type="PackedScene" uid="uid://bnx84ttdi5rpr" path="res://scene/character/states/locomotion/grounded/move/run.tscn" id="9_a748v"]
-[ext_resource type="PackedScene" uid="uid://0fb41j0ms7y3" path="res://scene/character/states/locomotion/grounded/move/sprint.tscn" id="10_cnvcp"]
-[ext_resource type="PackedScene" uid="uid://cu47872cwivvj" path="res://scene/character/states/locomotion/grounded/move/walk.tscn" id="11_x2uf3"]
 [ext_resource type="PackedScene" uid="uid://cgbn8bkj1hks5" path="res://scene/character/states/locomotion/airborne.tscn" id="12_7s5o7"]
 [ext_resource type="PackedScene" uid="uid://dsflokmpqtns7" path="res://scene/character/states/locomotion/airborne/jump.tscn" id="13_w420j"]
 [ext_resource type="PackedScene" uid="uid://ciuiv751od242" path="res://scene/character/states/locomotion/airborne/fall.tscn" id="14_sdelk"]
@@ -1462,12 +1459,7 @@ roll_animation = &"dash"
 [node name="Idle" parent="StateMachine/Locomotion/Grounded" unique_id=1808960593 instance=ExtResource("7_ud0a3")]
 
 [node name="Move" parent="StateMachine/Locomotion/Grounded" unique_id=2105850077 instance=ExtResource("8_0qvrh")]
-
-[node name="Run" parent="StateMachine/Locomotion/Grounded/Move" unique_id=1608890109 instance=ExtResource("9_a748v")]
-
-[node name="Sprint" parent="StateMachine/Locomotion/Grounded/Move" unique_id=101147460 instance=ExtResource("10_cnvcp")]
-
-[node name="Walk" parent="StateMachine/Locomotion/Grounded/Move" unique_id=227761043 instance=ExtResource("11_x2uf3")]
+sprint_threshold = 450.0
 
 [node name="Airborne" parent="StateMachine/Locomotion" unique_id=1304592049 instance=ExtResource("12_7s5o7")]
 
@@ -1498,4 +1490,5 @@ metadata/_custom_type_script = "uid://buji1uw4mpk74"
 
 [node name="Kinematic" type="Node" parent="Physics" unique_id=1869120004]
 script = ExtResource("28_ckk4y")
+max_speed = 600.0
 metadata/_custom_type_script = "uid://bnysn8a45c22a"

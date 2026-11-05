@@ -1,8 +1,10 @@
 class_name Steering extends PhysicsNodeBase
 
 @export var max_acceleration: float = 2000
+@export var max_decceleration: float = 5000
 
 const TTT_DEFAULT := 0.05
+const TTT_STOP_DFEFAULT := TTT_DEFAULT * 0.001
 
 
 func seek(target_position: Vector2) -> Vector2:
@@ -56,12 +58,15 @@ func velocity_match(target: Vector2, time_to_target: float = TTT_DEFAULT) -> Vec
 	var target_acceleration := (target - body.velocity)
 	if time_to_target > 0:
 		target_acceleration /= time_to_target
-	return target_acceleration.limit_length(max_acceleration)
+	var limit := max_acceleration
+	if is_zero_approx(target.length()):
+		limit = max_decceleration
+	return target_acceleration.limit_length(limit)
 
-func stop(time_to_target: float = TTT_DEFAULT) -> Vector2:
+func stop(time_to_target: float = TTT_STOP_DFEFAULT) -> Vector2:
 	return velocity_match(Vector2.ZERO, time_to_target)
 
-func hstop(time_to_target: float = TTT_DEFAULT) -> Vector2:
+func hstop(time_to_target: float = TTT_STOP_DFEFAULT) -> Vector2:
 	return hvelocity_match(0, time_to_target)
 
 func avoid_obstacles(collision_ray: RayCast2D, distance: float) -> Vector2:

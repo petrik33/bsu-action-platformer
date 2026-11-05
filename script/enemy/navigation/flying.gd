@@ -10,14 +10,14 @@ class_name EnemyNavigationFlying extends EnemyNavigationBsae
 var body: CharacterBody2D
 
 func _ready() -> void:
-	body = get_parent() as CharacterBody2D
+	body = owner as CharacterBody2D
 	if not body:
 		push_error("Flying navigation must be a child of CharacterBody2D")
 		return
 	force_update()
 
 func _get_configuration_warnings():
-	if not get_parent() is CharacterBody2D:
+	if not owner is CharacterBody2D:
 		return ["Flying navigation must be a child of CharacterBody2D"]
 	return []
 

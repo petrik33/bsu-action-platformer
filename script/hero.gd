@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		jumps_left = 2
 
-func move_horizontally(delta: float, speed_multiplier: float = 1.0):
+func move_horizontally(speed_multiplier: float = 1.0):
 	var target_hvelocity := movement_direction * base_speed * speed_multiplier
 	kinematic.add_steering(steering.hvelocity_match(target_hvelocity))
 

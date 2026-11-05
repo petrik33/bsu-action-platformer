@@ -4,7 +4,7 @@ extends HeroStateBase
 
 
 func update(delta: float) -> StringName:
-	hero.move_horizontally(delta)
+	hero.move_horizontally()
 
 	if Input.is_action_just_pressed("jump") and hero.can_jump():
 		return "Jump"

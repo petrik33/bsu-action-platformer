@@ -20,7 +20,7 @@ func enter():
 	_start_attack()
 
 func update(delta: float) -> StringName:
-	hero.move_horizontally(delta, lock_speed_multiplier)
+	hero.move_horizontally(lock_speed_multiplier)
 	
 	if Input.is_action_just_pressed("click"):
 		combo_buffered = true

@@ -71,7 +71,6 @@ position = Vector2(2137, -58)
 position = Vector2(170, -51)
 
 [node name="MadGhost" parent="Bodies/Enemies" unique_id=1439942586 instance=ExtResource("7_yq8tf")]
-visible = false
 position = Vector2(276, -103)
 
 [node name="Character" parent="Bodies" unique_id=213064435 instance=ExtResource("7_17rxn")]

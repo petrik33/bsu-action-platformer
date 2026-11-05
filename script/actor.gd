@@ -5,6 +5,8 @@ class_name Actor extends CharacterBody2D
 @export var animation_player: AnimationPlayer
 @export var origin: Node2D
 
+var current_animation: StringName = &""
+
 func face_movement():
 	face(velocity.x)
 
@@ -31,10 +33,17 @@ func face(direction: float):
 func facing_direction() -> float:
 	return sign(visuals.scale.x)
 
+func get_current_animation() -> StringName:
+	return current_animation
+
 func turn_around():
 	face(-facing_direction())
 
 func play_animation(anim_name: StringName, time: float = -1.0):
+	if current_animation == anim_name:
+		return
+	
+	current_animation = anim_name
 	sprite.stop()
 	if animation_player and animation_player.has_animation(anim_name):
 		var animation_speed := Utils.get_anim_player_target_speed(
@@ -50,6 +59,7 @@ func play_animation(anim_name: StringName, time: float = -1.0):
 		sprite.play(anim_name, animation_speed)
 
 func stop_animation():
+	current_animation = &""
 	if animation_player and animation_player.is_playing():
 		animation_player.stop()
 		return

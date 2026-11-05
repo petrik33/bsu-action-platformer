@@ -9,9 +9,9 @@ floor_check = NodePath("FloorCheck")
 metadata/_custom_type_script = "uid://kp6gmiyxkl3o"
 
 [node name="FloorCheck" type="RayCast2D" parent="." unique_id=797976595]
-position = Vector2(4, 0)
+position = Vector2(12, 0)
 target_position = Vector2(0, 32)
 
 [node name="WallCheck" type="RayCast2D" parent="." unique_id=1768408391]
 position = Vector2(0, -8)
-target_position = Vector2(20, 0)
+target_position = Vector2(24, 0)
