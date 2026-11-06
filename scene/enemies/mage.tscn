@@ -331,9 +331,8 @@ animation = &"attack"
 frame = 5
 metadata/_custom_type_script = "uid://wvhuys2w10ds"
 
-[node name="AttackHandler" type="Node" parent="Components" unique_id=1049853661 node_paths=PackedStringArray("observer", "hit_box_collision_shape")]
+[node name="AttackHandler" type="Node" parent="Components" unique_id=1049853661 node_paths=PackedStringArray("hit_box_collision_shape")]
 script = ExtResource("8_i4onk")
-observer = NodePath("../AttackObserver")
 hit_box_collision_shape = NodePath("../../Visual/HitBox/Attack")
 metadata/_custom_type_script = "uid://dmmphqi33l40c"
 
@@ -372,3 +371,6 @@ metadata/_custom_type_script = "uid://buji1uw4mpk74"
 [node name="KinematicGrounded" type="Node" parent="Physics" unique_id=861509849]
 script = ExtResource("21_rj7a1")
 metadata/_custom_type_script = "uid://67q1hh18rykp"
+
+[connection signal="frame_entered" from="Components/AttackObserver" to="Components/AttackHandler" method="enable"]
+[connection signal="frame_exited" from="Components/AttackObserver" to="Components/AttackHandler" method="disable"]

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://benucajtpby2w"]
+
+[ext_resource type="Script" uid="uid://cy02jkkxk32ue" path="res://script/enemy/states/dash_attack.gd" id="1_e7xd3"]
+
+[node name="DashAttack" type="Node" unique_id=3786132]
+script = ExtResource("1_e7xd3")
+metadata/_custom_type_script = "uid://bhs7xi0ommry6"

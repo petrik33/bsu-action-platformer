@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://5ngj1n3q6rd" path="res://scene/enemies/common/hurt_box.tscn" id="2_xpdev"]
 [ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/fsm/machine.gd" id="4_fpfe2"]
 [ext_resource type="PackedScene" uid="uid://dlgm3haqibyaw" path="res://scene/enemies/common/perception.tscn" id="4_j4lwb"]
+[ext_resource type="PackedScene" uid="uid://i0rj2sedr07y" path="res://scene/enemies/common/hit_box.tscn" id="5_5deos"]
 [ext_resource type="PackedScene" uid="uid://dgr0braecu28y" path="res://scene/enemies/states/passive.tscn" id="5_j4lwb"]
 [ext_resource type="PackedScene" uid="uid://cgq6io0faa8nr" path="res://scene/enemies/common/navigation_flying.tscn" id="6_50wr2"]
 [ext_resource type="PackedScene" uid="uid://cp38i6pqejveu" path="res://scene/enemies/states/passive/idle.tscn" id="6_te2bj"]
@@ -211,6 +212,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8b0m"]
+size = Vector2(22, 55)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1sfn"]
 size = Vector2(24, 37.5)
 
@@ -249,6 +253,13 @@ position = Vector2(0, -22)
 [node name="AlertVfx" parent="." unique_id=892914976 instance=ExtResource("1_i5ct6")]
 visible = false
 position = Vector2(0, -40)
+
+[node name="HitBox" parent="." unique_id=1133976621 instance=ExtResource("5_5deos")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=634482120]
+position = Vector2(-1, -31.5)
+shape = SubResource("RectangleShape2D_j8b0m")
+debug_color = Color(0.7, 0.05833332, 0, 0.41960785)
 
 [node name="HurtBox" parent="." unique_id=1463069577 instance=ExtResource("2_xpdev")]
 visible = false
