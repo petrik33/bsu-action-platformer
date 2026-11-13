@@ -3,13 +3,17 @@ class_name Enemy extends Actor
 
 @export var state_machine: CharacterStateMachine
 @export var perception: EnemyPerception
-@export var navigation: EnemyNavigationBsae
+@export var navigation: NavigationBase
 @export var hurt_box: HurtBox
-@export var hit_box: HitBox
 @export var alert_vfx: VfxBase
 @export var steering: Steering
 @export var gravity: Gravity
+@export var resistance: Resistance
+@export var patroling: Patroling
 @export var kinematic: KinematicBase
+@export var attack: EnemyAttack
+
+@export var jump_speed: float = 300
 
 var last_hurt: AttackData
 
@@ -30,16 +34,24 @@ func _physics_process(delta: float) -> void:
 	if gravity:
 		gravity.apply(delta)
 		
+	if resistance:
+		resistance.apply(delta)
+		
 	state_machine.update(delta)
 		
-	if kinematic:
-		kinematic.apply_steering(delta, steering.max_acceleration)
+	if steering:
+		steering.update(delta)
 
+func can_jump() -> bool:
+	return is_on_floor()
 
-func can_chase() -> bool:
-	if not perception.has_target():
-		return false
-	return navigation.can_avoid_obstacles() or not navigation.has_obstacles_ahead()
+func jump() -> void:
+	if not is_on_floor():
+		return
+	velocity.y = -jump_speed
+
+func can_attack(to_target: Vector2) -> bool:
+	return attack.is_ready() and attack.in_distance(to_target)
 
 func play_alert_vfx(time: float):
 	alert_vfx.play(time)
@@ -47,16 +59,14 @@ func play_alert_vfx(time: float):
 func stop_alert_vfx():
 	alert_vfx.stop()
 
-func hurt(attack: AttackData):
-	last_hurt = attack
+func set_resistance(value: bool) -> void:
+	if resistance:
+		resistance.enabled = value
+
+func hurt(payload: AttackData):
+	last_hurt = payload
 	state_machine.request_transition(&"Hurt")
 
-func move_horizontal(direction: float, speed: float):
-	velocity.x = sign(direction) * speed
 
-func stop_horizontal() -> void:
-	velocity.x = 0.0
-
-
-func _on_hit_received(attack: AttackData):
-	call_deferred(&"hurt", attack)
+func _on_hit_received(payload: AttackData):
+	call_deferred(&"hurt", payload)

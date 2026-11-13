@@ -1,8 +1,5 @@
 extends HeroStateBase
 
-
-
-
 func update(_delta: float) -> StringName:
 	if Input.is_action_just_pressed("jump"):
 		return "Jump"

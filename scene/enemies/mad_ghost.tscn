@@ -11,14 +11,21 @@
 [ext_resource type="PackedScene" uid="uid://cgq6io0faa8nr" path="res://scene/enemies/common/navigation_flying.tscn" id="6_50wr2"]
 [ext_resource type="PackedScene" uid="uid://cp38i6pqejveu" path="res://scene/enemies/states/passive/idle.tscn" id="6_te2bj"]
 [ext_resource type="PackedScene" uid="uid://dtgvyec0183ks" path="res://scene/enemies/states/passive/patrol.tscn" id="7_50wr2"]
-[ext_resource type="PackedScene" uid="uid://bqkwlevbj2nwh" path="res://scene/enemies/states/attack.tscn" id="9_5deos"]
 [ext_resource type="PackedScene" uid="uid://8u16f5cw6syf" path="res://scene/enemies/states/hurt.tscn" id="10_j8b0m"]
+[ext_resource type="Script" uid="uid://cy47hkott4sne" path="res://script/physics/steering/behavior/arrive.gd" id="11_at3yh"]
 [ext_resource type="PackedScene" uid="uid://cu1fyvhsvvnxt" path="res://scene/enemies/states/investigate.tscn" id="11_qjv1p"]
+[ext_resource type="Script" uid="uid://1wi2n5nrkn0v" path="res://script/physics/steering/behavior/avoid_obstacles.gd" id="12_8a8uj"]
 [ext_resource type="PackedScene" uid="uid://dqk86am2bll74" path="res://scene/enemies/states/alert.tscn" id="12_at3yh"]
-[ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="13_8a8uj"]
-[ext_resource type="PackedScene" uid="uid://cdydofk5ri86o" path="res://scene/enemies/states/ghost/avoid_walls.tscn" id="15_sk2cx"]
+[ext_resource type="Script" uid="uid://dydc0i285p3v8" path="res://script/physics/steering/behavior/stop.gd" id="14_vyu2f"]
 [ext_resource type="PackedScene" uid="uid://dyr6nh4ibjwua" path="res://scene/enemies/states/chase.tscn" id="16_5deos"]
+[ext_resource type="PackedScene" uid="uid://benucajtpby2w" path="res://scene/enemies/states/dash_attack.tscn" id="17_j8b0m"]
 [ext_resource type="Script" uid="uid://b5s7k4t1gnu42" path="res://script/physics/kinematic/flying.gd" id="18_sk2cx"]
+[ext_resource type="Script" uid="uid://dic1ws4407njb" path="res://script/physics/steering/behavior/pursue.gd" id="19_x07og"]
+[ext_resource type="Script" uid="uid://in5s4schm5yy" path="res://script/physics/patroling.gd" id="20_at3yh"]
+[ext_resource type="Script" uid="uid://c185jxoudbv2e" path="res://script/enemy/attack.gd" id="20_j8b0m"]
+[ext_resource type="Script" uid="uid://li44jwhydfh1" path="res://script/combat/attack/payload.gd" id="21_qjv1p"]
+[ext_resource type="Script" uid="uid://5ekknacs16ny" path="res://script/physics/resistance.gd" id="24_ab6mi"]
+[ext_resource type="Script" uid="uid://cfqkwikgws0dr" path="res://script/physics/steering.gd" id="24_pm240"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tuwl0"]
 size = Vector2(8, 37)
@@ -213,12 +220,68 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8b0m"]
-size = Vector2(22, 55)
+size = Vector2(12, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1sfn"]
 size = Vector2(24, 37.5)
 
-[node name="MadGhost" type="CharacterBody2D" unique_id=265532546 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "alert_vfx", "steering", "kinematic", "visuals", "sprite")]
+[sub_resource type="Resource" id="Resource_8a8uj"]
+resource_local_to_scene = true
+script = ExtResource("11_at3yh")
+max_speed = 75.0
+metadata/_custom_type_script = "uid://cy47hkott4sne"
+
+[sub_resource type="Resource" id="Resource_vyu2f"]
+resource_local_to_scene = true
+script = ExtResource("12_8a8uj")
+max_speed = 75.0
+distance = 8.0
+metadata/_custom_type_script = "uid://1wi2n5nrkn0v"
+
+[sub_resource type="Resource" id="Resource_x07og"]
+script = ExtResource("14_vyu2f")
+metadata/_custom_type_script = "uid://dydc0i285p3v8"
+
+[sub_resource type="Resource" id="Resource_ab6mi"]
+script = ExtResource("14_vyu2f")
+metadata/_custom_type_script = "uid://dydc0i285p3v8"
+
+[sub_resource type="Resource" id="Resource_pm240"]
+resource_local_to_scene = true
+script = ExtResource("11_at3yh")
+max_speed = 125.0
+metadata/_custom_type_script = "uid://cy47hkott4sne"
+
+[sub_resource type="Resource" id="Resource_kad8c"]
+resource_local_to_scene = true
+script = ExtResource("12_8a8uj")
+max_speed = 125.0
+metadata/_custom_type_script = "uid://1wi2n5nrkn0v"
+
+[sub_resource type="Resource" id="Resource_jh5xk"]
+script = ExtResource("14_vyu2f")
+metadata/_custom_type_script = "uid://dydc0i285p3v8"
+
+[sub_resource type="Resource" id="Resource_je7sc"]
+resource_local_to_scene = true
+script = ExtResource("19_x07og")
+max_speed = 200.0
+slowing_radius = 16.0
+metadata/_custom_type_script = "uid://dic1ws4407njb"
+
+[sub_resource type="Resource" id="Resource_pbayw"]
+resource_local_to_scene = true
+script = ExtResource("12_8a8uj")
+max_speed = 200.0
+distance = 24.0
+metadata/_custom_type_script = "uid://1wi2n5nrkn0v"
+
+[sub_resource type="Resource" id="Resource_at3yh"]
+script = ExtResource("21_qjv1p")
+knockback_force = 500.0
+metadata/_custom_type_script = "uid://li44jwhydfh1"
+
+[node name="MadGhost" type="CharacterBody2D" unique_id=265532546 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "alert_vfx", "steering", "resistance", "patroling", "kinematic", "attack", "visuals", "sprite")]
 collision_layer = 4
 script = ExtResource("1_j4lwb")
 state_machine = NodePath("StateMachine")
@@ -227,7 +290,10 @@ navigation = NodePath("Visual/NavigationFlying")
 hurt_box = NodePath("HurtBox")
 alert_vfx = NodePath("AlertVfx")
 steering = NodePath("Physics/Steering")
+resistance = NodePath("Physics/Resistance")
+patroling = NodePath("Physics/Patroling")
 kinematic = NodePath("Physics/KinematicFlying")
+attack = NodePath("Attack")
 visuals = NodePath("Visual")
 sprite = NodePath("Visual/AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
@@ -249,6 +315,9 @@ offset = Vector2(-3, -36)
 
 [node name="NavigationFlying" parent="Visual" unique_id=712196497 instance=ExtResource("6_50wr2")]
 position = Vector2(0, -22)
+
+[node name="VisibilityOrigin" type="Marker2D" parent="Visual" unique_id=613848541]
+position = Vector2(3, -35)
 
 [node name="AlertVfx" parent="." unique_id=892914976 instance=ExtResource("1_i5ct6")]
 visible = false
@@ -282,34 +351,60 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 
 [node name="Patrol" parent="StateMachine/Passive" unique_id=1114917989 instance=ExtResource("7_50wr2")]
 walk_animation = &"idle"
+arrive_behavior = SubResource("Resource_8a8uj")
+avoid_behavior = SubResource("Resource_vyu2f")
 
 [node name="Idle" parent="StateMachine/Passive" unique_id=2005035550 instance=ExtResource("6_te2bj")]
-
-[node name="Attack" parent="StateMachine" unique_id=1140714920 instance=ExtResource("9_5deos")]
-cooldown = 2.0
+stop_behavior = SubResource("Resource_x07og")
 
 [node name="Hurt" parent="StateMachine" unique_id=73280351 instance=ExtResource("10_j8b0m")]
 knockback_vertically = false
 
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("11_qjv1p")]
-walk_animation_name = &"idle"
+stop_behavior = SubResource("Resource_ab6mi")
 search_animation_name = &"idle"
+arrive_behavior = SubResource("Resource_pm240")
+avoid_behavior = SubResource("Resource_kad8c")
 
 [node name="Alert" parent="StateMachine" unique_id=1829192895 instance=ExtResource("12_at3yh")]
+stop_behavior = SubResource("Resource_jh5xk")
 
-[node name="AvoidWalls" parent="StateMachine" unique_id=1257777284 instance=ExtResource("15_sk2cx")]
-
-[node name="Chase" parent="StateMachine/AvoidWalls" unique_id=1942010174 node_paths=PackedStringArray("attack_state") instance=ExtResource("16_5deos")]
+[node name="Chase" parent="StateMachine" unique_id=1942010174 instance=ExtResource("16_5deos")]
 run_animation_name = &"idle"
-attack_state = NodePath("../../Attack")
+pursue_behavior = SubResource("Resource_je7sc")
+avoid_behavior = SubResource("Resource_pbayw")
+avoidance_weight = 1.0
 
-[node name="Physics" type="Node" parent="." unique_id=1559413533]
+[node name="Attack" parent="StateMachine" unique_id=3786132 node_paths=PackedStringArray("collision_shape") instance=ExtResource("17_j8b0m")]
+collision_shape = NodePath("../../HitBox/CollisionShape2D")
+dash_speed = 200.0
 
-[node name="Steering" type="Node" parent="Physics" unique_id=66857283]
-script = ExtResource("13_8a8uj")
-metadata/_custom_type_script = "uid://buji1uw4mpk74"
+[node name="Physics" type="Node" parent="." unique_id=1230900382]
 
-[node name="KinematicFlying" type="Node" parent="Physics" unique_id=947072571]
+[node name="KinematicFlying" type="Node" parent="Physics" unique_id=1885475018]
 script = ExtResource("18_sk2cx")
-max_speed = 200.0
+max_speed = 400.0
 metadata/_custom_type_script = "uid://b5s7k4t1gnu42"
+
+[node name="Patroling" type="Node" parent="Physics" unique_id=895872597]
+script = ExtResource("20_at3yh")
+sample_step = 3.0
+vertical_offset = 6.0
+metadata/_custom_type_script = "uid://in5s4schm5yy"
+
+[node name="Resistance" type="Node" parent="Physics" unique_id=730473082]
+script = ExtResource("24_ab6mi")
+metadata/_custom_type_script = "uid://5ekknacs16ny"
+
+[node name="Steering" type="Node" parent="Physics" unique_id=2041576786 node_paths=PackedStringArray("kinematic")]
+script = ExtResource("24_pm240")
+kinematic = NodePath("../KinematicFlying")
+metadata/_custom_type_script = "uid://cfqkwikgws0dr"
+
+[node name="Attack" type="Node" parent="." unique_id=254958841 node_paths=PackedStringArray("hit_box")]
+script = ExtResource("20_j8b0m")
+cooldown = 0.8
+distance = 64.0
+hit_box = NodePath("../HitBox")
+payload = SubResource("Resource_at3yh")
+metadata/_custom_type_script = "uid://c185jxoudbv2e"

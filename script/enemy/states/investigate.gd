@@ -1,66 +1,52 @@
 extends EnemyStateBase
 
-@export var walk_animation_name: StringName = &"walk"
+@export var stop_behavior: SteeringBehaviorBase
 @export var search_animation_name: StringName = &"walk"
-@export var search_speed: float = 120.0
-@export var arrival_distance: float = 16.0
-@export var search_duration: float = 3.5
+@export var wait_animation_name: StringName = &"idle"
+@export var arrive_behavior: Arrive
+@export var wait_time: float = 1.0
+@export var avoid_behavior: AvoidObstacles
+@export var avoidance_weight := 2.0
 
-var _remaining_search_time: float = 0.0
-var _look_direction := Vector2.RIGHT
+var _waiting := false
 
 
 func enter() -> void:
-	if enemy.can_chase():
-		_transition(&"Chase")
+	_waiting = false
+	
+	if not navigation.can_reach(perception.last_known_position()):
+		_begin_wait()
 		return
+	
+	arrive_behavior.target_position = perception.last_known_position()
+	steering.use(arrive_behavior)
+	if avoid_behavior != null:
+		avoid_behavior.navigation = navigation
+		steering.add(avoid_behavior, avoidance_weight)
+	
+	enemy.play_animation(search_animation_name)
 
-	_remaining_search_time = search_duration
+func process(_delta: float) -> void:
+	enemy.face_movement()
 
-	var to_target := perception.to_target()
-	_look_direction = to_target.normalized()
-
-	if _try_search():
-		return
-	_look_direction = -_look_direction
-	enemy.face_vector(_look_direction)
-	if _try_search():
-		return
-	_transition(&"Idle")
-
-
-
-func update(delta: float) -> StringName:
-	_remaining_search_time -= delta
-	if _remaining_search_time <= 0.0:
-		return &"Idle"
-
-	if enemy.can_chase():
+func update(_delta: float) -> StringName:
+	if perception.has_target() and navigation.can_reach(perception.last_known_position()):
 		return &"Chase"
-
-	if not _can_search():
-		_look_direction = -_look_direction
-		enemy.face_vector(_look_direction)
-		if not _try_search():
-			return &"Idle"
-
-	kinematic.add_steering(steering.velocity_match(_look_direction * search_speed))
-
+	
+	if _waiting:
+		return &""
+	
+	if arrive_behavior.has_arrived_at_target(kinematic):
+		_begin_wait()
+		return &""
+	
 	return &""
 
+func _begin_wait() -> void:
+	_waiting = true
+	steering.use(stop_behavior)
+	enemy.play_animation(wait_animation_name)
+	_state_timer(wait_time, _on_wait_finished)
 
-func _try_search() -> bool:
-	if _can_search():
-		_begin_search()
-		return true
-	return false
-
-func _begin_search() -> void:
-	enemy.face_vector(_look_direction)
-
-func _can_search() -> bool:
-	if absf(perception.to_target().x) <= arrival_distance:
-		return false
-	if navigation.has_obstacles_ahead():
-		return false
-	return true
+func _on_wait_finished() -> void:
+	_transition(&"Idle")

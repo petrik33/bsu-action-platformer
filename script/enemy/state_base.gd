@@ -9,7 +9,7 @@ var perception: EnemyPerception:
 	get():
 		return enemy.perception
 
-var navigation: EnemyNavigationBsae:
+var navigation: NavigationBase:
 	get():
 		return enemy.navigation
 
@@ -20,6 +20,14 @@ var steering: Steering:
 var kinematic: KinematicBase:
 	get():
 		return enemy.kinematic
+
+var attack: EnemyAttack:
+	get():
+		return enemy.attack
+
+var patroling: Patroling:
+	get():
+		return enemy.patroling
 
 
 func init(character_owner: CharacterBody2D):

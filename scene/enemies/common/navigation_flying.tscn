@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgq6io0faa8nr"]
 
-[ext_resource type="Script" uid="uid://dt2dj3h5u5i43" path="res://script/enemy/navigation/flying.gd" id="1_qs5qx"]
+[ext_resource type="Script" uid="uid://dt2dj3h5u5i43" path="res://script/physics/navigation/flying.gd" id="1_qs5qx"]
 
 [node name="NavigationFlying" type="Node2D" unique_id=712196497 node_paths=PackedStringArray("front_ray", "left_ray", "right_ray")]
 script = ExtResource("1_qs5qx")

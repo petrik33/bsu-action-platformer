@@ -1,78 +1,61 @@
 class_name Steering extends PhysicsNodeBase
 
+@export var kinematic: KinematicBase
 @export var max_acceleration: float = 2000
 @export var max_decceleration: float = 5000
 
-const TTT_DEFAULT := 0.05
-const TTT_STOP_DFEFAULT := TTT_DEFAULT * 0.001
+
+var _behaviors: Array[SteeringBehaviorBase] = []
+var _weights: Array[float] = []
 
 
-func seek(target_position: Vector2) -> Vector2:
-	var desired_velocity = _get_target_vector(target_position).normalized()
-	return (desired_velocity - body.velocity).limit_length(max_acceleration)
+func use(behavior: SteeringBehaviorBase) -> void:
+	reset()
+	add(behavior)
 
-func flee(target_position: Vector2) -> Vector2:
-	return -seek(target_position)
+func add(behavior: SteeringBehaviorBase, weight: float = 1.0) -> void:
+	if behavior == null or is_zero_approx(weight):
+		return
+	_behaviors.append(behavior)
+	_weights.append(weight)
 
-func arrive(
-	target_position: Vector2,
-	max_speed: float,
-	arrival_radius: float,
-	slowing_radius: float,
-	time_to_target: float = TTT_DEFAULT
-) -> Vector2:
-	var to_target = _get_target_vector(target_position)
-	var distance = to_target.length()
+func reset() -> void:
+	_behaviors.clear()
+	_weights.clear()
 
-	if distance < arrival_radius:
-		return Vector2.ZERO
+func update(delta: float) -> void:
+	if _behaviors.is_empty():
+		return
 
-	var speed_factor := clampf(distance / slowing_radius, 0.0, 1.0)
-	var target_speed := max_speed * speed_factor
+	if kinematic == null:
+		return
 
-	return velocity_match(to_target.normalized() * target_speed, time_to_target)
+	var desired_velocity := Vector2.ZERO
+	var total_weight := 0.0
 
-func pursue(
-	target: Vector2,
-	target_velocity: Vector2,
-	max_speed: float,
-	arrival_radius: float,
-	slowing_radius: float,
-	max_prediction: float = TTT_DEFAULT
-) -> Vector2:
-	var direction := _get_target_vector(target)
-	var dist := direction.length()
+	for i in _behaviors.size():
+		desired_velocity += _behaviors[i].apply(kinematic) * _weights[i]
+		total_weight += _weights[i]
 
-	var speed := body.velocity.length()
-	var time_to_target := dist / maxf(speed, 0.1)
-	var prediction := minf(time_to_target, max_prediction)
+	if total_weight > 0.0:
+		kinematic.accelerate(_limit(desired_velocity / total_weight, delta), delta)
 
-	var arrive_target := target + target_velocity * prediction
 
-	return arrive(arrive_target, max_speed, arrival_radius, slowing_radius, prediction)
+func _limit(desired_velocity: Vector2, delta: float) -> Vector2:
+	var difference := desired_velocity - kinematic.velocity
 
-func hvelocity_match(target: float, time_to_target: float = TTT_DEFAULT) -> Vector2:
-	return velocity_match(Vector2(target, body.velocity.y), time_to_target)
-
-func velocity_match(target: Vector2, time_to_target: float = TTT_DEFAULT) -> Vector2:
-	var target_acceleration := (target - body.velocity)
-	if time_to_target > 0:
-		target_acceleration /= time_to_target
 	var limit := max_acceleration
-	if is_zero_approx(target.length()):
+	if difference.dot(kinematic.velocity) < 0.0:
 		limit = max_decceleration
-	return target_acceleration.limit_length(limit)
 
-func stop(time_to_target: float = TTT_STOP_DFEFAULT) -> Vector2:
-	return velocity_match(Vector2.ZERO, time_to_target)
+	var acceleration := (difference / delta).limit_length(limit)
+	
+	return acceleration
 
-func hstop(time_to_target: float = TTT_STOP_DFEFAULT) -> Vector2:
-	return hvelocity_match(0, time_to_target)
-
-func avoid_obstacles(collision_ray: RayCast2D, distance: float) -> Vector2:
-	assert(collision_ray.is_colliding())
-	return seek(collision_ray.get_collision_point() + collision_ray.get_collision_normal() * distance)
-
-
-func _get_target_vector(target_position: Vector2) -> Vector2:
-	return target_position - body.global_position
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings := PackedStringArray()
+	if not owner is CharacterBody2D:
+		warnings.append("Steering must be a child of a CharacterBody2D")
+	if kinematic == null:
+		warnings.append("Steering needs a KinematicBase to apply acceleration to")
+	return warnings

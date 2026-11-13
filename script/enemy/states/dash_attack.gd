@@ -1,23 +1,26 @@
 extends EnemyStateBase
 
-
-@export var cooldown: float = 1.2
+@export var collision_shape: CollisionShape2D
 @export var attack_animation: StringName = &"attack"
-@export var time: float = 0.5
-@export var dash_speed: float = 200.0
-
-var _last_attack_time_msec: int = 0
+@export var time: float = 0.8
+@export var dash_speed: float = 100.0
+@export var target_offset: float = 4.0
 
 
 func enter() -> void:
-	_last_attack_time_msec = Time.get_ticks_msec()
-	kinematic.dash(perception.to_target().normalized() * dash_speed)
+	collision_shape.disabled = false
+	var dash_target := perception.to_target()
+	dash_target.y -= target_offset
+	steering.reset()
+	kinematic.dash(dash_target.normalized() * dash_speed)
 	enemy.face_vector(perception.to_target())
 	enemy.play_animation(attack_animation)
+	attack.start()
 	_state_timer(time, _on_finished)
 
-func is_ready() -> bool:
-	return Time.get_ticks_msec() >= _last_attack_time_msec + int(cooldown * 1000.0)
+func exit():
+	attack.end()
+	collision_shape.disabled = true
 
 
 func _on_finished() -> void:

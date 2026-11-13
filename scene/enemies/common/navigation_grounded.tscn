@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dbijohyvc6go"]
 
-[ext_resource type="Script" uid="uid://kp6gmiyxkl3o" path="res://script/enemy/navigation/grounded.gd" id="1_7dhvo"]
+[ext_resource type="Script" uid="uid://kp6gmiyxkl3o" path="res://script/physics/navigation/grounded.gd" id="1_7dhvo"]
 
 [node name="NavigationGrounded" type="Node2D" unique_id=2085862437 node_paths=PackedStringArray("wall_check", "floor_check")]
 script = ExtResource("1_7dhvo")
+world_mask = null
 wall_check = NodePath("WallCheck")
 floor_check = NodePath("FloorCheck")
 metadata/_custom_type_script = "uid://kp6gmiyxkl3o"

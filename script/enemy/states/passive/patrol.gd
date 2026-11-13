@@ -1,32 +1,26 @@
 extends EnemyStateBase
 
-@export var speed: float = 65.0
-@export var max_distance: float = 300.0
-
-var direction := Vector2.RIGHT
-var origin_x: float
-
 @export var walk_animation: StringName = &"walk"
+@export var arrive_behavior: Arrive
+@export var avoid_behavior: AvoidObstacles
+@export var avoidance_weight := 2.0
+
+var direction := 1.0
+
 
 func enter() -> void:
-	origin_x = enemy.global_position.x
-	direction = Vector2(enemy.facing_direction(), 0.0)
+	direction = enemy.facing_direction()
 	enemy.play_animation(walk_animation)
-	enemy.navigation.force_update()
+	arrive_behavior.target_position = patroling.get_patrol_point(direction)
+	steering.use(arrive_behavior)
+	if avoid_behavior != null:
+		avoid_behavior.navigation = navigation
+		steering.add(avoid_behavior, avoidance_weight)
 
-func process(_delta: float) -> void:
+func process(delta: float) -> void:
 	enemy.face_movement()
 
-func update(delta: float) -> StringName:
-	if enemy.navigation.has_obstacles_ahead():
+func update(_delta: float) -> StringName:
+	if arrive_behavior.has_arrived_at_target(kinematic):
 		return &"Idle"
-	
-	kinematic.add_steering(steering.velocity_match(direction * speed))
-	
-	if absf(enemy.global_position.x - origin_x) >= max_distance:
-		return &"Idle"
-	
-	if enemy.navigation.has_obstacles_ahead():
-		return &"Idle"
-	
 	return &""

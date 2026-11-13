@@ -1,6 +1,5 @@
 extends HeroStateBase
 
-
 @export_group("Animation Thresholds")
 @export var sprint_threshold: float = 500.0
 @export var run_threshold: float = 250.0
@@ -20,7 +19,7 @@ extends HeroStateBase
 var _current_multiplier := 1.0
 
 
-func process(delta: float) -> void:
+func process(_delta: float) -> void:
 	var speed := absf(hero.velocity.x)
 	
 	if speed > sprint_threshold:
@@ -33,7 +32,7 @@ func process(delta: float) -> void:
 		hero.play_animation(idle_animation)
 
 
-func update(delta: float) -> StringName:
+func update(_delta: float) -> StringName:
 	if Input.is_action_just_pressed("walk"):
 		_current_multiplier = walk_multiplier if not is_equal_approx(_current_multiplier, walk_multiplier) else run_multiplier
 	elif Input.is_action_just_pressed("sprint"):

@@ -1,17 +1,14 @@
 extends EnemyStateBase
 
+@export var stop_behavior: SteeringBehaviorBase
 @export var alert_time: float = 0.6
 
 
 func enter() -> void:
+	steering.use(stop_behavior)
 	enemy.face_vector(perception.to_target())
 	enemy.play_alert_vfx(alert_time)
 	_state_timer(alert_time, _on_finished)
-
-func update(delta: float) -> StringName:
-	kinematic.add_steering(steering.hstop())
-	return &""
-
 
 func _on_finished() -> void:
 	if perception.has_target():

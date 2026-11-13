@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dwik25yehg46n" path="res://script/hero.gd" id="1_yn7hy"]
 [ext_resource type="Texture2D" uid="uid://bw1qcjbm7b05g" path="res://asset/texture/water_priestess/13_take_hit/take_hit_1.png" id="2_4j8lu"]
 [ext_resource type="Texture2D" uid="uid://dg2imrkv6f8uw" path="res://asset/texture/water_priestess/01_idle/idle_1.png" id="2_a16k5"]
+[ext_resource type="Script" uid="uid://bt5phod8n7len" path="res://script/physics/steering/behavior/horizontal/velocity_match.gd" id="2_lirr0"]
 [ext_resource type="Texture2D" uid="uid://dl0s8o0je2kqd" path="res://asset/texture/water_priestess/07_1_atk/1_atk_1.png" id="2_ve7ek"]
 [ext_resource type="Texture2D" uid="uid://323auhp6trhn" path="res://asset/texture/water_priestess/air_atk/air_atk_1.png" id="2_yn7hy"]
 [ext_resource type="Texture2D" uid="uid://p46xxigobvmm" path="res://asset/texture/water_priestess/13_take_hit/take_hit_2.png" id="3_5tou6"]
@@ -183,8 +184,14 @@
 [ext_resource type="PackedScene" uid="uid://bexnfq44abe3q" path="res://scene/character/states/incapacitated/hurt.tscn" id="174_2d3a3"]
 [ext_resource type="PackedScene" uid="uid://depht2awncffo" path="res://scene/character/states/action/air_attack.tscn" id="175_4q8yv"]
 [ext_resource type="PackedScene" uid="uid://k6fdi54ai135" path="res://scene/character/states/incapacitated/death.tscn" id="175_exqgt"]
-[ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="187_lp3au"]
+[ext_resource type="Script" uid="uid://67q1hh18rykp" path="res://script/physics/kinematic/grounded.gd" id="186_yn7hy"]
+[ext_resource type="Script" uid="uid://5ekknacs16ny" path="res://script/physics/resistance.gd" id="187_lirr0"]
+[ext_resource type="Script" uid="uid://cfqkwikgws0dr" path="res://script/physics/steering.gd" id="187_lp3au"]
 [ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="188_lirr0"]
+
+[sub_resource type="Resource" id="Resource_jpikk"]
+script = ExtResource("2_lirr0")
+metadata/_custom_type_script = "uid://bt5phod8n7len"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dn53k"]
 animations = [{
@@ -1002,14 +1009,17 @@ _data = {
 &"attack3": SubResource("Animation_ytxcy")
 }
 
-[node name="WaterPriestess" type="CharacterBody2D" unique_id=656407729 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "visuals", "sprite", "animation_player", "origin") groups=["player"]]
+[node name="WaterPriestess" type="CharacterBody2D" unique_id=656407729 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "resistance", "kinematic", "visuals", "sprite", "animation_player", "origin") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_yn7hy")
 state_machine = NodePath("StateMachine")
 hit_box = NodePath("Visuals/HitBox")
 hurt_box = NodePath("Visuals/Origin/HurtBox")
-steering = NodePath("Steering")
-gravity = NodePath("Gravity")
+steering = NodePath("Physics/Steering")
+gravity = NodePath("Physics/Gravity")
+resistance = NodePath("Physics/Resistance")
+move_behavior = SubResource("Resource_jpikk")
+kinematic = NodePath("Physics/KinematicGrounded")
 visuals = NodePath("Visuals")
 sprite = NodePath("Visuals/AnimatedSprite2D")
 animation_player = NodePath("AnimationPlayer")
@@ -1088,7 +1098,10 @@ animation_name = &"jump_up"
 animation_name = &"jump_down"
 
 [node name="Roll" parent="StateMachine/Locomotion" unique_id=185626220 instance=ExtResource("171_3kien")]
+roll_speed = null
+roll_duration = null
 roll_animation = &"tumble"
+invulnerable_during_roll = null
 
 [node name="Action" parent="StateMachine" unique_id=842032143 instance=ExtResource("170_lp3au")]
 
@@ -1098,6 +1111,8 @@ animation_time = Array[float]([0.45, 0.35, 0.5])
 [node name="Aim" parent="StateMachine/Action" unique_id=109740685 instance=ExtResource("172_jpikk")]
 
 [node name="AirAttack" parent="StateMachine/Action" unique_id=1996409664 instance=ExtResource("175_4q8yv")]
+animation_name = null
+time = null
 
 [node name="Incapacitated" parent="StateMachine" unique_id=740572724 instance=ExtResource("173_rr87g")]
 
@@ -1105,8 +1120,20 @@ animation_time = Array[float]([0.45, 0.35, 0.5])
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("175_exqgt")]
 
-[node name="Steering" type="Node" parent="." unique_id=17516991]
-script = ExtResource("187_lp3au")
-metadata/_custom_type_script = "uid://buji1uw4mpk74"
+[node name="Physics" type="Node" parent="." unique_id=1034351560]
 
-[node name="Gravity" parent="." unique_id=80762626 instance=ExtResource("188_lirr0")]
+[node name="Gravity" parent="Physics" unique_id=80762626 instance=ExtResource("188_lirr0")]
+
+[node name="Steering" type="Node" parent="Physics" unique_id=2066366034 node_paths=PackedStringArray("kinematic")]
+script = ExtResource("187_lp3au")
+kinematic = NodePath("../KinematicGrounded")
+metadata/_custom_type_script = "uid://cfqkwikgws0dr"
+
+[node name="KinematicGrounded" type="Node" parent="Physics" unique_id=579204513]
+script = ExtResource("186_yn7hy")
+max_speed = 600.0
+metadata/_custom_type_script = "uid://67q1hh18rykp"
+
+[node name="Resistance" type="Node" parent="Physics" unique_id=394842530]
+script = ExtResource("187_lirr0")
+metadata/_custom_type_script = "uid://5ekknacs16ny"

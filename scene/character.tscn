@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dw4q416nx8pd5"]
 
 [ext_resource type="Script" uid="uid://dwik25yehg46n" path="res://script/hero.gd" id="1_7s5o7"]
+[ext_resource type="Script" uid="uid://bt5phod8n7len" path="res://script/physics/steering/behavior/horizontal/velocity_match.gd" id="2_3lse3"]
 [ext_resource type="Texture2D" uid="uid://cyems2rhg4r7" path="res://asset/texture/character/character_recolored_no_vfx.png" id="2_d7vt2"]
 [ext_resource type="Texture2D" uid="uid://bctpt2ofrqnlf" path="res://asset/texture/character/sword/Attack1.png" id="3_d7vt2"]
 [ext_resource type="Texture2D" uid="uid://dmawkigs4d5gs" path="res://asset/texture/character/sword/Attack2.png" id="4_a748v"]
@@ -14,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bejmpipnu481a" path="res://scene/character/states/locomotion/grounded/move.tscn" id="8_0qvrh"]
 [ext_resource type="PackedScene" uid="uid://cgbn8bkj1hks5" path="res://scene/character/states/locomotion/airborne.tscn" id="12_7s5o7"]
 [ext_resource type="PackedScene" uid="uid://dsflokmpqtns7" path="res://scene/character/states/locomotion/airborne/jump.tscn" id="13_w420j"]
+[ext_resource type="Script" uid="uid://cewda2wmnhl21" path="res://script/physics/steering/behavior/horizontal/stop.gd" id="14_g6y8q"]
 [ext_resource type="PackedScene" uid="uid://ciuiv751od242" path="res://scene/character/states/locomotion/airborne/fall.tscn" id="14_sdelk"]
 [ext_resource type="PackedScene" uid="uid://c5d84xi7jty73" path="res://scene/character/states/action.tscn" id="15_ckk4y"]
 [ext_resource type="PackedScene" uid="uid://d0cfhvoyngupi" path="res://scene/character/states/action/roll.tscn" id="15_x2uf3"]
@@ -23,8 +25,16 @@
 [ext_resource type="PackedScene" uid="uid://bexnfq44abe3q" path="res://scene/character/states/incapacitated/hurt.tscn" id="19_ud0a3"]
 [ext_resource type="PackedScene" uid="uid://k6fdi54ai135" path="res://scene/character/states/incapacitated/death.tscn" id="20_0qvrh"]
 [ext_resource type="Script" uid="uid://67q1hh18rykp" path="res://script/physics/kinematic/grounded.gd" id="25_7s5o7"]
-[ext_resource type="Script" uid="uid://buji1uw4mpk74" path="res://script/physics/steering.gd" id="26_sdelk"]
+[ext_resource type="Script" uid="uid://5ekknacs16ny" path="res://script/physics/resistance.gd" id="25_sdelk"]
+[ext_resource type="Script" uid="uid://cfqkwikgws0dr" path="res://script/physics/steering.gd" id="26_3lse3"]
+[ext_resource type="Script" uid="uid://cs70gybpkbh24" path="res://script/combat/attack.gd" id="26_ckk4y"]
+[ext_resource type="Script" uid="uid://li44jwhydfh1" path="res://script/combat/attack/payload.gd" id="27_3lse3"]
 [ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="27_ckk4y"]
+
+[sub_resource type="Resource" id="Resource_ypgq8"]
+resource_local_to_scene = true
+script = ExtResource("2_3lse3")
+metadata/_custom_type_script = "uid://bt5phod8n7len"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lp7ui"]
 size = Vector2(7, 20)
@@ -1376,7 +1386,31 @@ _data = {
 &"attack3": SubResource("Animation_cnvcp")
 }
 
-[node name="Character" type="CharacterBody2D" unique_id=649276059 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "kinematic", "visuals", "sprite", "animation_player") groups=["player"]]
+[sub_resource type="Resource" id="Resource_t4y7t"]
+script = ExtResource("14_g6y8q")
+metadata/_custom_type_script = "uid://cewda2wmnhl21"
+
+[sub_resource type="Resource" id="Resource_g6y8q"]
+script = ExtResource("27_3lse3")
+hitstun = 0.0
+knockback_y = 0.4
+metadata/_custom_type_script = "uid://li44jwhydfh1"
+
+[sub_resource type="Resource" id="Resource_7u363"]
+script = ExtResource("27_3lse3")
+knockback_force = 125.0
+hitstun = 0.0
+knockback_y = 0.6
+metadata/_custom_type_script = "uid://li44jwhydfh1"
+
+[sub_resource type="Resource" id="Resource_0hf0l"]
+script = ExtResource("27_3lse3")
+knockback_force = 175.0
+hitstun = 0.0
+knockback_y = 0.4
+metadata/_custom_type_script = "uid://li44jwhydfh1"
+
+[node name="Character" type="CharacterBody2D" unique_id=649276059 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "resistance", "kinematic", "visuals", "sprite", "animation_player") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_7s5o7")
 state_machine = NodePath("StateMachine")
@@ -1384,7 +1418,11 @@ hit_box = NodePath("Visuals/HitBox")
 hurt_box = NodePath("Visuals/HurtBox")
 steering = NodePath("Physics/Steering")
 gravity = NodePath("Physics/Gravity")
+resistance = NodePath("Physics/Resistance")
+move_behavior = SubResource("Resource_ypgq8")
 kinematic = NodePath("Physics/KinematicGrounded")
+base_speed = 350.0
+jump_speed = 325.0
 visuals = NodePath("Visuals")
 sprite = NodePath("Visuals/Base")
 animation_player = NodePath("AnimationPlayer")
@@ -1457,6 +1495,7 @@ roll_animation = &"dash"
 [node name="Grounded" parent="StateMachine/Locomotion" unique_id=2122582834 instance=ExtResource("6_5hcsl")]
 
 [node name="Idle" parent="StateMachine/Locomotion/Grounded" unique_id=1808960593 instance=ExtResource("7_ud0a3")]
+stop_behavior = SubResource("Resource_t4y7t")
 
 [node name="Move" parent="StateMachine/Locomotion/Grounded" unique_id=2105850077 instance=ExtResource("8_0qvrh")]
 sprint_threshold = 450.0
@@ -1469,7 +1508,8 @@ sprint_threshold = 450.0
 
 [node name="Action" parent="StateMachine" unique_id=842032143 instance=ExtResource("15_ckk4y")]
 
-[node name="Attack" parent="StateMachine/Action" unique_id=912385043 instance=ExtResource("16_3lse3")]
+[node name="Attack" parent="StateMachine/Action" unique_id=912385043 node_paths=PackedStringArray("attacks") instance=ExtResource("16_3lse3")]
+attacks = [NodePath("../../../Attacks/Attack"), NodePath("../../../Attacks/Attack2"), NodePath("../../../Attacks/Attack3")]
 animation_time = Array[float]([0.4, 0.4, 0.4])
 
 [node name="Aim" parent="StateMachine/Action" unique_id=109740685 instance=ExtResource("17_g6y8q")]
@@ -1482,13 +1522,38 @@ animation_time = Array[float]([0.4, 0.4, 0.4])
 
 [node name="Physics" type="Node" parent="." unique_id=561106528]
 
-[node name="Steering" type="Node" parent="Physics" unique_id=878888465]
-script = ExtResource("26_sdelk")
-metadata/_custom_type_script = "uid://buji1uw4mpk74"
-
 [node name="Gravity" parent="Physics" unique_id=80762626 instance=ExtResource("27_ckk4y")]
 
 [node name="KinematicGrounded" type="Node" parent="Physics" unique_id=1387047291]
 script = ExtResource("25_7s5o7")
 max_speed = 600.0
 metadata/_custom_type_script = "uid://67q1hh18rykp"
+
+[node name="Resistance" type="Node" parent="Physics" unique_id=621531622]
+script = ExtResource("25_sdelk")
+metadata/_custom_type_script = "uid://5ekknacs16ny"
+
+[node name="Steering" type="Node" parent="Physics" unique_id=1864347749 node_paths=PackedStringArray("kinematic")]
+script = ExtResource("26_3lse3")
+kinematic = NodePath("../KinematicGrounded")
+metadata/_custom_type_script = "uid://cfqkwikgws0dr"
+
+[node name="Attacks" type="Node" parent="." unique_id=1563046933]
+
+[node name="Attack" type="Node" parent="Attacks" unique_id=338032006 node_paths=PackedStringArray("hit_box")]
+script = ExtResource("26_ckk4y")
+hit_box = NodePath("../../Visuals/HitBox")
+payload = SubResource("Resource_g6y8q")
+metadata/_custom_type_script = "uid://cs70gybpkbh24"
+
+[node name="Attack2" type="Node" parent="Attacks" unique_id=1667936605 node_paths=PackedStringArray("hit_box")]
+script = ExtResource("26_ckk4y")
+hit_box = NodePath("../../Visuals/HitBox")
+payload = SubResource("Resource_7u363")
+metadata/_custom_type_script = "uid://cs70gybpkbh24"
+
+[node name="Attack3" type="Node" parent="Attacks" unique_id=520287786 node_paths=PackedStringArray("hit_box")]
+script = ExtResource("26_ckk4y")
+hit_box = NodePath("../../Visuals/HitBox")
+payload = SubResource("Resource_0hf0l")
+metadata/_custom_type_script = "uid://cs70gybpkbh24"

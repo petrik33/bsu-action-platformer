@@ -6,6 +6,8 @@ class_name Hero extends Actor
 @export var hurt_box: HurtBox
 @export var steering: Steering
 @export var gravity: Gravity
+@export var resistance: Resistance
+@export var move_behavior: HorizontalVelocityMatch
 @export var kinematic: KinematicGrounded
 
 @export var base_speed: float = 400
@@ -31,21 +33,28 @@ func _physics_process(delta: float) -> void:
 	if gravity:
 		gravity.apply(delta)
 		
+	if resistance:
+		resistance.apply(delta)
+		
 	state_machine.update(delta)
 		
-	if kinematic:
-		kinematic.apply_steering(delta, steering.max_acceleration)
+	if steering:
+		steering.update(delta)
 		
 	if is_on_floor():
 		jumps_left = 2
 
 func move_horizontally(speed_multiplier: float = 1.0):
-	var target_hvelocity := movement_direction * base_speed * speed_multiplier
-	kinematic.add_steering(steering.hvelocity_match(target_hvelocity))
+	move_behavior.velocity = movement_direction * base_speed * speed_multiplier
+	steering.use(move_behavior)
 
 func hurt(attack_data: AttackData):
 	last_hurt = attack_data
 	state_machine.request_transition(&"Hurt")
+
+func set_resistance(value: bool) -> void:
+	if resistance:
+		resistance.enabled = value
 
 func set_invulnerable(value: bool) -> void:
 	if hurt_box:

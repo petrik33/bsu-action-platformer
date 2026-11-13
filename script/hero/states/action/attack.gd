@@ -1,8 +1,8 @@
 class_name HeroAttackState extends HeroStateBase
 
-
 @export var lock_speed_multiplier: float = 0.1
 @export var combo_animations: Array[StringName] = [&"attack", &"attack2", &"attack3"]
+@export var attacks: Array[Attack] = []
 @export var animation_time: Array[float] = [-1.0, -1.0, -1.0]
 
 var combo_index: int = 0
@@ -19,7 +19,10 @@ func enter():
 
 	_start_attack()
 
-func update(delta: float) -> StringName:
+func exit():
+	attacks[combo_index].end()
+
+func update(_delta: float) -> StringName:
 	hero.move_horizontally(lock_speed_multiplier)
 	
 	if Input.is_action_just_pressed("click"):
@@ -33,6 +36,8 @@ func _start_attack():
 	if time < 0:
 		time = 0.4
 	
+	var attack := attacks[combo_index]
+	attack.start()
 	hero.play_animation(anim_name, time)
 	_state_timer(time, _on_finished)
 
