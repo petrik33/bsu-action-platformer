@@ -7,21 +7,15 @@ class_name Patroling extends PhysicsNodeBase
 @export var floor_check_depth: float = 256.0
 @export var vertical_offset: float = 0.0
 
-var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-
 const PROBE_OFFSET := Vector2(0.0, -4.0)
 
-
-func _ready():
-	super()
-	rng.randomize()
 
 ## Returns Vector2.INF if none can be found
 func get_home_point() -> Vector2:
 	return _ground_position(body.global_position)
 
 ## Returns Vector2.INF if none can be found
-func get_patrol_point(direction: float) -> Vector2:
+func get_patrol_point(rng: RandomNumberGenerator, direction: float) -> Vector2:
 	var home_point := get_home_point()
 	if home_point == Vector2.INF:
 		return Vector2.INF

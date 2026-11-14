@@ -29,6 +29,10 @@ var patroling: Patroling:
 	get():
 		return enemy.patroling
 
+var rng: RandomNumberGenerator:
+	get():
+		return enemy.rng
+
 
 func init(character_owner: CharacterBody2D):
 	super.init(character_owner)

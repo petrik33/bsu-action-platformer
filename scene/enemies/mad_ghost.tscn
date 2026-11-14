@@ -225,13 +225,13 @@ size = Vector2(12, 55)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1sfn"]
 size = Vector2(24, 37.5)
 
-[sub_resource type="Resource" id="Resource_8a8uj"]
+[sub_resource type="Resource" id="Resource_pm240"]
 resource_local_to_scene = true
 script = ExtResource("11_at3yh")
 max_speed = 75.0
 metadata/_custom_type_script = "uid://cy47hkott4sne"
 
-[sub_resource type="Resource" id="Resource_vyu2f"]
+[sub_resource type="Resource" id="Resource_kad8c"]
 resource_local_to_scene = true
 script = ExtResource("12_8a8uj")
 max_speed = 75.0
@@ -246,13 +246,13 @@ metadata/_custom_type_script = "uid://dydc0i285p3v8"
 script = ExtResource("14_vyu2f")
 metadata/_custom_type_script = "uid://dydc0i285p3v8"
 
-[sub_resource type="Resource" id="Resource_pm240"]
+[sub_resource type="Resource" id="Resource_je7sc"]
 resource_local_to_scene = true
 script = ExtResource("11_at3yh")
 max_speed = 125.0
 metadata/_custom_type_script = "uid://cy47hkott4sne"
 
-[sub_resource type="Resource" id="Resource_kad8c"]
+[sub_resource type="Resource" id="Resource_pbayw"]
 resource_local_to_scene = true
 script = ExtResource("12_8a8uj")
 max_speed = 125.0
@@ -262,14 +262,14 @@ metadata/_custom_type_script = "uid://1wi2n5nrkn0v"
 script = ExtResource("14_vyu2f")
 metadata/_custom_type_script = "uid://dydc0i285p3v8"
 
-[sub_resource type="Resource" id="Resource_je7sc"]
+[sub_resource type="Resource" id="Resource_sx1cf"]
 resource_local_to_scene = true
 script = ExtResource("19_x07og")
 max_speed = 200.0
 slowing_radius = 16.0
 metadata/_custom_type_script = "uid://dic1ws4407njb"
 
-[sub_resource type="Resource" id="Resource_pbayw"]
+[sub_resource type="Resource" id="Resource_gnucc"]
 resource_local_to_scene = true
 script = ExtResource("12_8a8uj")
 max_speed = 200.0
@@ -351,8 +351,8 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 
 [node name="Patrol" parent="StateMachine/Passive" unique_id=1114917989 instance=ExtResource("7_50wr2")]
 walk_animation = &"idle"
-arrive_behavior = SubResource("Resource_8a8uj")
-avoid_behavior = SubResource("Resource_vyu2f")
+arrive_behavior = SubResource("Resource_pm240")
+avoid_behavior = SubResource("Resource_kad8c")
 
 [node name="Idle" parent="StateMachine/Passive" unique_id=2005035550 instance=ExtResource("6_te2bj")]
 stop_behavior = SubResource("Resource_x07og")
@@ -363,16 +363,16 @@ knockback_vertically = false
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("11_qjv1p")]
 stop_behavior = SubResource("Resource_ab6mi")
 search_animation_name = &"idle"
-arrive_behavior = SubResource("Resource_pm240")
-avoid_behavior = SubResource("Resource_kad8c")
+arrive_behavior = SubResource("Resource_je7sc")
+avoid_behavior = SubResource("Resource_pbayw")
 
 [node name="Alert" parent="StateMachine" unique_id=1829192895 instance=ExtResource("12_at3yh")]
 stop_behavior = SubResource("Resource_jh5xk")
 
 [node name="Chase" parent="StateMachine" unique_id=1942010174 instance=ExtResource("16_5deos")]
 run_animation_name = &"idle"
-pursue_behavior = SubResource("Resource_je7sc")
-avoid_behavior = SubResource("Resource_pbayw")
+pursue_behavior = SubResource("Resource_sx1cf")
+avoid_behavior = SubResource("Resource_gnucc")
 avoidance_weight = 1.0
 
 [node name="Attack" parent="StateMachine" unique_id=3786132 node_paths=PackedStringArray("collision_shape") instance=ExtResource("17_j8b0m")]
@@ -389,7 +389,7 @@ metadata/_custom_type_script = "uid://b5s7k4t1gnu42"
 [node name="Patroling" type="Node" parent="Physics" unique_id=895872597]
 script = ExtResource("20_at3yh")
 sample_step = 3.0
-vertical_offset = 6.0
+vertical_offset = 8.0
 metadata/_custom_type_script = "uid://in5s4schm5yy"
 
 [node name="Resistance" type="Node" parent="Physics" unique_id=730473082]

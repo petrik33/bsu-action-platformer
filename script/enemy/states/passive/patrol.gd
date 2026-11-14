@@ -11,7 +11,7 @@ var direction := 1.0
 func enter() -> void:
 	direction = enemy.facing_direction()
 	enemy.play_animation(walk_animation)
-	arrive_behavior.target_position = patroling.get_patrol_point(direction)
+	arrive_behavior.target_position = patroling.get_patrol_point(rng, direction)
 	steering.use(arrive_behavior)
 	if avoid_behavior != null:
 		avoid_behavior.navigation = navigation

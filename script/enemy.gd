@@ -13,12 +13,12 @@ class_name Enemy extends Actor
 @export var kinematic: KinematicBase
 @export var attack: EnemyAttack
 
-@export var jump_speed: float = 300
-
+var rng := RandomNumberGenerator.new()
 var last_hurt: AttackData
 
 
 func _ready() -> void:
+	rng.seed = int(floorf(global_position.x - global_position.y))
 	hurt_box.hit_received.connect(_on_hit_received)
 	state_machine.initialize(self)
 
@@ -41,14 +41,6 @@ func _physics_process(delta: float) -> void:
 		
 	if steering:
 		steering.update(delta)
-
-func can_jump() -> bool:
-	return is_on_floor()
-
-func jump() -> void:
-	if not is_on_floor():
-		return
-	velocity.y = -jump_speed
 
 func can_attack(to_target: Vector2) -> bool:
 	return attack.is_ready() and attack.in_distance(to_target)
