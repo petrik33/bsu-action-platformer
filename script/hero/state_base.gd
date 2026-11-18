@@ -14,6 +14,6 @@ var kinematic: KinematicBase:
 		return hero.kinematic
 
 
-func init(character_owner: CharacterBody2D):
-	super.init(character_owner)
+func init(character_owner: CharacterBody2D, owner_machine: CharacterStateMachine):
+	super.init(character_owner, owner_machine)
 	assert(hero != null, "Can't use GameCharacterState in non-character FSM")

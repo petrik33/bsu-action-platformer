@@ -4,9 +4,5 @@ extends EnemyStateBase
 @export var time: float = 0.3
 
 func enter():
-	enemy.play_animation(hurt_animation, time)
-	_state_timer(time, _on_finished)
-
-
-func _on_finished():
-	_transition(&"Idle")
+	enemy.play_animation(hurt_animation, time, true)
+	_schedule_transition(time, &"Idle")

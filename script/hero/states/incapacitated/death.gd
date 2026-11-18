@@ -6,7 +6,4 @@ extends HeroStateBase
 func enter():
 	kinematic.full_stop()
 	hero.play_animation(death_animation, time)
-	_state_timer(time, _on_finished)
-
-func _on_finished():
-	_transition(&"Idle")
+	_schedule_transition(time, &"Idle")

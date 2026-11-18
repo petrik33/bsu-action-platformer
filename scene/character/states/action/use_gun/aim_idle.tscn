@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ejdwe3vtlt5e"]
+
+[ext_resource type="Script" uid="uid://vw1rb1fkviiw" path="res://script/hero/states/action/use_gun/aim_idle.gd" id="1_l0qko"]
+
+[node name="AimIdle" type="Node" unique_id=761822642]
+script = ExtResource("1_l0qko")
+metadata/_custom_type_script = "uid://cob6ddl21va62"

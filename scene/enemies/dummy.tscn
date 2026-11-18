@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://byxebin6wflxt" path="res://scene/enemies/dummy/hurt_state.tscn" id="6_i4rh1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yniqp"]
-size = Vector2(33, 39)
+size = Vector2(33, 27.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ofa2e"]
 atlas = ExtResource("2_crlft")
@@ -67,7 +67,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3dak8")
 }],
-"loop": false,
+"loop": 0,
 "name": &"hurt",
 "speed": 16.0
 }, {
@@ -75,7 +75,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rm4py")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }]
@@ -93,7 +93,7 @@ sprite = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1887227417]
-position = Vector2(1, -19)
+position = Vector2(1, -24.75)
 shape = SubResource("RectangleShape2D_yniqp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=326935759]
@@ -106,6 +106,7 @@ frame = 6
 frame_progress = 1.0
 
 [node name="HurtBox" parent="." unique_id=1463069577 instance=ExtResource("4_crlft")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=275598928]
 position = Vector2(1.5, -19.5)

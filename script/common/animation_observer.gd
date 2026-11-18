@@ -21,6 +21,29 @@ func _ready() -> void:
 		sprite.frame_changed.connect(_on_frame_changed)
 	sprite.animation_changed.connect(_on_animation_changed)
 
+func subscribe(on_entered: Callable, on_exited: Callable):
+	subscribe_entered(on_entered)
+	subscrib_exited(on_exited)
+
+func unsubscribe(on_entered: Callable, on_exited: Callable):
+	unsubscribe_entered(on_entered)
+	unsubscrib_exited(on_exited)
+
+func subscribe_entered(on_entered: Callable):
+	frame_entered.connect(on_entered)
+	if _is_currently_active:
+		on_entered.call()
+
+func subscrib_exited(on_exited: Callable):
+	frame_exited.connect(on_exited)
+
+func unsubscribe_entered(on_entered: Callable):
+	frame_entered.disconnect(on_entered)
+
+func unsubscrib_exited(on_exited: Callable):
+	frame_exited.disconnect(on_exited)
+
+
 func _on_frame_changed() -> void:
 	var matches_condition := (sprite.frame == frame)
 	
@@ -35,6 +58,7 @@ func _on_animation_changed() -> void:
 	if sprite.animation == animation:
 		if not sprite.frame_changed.is_connected(_on_frame_changed):
 			sprite.frame_changed.connect(_on_frame_changed)
+			_on_frame_changed()
 	elif sprite.frame_changed.is_connected(_on_frame_changed):
 		sprite.frame_changed.disconnect(_on_frame_changed)
 		if _is_currently_active:

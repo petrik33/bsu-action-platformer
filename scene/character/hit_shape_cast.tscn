@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://celilbslau3vy"]
+
+[ext_resource type="Script" uid="uid://cecpv6ikywqer" path="res://script/combat/hit_shape_cast.gd" id="1_jswnv"]
+
+[node name="HitShapeCast" type="ShapeCast2D" unique_id=951308724]
+target_position = Vector2(50, 0)
+collision_mask = 64
+collide_with_areas = true
+script = ExtResource("1_jswnv")
+metadata/_custom_type_script = "uid://cecpv6ikywqer"

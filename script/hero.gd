@@ -28,6 +28,9 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
+	if is_on_floor():
+		jumps_left = 2
+	
 	movement_direction = signf(Input.get_axis("left", "right"))
 		
 	if gravity:
@@ -40,9 +43,9 @@ func _physics_process(delta: float) -> void:
 		
 	if steering:
 		steering.update(delta)
-		
-	if is_on_floor():
-		jumps_left = 2
+
+func _exit_tree() -> void:
+	state_machine.terminate()
 
 func move_horizontally(speed_multiplier: float = 1.0):
 	move_behavior.velocity = movement_direction * base_speed * speed_multiplier

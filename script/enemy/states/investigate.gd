@@ -46,7 +46,4 @@ func _begin_wait() -> void:
 	_waiting = true
 	steering.use(stop_behavior)
 	enemy.play_animation(wait_animation_name)
-	_state_timer(wait_time, _on_wait_finished)
-
-func _on_wait_finished() -> void:
-	_transition(&"Idle")
+	_schedule_transition(wait_time, &"Idle")

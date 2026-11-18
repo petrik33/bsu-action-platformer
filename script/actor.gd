@@ -33,19 +33,23 @@ func face(direction: float):
 func facing_direction() -> float:
 	return sign(visuals.scale.x)
 
+func facing_vector() -> Vector2:
+	return Vector2(facing_direction(), 0.0)
+
 func get_current_animation() -> StringName:
 	return current_animation
 
 func turn_around():
 	face(-facing_direction())
 
-func play_animation(anim_name: StringName, time: float = -1.0):
-	if current_animation == anim_name:
+func play_animation(anim_name: StringName, time: float = -1.0, restart: bool = false):
+	if current_animation == anim_name and not restart:
 		return
 	
 	current_animation = anim_name
 	sprite.stop()
 	if animation_player and animation_player.has_animation(anim_name):
+		animation_player.stop()
 		var animation_speed := Utils.get_anim_player_target_speed(
 			animation_player, anim_name, time
 		)

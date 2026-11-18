@@ -5,7 +5,7 @@ extends HeroStateBase
 
 
 func enter():
-	_state_timer(knockback_time, _on_finished)
+	_schedule_transition(knockback_time, &"Idle")
 	hero.play_animation(hurt_animation)
 	kinematic.dash(hero.last_hurt.knockback)
 	hero.face(signf(-hero.velocity.x))
@@ -13,6 +13,3 @@ func enter():
 
 func exit():
 	hero.set_resistance(false)
-
-func _on_finished():
-	_transition(&"Idle")

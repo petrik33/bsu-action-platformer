@@ -16,12 +16,8 @@ func enter() -> void:
 	enemy.face_vector(perception.to_target())
 	enemy.play_animation(attack_animation)
 	attack.start()
-	_state_timer(time, _on_finished)
+	_schedule_transition(time, &"Chase")
 
 func exit():
 	attack.end()
 	collision_shape.disabled = true
-
-
-func _on_finished() -> void:
-	_transition(&"Chase")

@@ -12,6 +12,7 @@ class_name Enemy extends Actor
 @export var patroling: Patroling
 @export var kinematic: KinematicBase
 @export var attack: EnemyAttack
+@export var passive: bool = true
 
 var rng := RandomNumberGenerator.new()
 var last_hurt: AttackData
@@ -41,6 +42,9 @@ func _physics_process(delta: float) -> void:
 		
 	if steering:
 		steering.update(delta)
+
+func _exit_tree() -> void:
+	state_machine.terminate()
 
 func can_attack(to_target: Vector2) -> bool:
 	return attack.is_ready() and attack.in_distance(to_target)

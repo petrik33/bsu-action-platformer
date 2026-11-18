@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://0xnmkpcpsuk1"]
+
+[ext_resource type="Script" uid="uid://dkgmvjxnvhs1f" path="res://script/hero/states/action/use_gun/shoot.gd" id="1_gqrdx"]
+
+[node name="Shoot" type="Node" unique_id=1814684570]
+script = ExtResource("1_gqrdx")
+metadata/_custom_type_script = "uid://4aklut8hj6r1"

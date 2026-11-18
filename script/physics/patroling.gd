@@ -27,6 +27,8 @@ func get_patrol_point(rng: RandomNumberGenerator, direction: float) -> Vector2:
 
 	while travel <= selected_distance:
 		var probe := home_point + Vector2(horizontal * travel, 0.0)
+		if not _has_ground(probe):
+			break
 		var probe_ground := _ground_position(probe)
 		if not _is_clear(home_point, probe):
 			break

@@ -184,7 +184,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_srgcj")
 }],
-"loop": false,
+"loop": 0,
 "name": &"attack",
 "speed": 14.0
 }, {
@@ -219,7 +219,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wgla1")
 }],
-"loop": false,
+"loop": 0,
 "name": &"death",
 "speed": 20.0
 }, {
@@ -230,7 +230,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nxtip")
 }],
-"loop": false,
+"loop": 0,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -247,7 +247,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u06k2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 4.0
 }, {
@@ -264,7 +264,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lkhaw")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 8.0
 }]
@@ -298,7 +298,7 @@ metadata/_custom_type_script = "uid://cewda2wmnhl21"
 script = ExtResource("18_30p3m")
 metadata/_custom_type_script = "uid://cewda2wmnhl21"
 
-[sub_resource type="Resource" id="Resource_30p3m"]
+[sub_resource type="Resource" id="Resource_amfhk"]
 resource_local_to_scene = true
 script = ExtResource("18_koy3s")
 metadata/_custom_type_script = "uid://bbtve5kjayupf"
@@ -307,7 +307,7 @@ metadata/_custom_type_script = "uid://bbtve5kjayupf"
 script = ExtResource("18_30p3m")
 metadata/_custom_type_script = "uid://cewda2wmnhl21"
 
-[sub_resource type="Resource" id="Resource_amfhk"]
+[sub_resource type="Resource" id="Resource_si4vy"]
 resource_local_to_scene = true
 script = ExtResource("22_mn5wp")
 metadata/_custom_type_script = "uid://dshykxflhegna"
@@ -407,14 +407,14 @@ stop_behavior = SubResource("Resource_w0o5q")
 
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("13_rtlgi")]
 stop_behavior = SubResource("Resource_mn5wp")
-arrive_behavior = SubResource("Resource_30p3m")
+arrive_behavior = SubResource("Resource_amfhk")
 
 [node name="Alert" parent="StateMachine" unique_id=1829192895 instance=ExtResource("17_0c3hi")]
 stop_behavior = SubResource("Resource_dxho3")
 
 [node name="Chase" parent="StateMachine" unique_id=1942010174 instance=ExtResource("10_8l2p6")]
 run_animation_name = &"walk"
-pursue_behavior = SubResource("Resource_amfhk")
+pursue_behavior = SubResource("Resource_si4vy")
 avoidance_weight = 0.0
 
 [node name="Physics" type="Node" parent="." unique_id=1691308413]

@@ -20,6 +20,10 @@ func exit():
 	enemy.set_resistance(false)
 
 func _on_finished():
+	if enemy.passive:
+		_transition(&"Idle")
+		return
+	
 	if perception.has_target():
 		_transition(&"Chase")
 	else:

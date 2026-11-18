@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://oru2q7f6tago"]
+
+[ext_resource type="Script" uid="uid://b0lrroyckbhog" path="res://script/hero/states/action/use_gun/reload.gd" id="1_5jmox"]
+
+[node name="Reload" type="Node" unique_id=409453053]
+script = ExtResource("1_5jmox")
+metadata/_custom_type_script = "uid://cob6ddl21va62"

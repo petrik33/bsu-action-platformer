@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b5lx2e31rdky5"]
+
+[node name="WallCollisionArea" type="Area2D" unique_id=1817651292]
+collision_layer = 0
+monitorable = false
