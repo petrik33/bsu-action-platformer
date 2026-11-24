@@ -8,15 +8,15 @@ func process(_delta: float) -> void:
 
 func update(_delta: float) -> StringName:
 	if Input.is_action_just_pressed("jump") and hero.can_jump():
-		return "Jump"
+		return &"Jump"
 		
 	if Input.is_action_just_pressed("click"):
 		return attack_state
 		
 	if Input.is_action_just_pressed("roll"):
-		return "Roll"
+		return &"Roll"
 	
 	if Input.is_action_just_pressed("shoot"):
-		return &"Shoot"
+		return &"StartAim"
 	
 	return &""

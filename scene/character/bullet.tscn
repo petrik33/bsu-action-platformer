@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_payload"]
 script = ExtResource("2_payload")
+knockback_force = 50.0
 metadata/_custom_type_script = "uid://li44jwhydfh1"
 
 [sub_resource type="Gradient" id="Gradient_oqe2c"]
@@ -40,6 +41,7 @@ visible = false
 shape = SubResource("RectangleShape2D_jswnv")
 
 [node name="WallCollisionArea" parent="." unique_id=1817651292 instance=ExtResource("4_c2obw")]
+monitorable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallCollisionArea" unique_id=523868461]
 visible = false
