@@ -87,7 +87,7 @@ position = Vector2(276, -103)
 position = Vector2(84, -60)
 move_behavior = SubResource("Resource_ym5sv")
 
-[node name="Camera2D" type="Camera2D" parent="Bodies/Character" unique_id=745299939]
+[node name="Camera2D" type="Camera2D" parent="Bodies/Character" unique_id=745299939 node_paths=PackedStringArray("target")]
 position = Vector2(0, -18)
 zoom = Vector2(2, 2)
 limit_left = 0
@@ -97,6 +97,7 @@ drag_top_margin = 0.1
 drag_right_margin = 0.1
 drag_bottom_margin = 0.1
 script = ExtResource("9_yq8tf")
+target = NodePath("..")
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=1783920117 groups=["projectiles"]]
 z_index = 1

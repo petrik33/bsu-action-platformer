@@ -1,6 +1,14 @@
 class_name Hero extends Actor
 
 
+@warning_ignore("unused_signal")
+signal aim_started
+@warning_ignore("unused_signal")
+signal aim_ended
+@warning_ignore("unused_signal")
+signal shot_fired(trauma: float)
+
+
 @export var state_machine: CharacterStateMachine
 @export var hit_box: HitBox
 @export var hurt_box: HurtBox

@@ -8,6 +8,7 @@ extends HeroStateBase
 @export var bullet_speed: float = 900
 @export var bullet_origin: Node2D
 @export var bullet_next_origin: Node2D
+@export_range(0.0, 1.0) var shot_trauma: float = 0.5
 
 
 func enter():
@@ -30,5 +31,8 @@ func _on_shoot_frame_entered():
 	var bullet := Projectiles.spawn(
 		bullet_scene, from, Vector2.RIGHT * hero.facing_direction(), hero, bullet_speed
 	)
+	if bullet == null:
+		return
 	if bullet_next_origin != null:
 		bullet.move_to(bullet_next_origin.global_position)
+	hero.shot_fired.emit(shot_trauma)
