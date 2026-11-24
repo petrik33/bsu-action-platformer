@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ujswe7ndkjog"]
+
+[ext_resource type="Script" uid="uid://dkjro8j1xcoin" path="res://script/tool/fly_camera.gd" id="1_4x11s"]
+
+[node name="FlyCamera" type="Camera2D" unique_id=1900022160]
+position = Vector2(84, -60)
+enabled = false
+zoom = Vector2(2, 2)
+script = ExtResource("1_4x11s")

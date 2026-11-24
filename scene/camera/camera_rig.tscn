@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cuovhu1j0vt0i"]
+
+[ext_resource type="Script" path="res://script/camera/camera_rig.gd" id="1_c1adi"]
+
+[node name="CameraRig" type="Camera2D" unique_id=738010731]
+position = Vector2(0, -18)
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_bottom = 0
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+script = ExtResource("1_c1adi")

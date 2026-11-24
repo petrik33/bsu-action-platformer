@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Projectiles="*res://script/common/projectiles.gd"
 _mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
+DebugTools="*res://script/tool/debug_tools.gd"
 
 [display]
 

@@ -14,15 +14,14 @@ extends HeroStateBase
 func enter():
 	hero.play_animation(anim_name, time, true)
 	anim_observer.subscribe_entered(_on_shoot_frame_entered)
-	_schedule_transition(time, &"Idle")
+	_state_timer(time, _on_finished)
 
 func exit():
 	anim_observer.unsubscribe_entered(_on_shoot_frame_entered)
 
 func update(delta: float) -> StringName:
-	if not Input.is_action_just_pressed("shoot"):
-		return &""
-	_transition_after(next_shot_min_time, &"Shoot")
+	if Input.is_action_just_pressed("shoot"):
+		_transition_after(next_shot_min_time, &"Shoot")
 	return &""
 
 
@@ -36,3 +35,9 @@ func _on_shoot_frame_entered():
 	if bullet_next_origin != null:
 		bullet.move_to(bullet_next_origin.global_position)
 	hero.shot_fired.emit(shot_trauma)
+
+func _on_finished():
+	if Input.is_action_pressed("shoot"):
+		_transition(&"AimIdle")
+	else:
+		_transition(&"Idle")

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cpo4adxkqyhuw" path="res://scene/enemies/mage.tscn" id="7_ll5lq"]
 [ext_resource type="PackedScene" uid="uid://cv0nc1nnyjsh0" path="res://scene/enemies/mad_ghost.tscn" id="7_yq8tf"]
 [ext_resource type="Script" uid="uid://bt5phod8n7len" path="res://script/physics/steering/behavior/horizontal/velocity_match.gd" id="9_ym5sv"]
-[ext_resource type="Script" uid="uid://dkjro8j1xcoin" path="res://script/tool/fly_camera.gd" id="9_yq8tf"]
+[ext_resource type="PackedScene" uid="uid://cuovhu1j0vt0i" path="res://scene/camera/camera_rig.tscn" id="10_sng2h"]
 
 [sub_resource type="Resource" id="Resource_ym5sv"]
 resource_local_to_scene = true
@@ -87,16 +87,7 @@ position = Vector2(276, -103)
 position = Vector2(84, -60)
 move_behavior = SubResource("Resource_ym5sv")
 
-[node name="Camera2D" type="Camera2D" parent="Bodies/Character" unique_id=745299939 node_paths=PackedStringArray("target")]
-position = Vector2(0, -18)
-zoom = Vector2(2, 2)
-limit_left = 0
-limit_bottom = 0
-drag_left_margin = 0.1
-drag_top_margin = 0.1
-drag_right_margin = 0.1
-drag_bottom_margin = 0.1
-script = ExtResource("9_yq8tf")
+[node name="CameraRig" parent="Bodies/Character" unique_id=738010731 node_paths=PackedStringArray("target") instance=ExtResource("10_sng2h")]
 target = NodePath("..")
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=1783920117 groups=["projectiles"]]
