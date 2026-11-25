@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://script/hero/states/action/use_gun/aim.gd" id="1_aim"]
+
+[node name="Aim" type="Node"]
+script = ExtResource("1_aim")
+metadata/_custom_type_script = "uid://cob6ddl21va62"

@@ -37,9 +37,17 @@
 [ext_resource type="Script" uid="uid://li44jwhydfh1" path="res://script/combat/attack/payload.gd" id="27_3lse3"]
 [ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="27_ckk4y"]
 [ext_resource type="PackedScene" uid="uid://0xnmkpcpsuk1" path="res://scene/character/states/action/use_gun/shoot.tscn" id="28_52oc2"]
+[ext_resource type="PackedScene" path="res://scene/character/states/action/use_gun/aim.tscn" id="29_f7gb6"]
 [ext_resource type="PackedScene" uid="uid://b2x4h3fosgm67" path="res://scene/character/bullet.tscn" id="29_ii2y5"]
 [ext_resource type="PackedScene" uid="uid://ejdwe3vtlt5e" path="res://scene/character/states/action/use_gun/aim_idle.tscn" id="30_luavg"]
+[ext_resource type="PackedScene" path="res://scene/character/states/action/use_gun/holster_gun.tscn" id="31_pujba"]
+[ext_resource type="PackedScene" uid="uid://oru2q7f6tago" path="res://scene/character/states/action/use_gun/reload.tscn" id="33_x50mr"]
+[ext_resource type="PackedScene" uid="uid://do2xwq7u1oo5e" path="res://scene/character/states/action/use_gun/start_reload.tscn" id="34_r534o"]
+[ext_resource type="PackedScene" uid="uid://1q3fks28uqks" path="res://scene/character/states/action/use_gun/progress_reload.tscn" id="35_7nkyt"]
 [ext_resource type="Script" uid="uid://wvhuys2w10ds" path="res://script/common/animation_observer.gd" id="38_5e65o"]
+[ext_resource type="PackedScene" path="res://scene/common/animation_chain_player.tscn" id="45_x50mr"]
+[ext_resource type="Script" uid="uid://dwvyy140cfqff" path="res://script/common/animation_chain.gd" id="46_r534o"]
+[ext_resource type="Script" uid="uid://dtm3k843uyqn6" path="res://script/combat/gun.gd" id="46_x50mr"]
 
 [sub_resource type="Resource" id="Resource_ypgq8"]
 resource_local_to_scene = true
@@ -2599,7 +2607,11 @@ hitstun = 0.0
 knockback_y = 0.4
 metadata/_custom_type_script = "uid://li44jwhydfh1"
 
-[node name="Character" type="CharacterBody2D" unique_id=649276059 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "resistance", "kinematic", "visuals", "sprite", "animation_player") groups=["player"]]
+[sub_resource type="Resource" id="Resource_x50mr"]
+script = ExtResource("46_r534o")
+animations = Array[StringName]([&"prepare_reload", &"gun_holster"])
+
+[node name="Character" type="CharacterBody2D" unique_id=649276059 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "resistance", "kinematic", "gun", "visuals", "sprite", "animation_player", "animation_chain") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_7s5o7")
 state_machine = NodePath("StateMachine")
@@ -2610,11 +2622,13 @@ gravity = NodePath("Physics/Gravity")
 resistance = NodePath("Physics/Resistance")
 move_behavior = SubResource("Resource_ypgq8")
 kinematic = NodePath("Physics/KinematicGrounded")
+gun = NodePath("Gun")
 base_speed = 350.0
 jump_speed = 325.0
 visuals = NodePath("Visuals")
 sprite = NodePath("Visuals/Base")
 animation_player = NodePath("AnimationPlayer")
+animation_chain = NodePath("Components/AnimationChainPlayer")
 metadata/_custom_type_script = "uid://dwik25yehg46n"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=726962726]
@@ -2641,7 +2655,7 @@ frame = 1
 visible = false
 position = Vector2(29, -16)
 sprite_frames = SubResource("SpriteFrames_0xb6u")
-animation = &"aim"
+animation = &"holster"
 
 [node name="HitBox" type="Area2D" parent="Visuals" unique_id=1342386439]
 visible = false
@@ -2718,18 +2732,25 @@ animation_time = Array[float]([0.4, 0.4, 0.4])
 
 [node name="UseGun" parent="StateMachine/Action" unique_id=2072645484 instance=ExtResource("26_h7r1x")]
 
-[node name="StartAim" parent="StateMachine/Action/UseGun" unique_id=109740685 instance=ExtResource("17_g6y8q")]
+[node name="Aim" parent="StateMachine/Action/UseGun" unique_id=1538403824 instance=ExtResource("29_f7gb6")]
+
+[node name="Shoot" parent="StateMachine/Action/UseGun/Aim" unique_id=1814684570 node_paths=PackedStringArray("anim_observer") instance=ExtResource("28_52oc2")]
+next_shot_min_time = 0.25
+anim_observer = NodePath("../../../../../Components/AnimationObserver")
+
+[node name="StartAim" parent="StateMachine/Action/UseGun/Aim" unique_id=109740685 instance=ExtResource("17_g6y8q")]
 time = 0.2
 
-[node name="Shoot" parent="StateMachine/Action/UseGun" unique_id=1814684570 node_paths=PackedStringArray("anim_observer", "bullet_origin", "bullet_next_origin") instance=ExtResource("28_52oc2")]
-next_shot_min_time = 0.25
-anim_observer = NodePath("../../../../Components/AnimationObserver")
-bullet_scene = ExtResource("29_ii2y5")
-bullet_speed = 700.0
-bullet_origin = NodePath("../../../../Visuals/BulletOrigin")
-bullet_next_origin = NodePath("../../../../Visuals/BulletNextFrame")
+[node name="AimIdle" parent="StateMachine/Action/UseGun/Aim" unique_id=761822642 instance=ExtResource("30_luavg")]
 
-[node name="AimIdle" parent="StateMachine/Action/UseGun" unique_id=761822642 instance=ExtResource("30_luavg")]
+[node name="Reload" parent="StateMachine/Action/UseGun" unique_id=409453053 instance=ExtResource("33_x50mr")]
+
+[node name="StartReload" parent="StateMachine/Action/UseGun/Reload" unique_id=612329336 instance=ExtResource("34_r534o")]
+
+[node name="ProgressReload" parent="StateMachine/Action/UseGun/Reload" unique_id=1679757008 instance=ExtResource("35_7nkyt")]
+
+[node name="HolsterGun" parent="StateMachine/Action/UseGun" unique_id=509831847 instance=ExtResource("31_pujba")]
+time = 2.0
 
 [node name="Incapacitated" parent="StateMachine" unique_id=740572724 instance=ExtResource("18_7u363")]
 
@@ -2782,3 +2803,16 @@ script = ExtResource("38_5e65o")
 sprite = NodePath("../../Visuals/Base")
 animation = &"shoot"
 metadata/_custom_type_script = "uid://wvhuys2w10ds"
+
+[node name="AnimationChainPlayer" parent="Components" unique_id=485980049 instance=ExtResource("45_x50mr")]
+chains = Dictionary[StringName, ExtResource("46_r534o")]({
+&"hide_gun": SubResource("Resource_x50mr")
+})
+
+[node name="Gun" type="Node" parent="." unique_id=1647277821 node_paths=PackedStringArray("shooter", "bullet_origin", "bullet_next_origin")]
+script = ExtResource("46_x50mr")
+shooter = NodePath("..")
+bullet_scene = ExtResource("29_ii2y5")
+bullet_speed = 700.0
+bullet_origin = NodePath("../Visuals/BulletOrigin")
+bullet_next_origin = NodePath("../Visuals/BulletNextFrame")

@@ -13,6 +13,10 @@ var kinematic: KinematicBase:
 	get():
 		return hero.kinematic
 
+var gun: Gun:
+	get():
+		return hero.gun
+
 
 func init(character_owner: CharacterBody2D, owner_machine: CharacterStateMachine):
 	super.init(character_owner, owner_machine)

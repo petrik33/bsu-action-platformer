@@ -3,9 +3,9 @@ class_name CameraRig extends Camera2D
 ## Presentation-layer camera controller.
 ##
 ## Gameplay states never touch the camera directly. They emit intent signals on
-## the Hero (`aim_started`, `aim_ended`, `shot_fired`) and this rig turns that
-## intent into camera motion. All effects are layered on top of the follow
-## transform:
+## the Hero's `Gun` component (`aim_started`, `aim_ended`, `shot_fired`) and this
+## rig turns that intent into camera motion. All effects are layered on top of
+## the follow transform:
 ## - aim: smooth zoom + look-ahead offset
 ## - shot: trauma-based shake + short zoom punch
 ##
@@ -59,24 +59,24 @@ func _ready() -> void:
 	if target == null:
 		target = get_parent() as Hero
 
-	if target != null:
-		target.aim_started.connect(_on_aim_started)
-		target.aim_ended.connect(_on_aim_ended)
-		target.shot_fired.connect(_on_shot_fired)
+	if target != null and target.gun != null:
+		target.gun.aim_started.connect(_on_aim_started)
+		target.gun.aim_ended.connect(_on_aim_ended)
+		target.gun.shot_fired.connect(_on_shot_fired)
 
 	# The gameplay view is the default; the debug FlyCamera only borrows it.
 	enabled = true
 	make_current()
 
 func _exit_tree() -> void:
-	if not is_instance_valid(target):
+	if not is_instance_valid(target) or target.gun == null:
 		return
-	if target.aim_started.is_connected(_on_aim_started):
-		target.aim_started.disconnect(_on_aim_started)
-	if target.aim_ended.is_connected(_on_aim_ended):
-		target.aim_ended.disconnect(_on_aim_ended)
-	if target.shot_fired.is_connected(_on_shot_fired):
-		target.shot_fired.disconnect(_on_shot_fired)
+	if target.gun.aim_started.is_connected(_on_aim_started):
+		target.gun.aim_started.disconnect(_on_aim_started)
+	if target.gun.aim_ended.is_connected(_on_aim_ended):
+		target.gun.aim_ended.disconnect(_on_aim_ended)
+	if target.gun.shot_fired.is_connected(_on_shot_fired):
+		target.gun.shot_fired.disconnect(_on_shot_fired)
 
 func _process(delta: float) -> void:
 	_update_aim(delta)

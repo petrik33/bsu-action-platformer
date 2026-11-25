@@ -16,7 +16,7 @@ func update(_delta: float) -> StringName:
 	if Input.is_action_just_pressed("roll"):
 		return &"Roll"
 	
-	if Input.is_action_pressed("shoot"):
-		return &"StartAim"
+	if Input.is_action_pressed("aim"):
+		return &"UseGun"
 	
 	return &""

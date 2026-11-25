@@ -4,8 +4,14 @@ class_name Actor extends CharacterBody2D
 @export var sprite: AnimatedSprite2D
 @export var animation_player: AnimationPlayer
 @export var origin: Node2D
+@export var animation_chain: AnimationChainPlayer
 
 var current_animation: StringName = &""
+
+
+func _enter_tree() -> void:
+	if animation_chain and not animation_chain.animation_requested.is_connected(_play_single):
+		animation_chain.animation_requested.connect(_play_single)
 
 func face_movement():
 	face(velocity.x)
@@ -48,22 +54,17 @@ func play_animation(anim_name: StringName, time: float = -1.0, restart: bool = f
 	
 	current_animation = anim_name
 	sprite.stop()
-	if animation_player and animation_player.has_animation(anim_name):
-		animation_player.stop()
-		var animation_speed := Utils.get_anim_player_target_speed(
-			animation_player, anim_name, time
-		)
-		animation_player.play(anim_name, -1, animation_speed)
+	
+	if animation_chain and animation_chain.has_chain(anim_name):
+		animation_chain.play(anim_name, time)
 		return
-	if sprite.sprite_frames.has_animation(anim_name):
-		reset_animation_player()
-		var animation_speed := Utils.get_sprite_animation_target_speed(
-			sprite, anim_name, time
-		)
-		sprite.play(anim_name, animation_speed)
+		
+	_play_single(anim_name, time)
 
 func stop_animation():
 	current_animation = &""
+	if animation_chain:
+		animation_chain.stop()
 	if animation_player and animation_player.is_playing():
 		animation_player.stop()
 		return
@@ -77,3 +78,19 @@ func reset_animation_player():
 	animation_player.play(&"RESET")
 	animation_player.advance(0)
 	animation_player.stop()
+
+
+func _play_single(anim_name: StringName, time: float):
+	if animation_player and animation_player.has_animation(anim_name):
+		animation_player.stop()
+		var animation_speed := Utils.get_anim_player_target_speed(
+			animation_player, anim_name, time
+		)
+		animation_player.play(anim_name, -1, animation_speed)
+		return
+	if sprite.sprite_frames.has_animation(anim_name):
+		reset_animation_player()
+		var animation_speed := Utils.get_sprite_animation_target_speed(
+			sprite, anim_name, time
+		)
+		sprite.play(anim_name, animation_speed)

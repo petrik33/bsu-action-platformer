@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://1q3fks28uqks"]
+
+[ext_resource type="Script" uid="uid://y0ldp6h4knta" path="res://script/hero/states/action/use_gun/progress_reload.gd" id="1_progress_reload"]
+
+[node name="ProgressReload" type="Node" unique_id=1044571064]
+script = ExtResource("1_progress_reload")
+metadata/_custom_type_script = "uid://cob6ddl21va62"

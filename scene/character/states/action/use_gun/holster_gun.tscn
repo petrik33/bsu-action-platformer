@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bjpooj8i06n5m"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://bww532o7mc58n" path="res://script/hero/states/action/use_gun/holster_gun.gd" id="1_p8xwh"]
+[ext_resource type="Script" path="res://script/hero/states/action/use_gun/holster_gun.gd" id="1_holster_gun"]
 
-[node name="HolsterGun" type="Node" unique_id=570754357]
-script = ExtResource("1_p8xwh")
+[node name="HolsterGun" type="Node"]
+script = ExtResource("1_holster_gun")
 metadata/_custom_type_script = "uid://cob6ddl21va62"
