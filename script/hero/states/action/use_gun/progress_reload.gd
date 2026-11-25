@@ -11,6 +11,6 @@ func enter():
 func _on_finished():
 	gun.finish_reload()
 	if Input.is_action_pressed("aim"):
-		_transition(&"AimIdle")
+		_transition(&"StartAim")
 	else:
 		_transition(&"Idle")
