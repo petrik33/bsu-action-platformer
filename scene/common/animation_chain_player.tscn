@@ -1,6 +1,11 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://281p5x6mtchc"]
 
-[ext_resource type="Script" path="res://script/common/animation_chain_player.gd" id="1_player"]
+[ext_resource type="Script" uid="uid://c3vwy3ue8eb2h" path="res://script/common/animation_chain_player.gd" id="1_player"]
 
-[node name="AnimationChainPlayer" type="Node"]
+[node name="AnimationChainPlayer" type="Node" unique_id=1773992481 node_paths=PackedStringArray("timer")]
 script = ExtResource("1_player")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="." unique_id=2033520408]
+process_callback = 0
+one_shot = true

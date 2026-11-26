@@ -3,10 +3,15 @@ class_name AnimationChainPlayer extends Node
 signal animation_requested(anim_name: StringName, time: float)
 
 @export var chains: Dictionary[StringName, AnimationChain] = {}
+@export var timer: Timer
 
 var _chain: AnimationChain
 var _index: int = 0
 var _step_time: float = 0.0
+
+
+func _ready() -> void:
+	timer.timeout.connect(_on_step_finished)
 
 
 func has_chain(anim_name: StringName) -> bool:
@@ -27,8 +32,10 @@ func play(anim_name: StringName, time: float):
 	_play_step()
 
 func stop() -> void:
+	timer.stop()
 	_chain = null
 	_index = 0
+
 
 func _on_step_finished():
 	_index += 1
@@ -40,4 +47,4 @@ func _on_step_finished():
 func _play_step() -> void:
 	var anim_name := _chain.animations[_index]
 	animation_requested.emit(anim_name, _step_time)
-	get_tree().create_timer(_step_time).timeout.connect(_on_step_finished)
+	timer.start(_step_time)

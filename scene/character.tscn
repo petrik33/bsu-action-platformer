@@ -45,7 +45,7 @@
 [ext_resource type="PackedScene" uid="uid://do2xwq7u1oo5e" path="res://scene/character/states/action/use_gun/start_reload.tscn" id="34_r534o"]
 [ext_resource type="PackedScene" uid="uid://1q3fks28uqks" path="res://scene/character/states/action/use_gun/progress_reload.tscn" id="35_7nkyt"]
 [ext_resource type="Script" uid="uid://wvhuys2w10ds" path="res://script/common/animation_observer.gd" id="38_5e65o"]
-[ext_resource type="PackedScene" path="res://scene/common/animation_chain_player.tscn" id="45_x50mr"]
+[ext_resource type="PackedScene" uid="uid://281p5x6mtchc" path="res://scene/common/animation_chain_player.tscn" id="45_x50mr"]
 [ext_resource type="Script" uid="uid://dwvyy140cfqff" path="res://script/common/animation_chain.gd" id="46_r534o"]
 [ext_resource type="Script" uid="uid://dtm3k843uyqn6" path="res://script/combat/gun.gd" id="46_x50mr"]
 
@@ -2750,7 +2750,7 @@ time = 0.2
 [node name="ProgressReload" parent="StateMachine/Action/UseGun/Reload" unique_id=1679757008 instance=ExtResource("35_7nkyt")]
 
 [node name="HolsterGun" parent="StateMachine/Action/UseGun" unique_id=509831847 instance=ExtResource("31_pujba")]
-time = 2.0
+time = 0.4
 
 [node name="Incapacitated" parent="StateMachine" unique_id=740572724 instance=ExtResource("18_7u363")]
 
