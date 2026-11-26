@@ -6,16 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://c4t7amkr4f87p" path="res://asset/texture/environment/Foreground.png" id="4_qpk70"]
 [ext_resource type="PackedScene" uid="uid://ca4ta3fmrmdte" path="res://scene/enemies/dummy.tscn" id="6_ll5lq"]
 [ext_resource type="TileSet" uid="uid://0i4n4wh6626b" path="res://resource/tileset.tres" id="6_xlg7c"]
-[ext_resource type="PackedScene" uid="uid://dw4q416nx8pd5" path="res://scene/character.tscn" id="7_17rxn"]
 [ext_resource type="PackedScene" uid="uid://cpo4adxkqyhuw" path="res://scene/enemies/mage.tscn" id="7_ll5lq"]
 [ext_resource type="PackedScene" uid="uid://cv0nc1nnyjsh0" path="res://scene/enemies/mad_ghost.tscn" id="7_yq8tf"]
-[ext_resource type="Script" uid="uid://bt5phod8n7len" path="res://script/physics/steering/behavior/horizontal/velocity_match.gd" id="9_ym5sv"]
+[ext_resource type="PackedScene" uid="uid://b3wc0hno02c02" path="res://scene/water_priestess.tscn" id="8_yq8tf"]
 [ext_resource type="PackedScene" uid="uid://cuovhu1j0vt0i" path="res://scene/camera/camera_rig.tscn" id="10_sng2h"]
-
-[sub_resource type="Resource" id="Resource_ym5sv"]
-resource_local_to_scene = true
-script = ExtResource("9_ym5sv")
-metadata/_custom_type_script = "uid://bt5phod8n7len"
 
 [node name="Game" type="Node2D" unique_id=220446193]
 
@@ -83,11 +77,10 @@ position = Vector2(170, -45)
 [node name="MadGhost" parent="Bodies/Enemies" unique_id=1439942586 instance=ExtResource("7_yq8tf")]
 position = Vector2(276, -103)
 
-[node name="Character" parent="Bodies" unique_id=213064435 instance=ExtResource("7_17rxn")]
+[node name="WaterPriestess" parent="Bodies" unique_id=656407729 instance=ExtResource("8_yq8tf")]
 position = Vector2(84, -60)
-move_behavior = SubResource("Resource_ym5sv")
 
-[node name="CameraRig" parent="Bodies/Character" unique_id=738010731 node_paths=PackedStringArray("target") instance=ExtResource("10_sng2h")]
+[node name="CameraRig" parent="Bodies/WaterPriestess" unique_id=738010731 node_paths=PackedStringArray("target") instance=ExtResource("10_sng2h")]
 target = NodePath("..")
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=1783920117 groups=["projectiles"]]

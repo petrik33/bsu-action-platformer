@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AttackPayload" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://li44jwhydfh1" path="res://script/combat/attack/payload.gd" id="1_payload"]
+
+[resource]
+script = ExtResource("1_payload")
+damage = 15.0
+knockback_force = 125.0
+hitstun = 0.0
+knockback_y = 0.6

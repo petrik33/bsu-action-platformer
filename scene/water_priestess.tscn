@@ -175,19 +175,24 @@
 [ext_resource type="PackedScene" uid="uid://dhdj53ixvhfeb" path="res://scene/character/hit_box.tscn" id="166_yn7hy"]
 [ext_resource type="PackedScene" uid="uid://cgbn8bkj1hks5" path="res://scene/character/states/locomotion/airborne.tscn" id="167_mifu2"]
 [ext_resource type="PackedScene" uid="uid://dsflokmpqtns7" path="res://scene/character/states/locomotion/airborne/jump.tscn" id="168_7ehhp"]
+[ext_resource type="PackedScene" uid="uid://bcyhy7e6oku67" path="res://scene/common/onion_skin_trail.tscn" id="169_nyfsv"]
 [ext_resource type="PackedScene" uid="uid://ciuiv751od242" path="res://scene/character/states/locomotion/airborne/fall.tscn" id="169_yn7hy"]
 [ext_resource type="PackedScene" uid="uid://c5d84xi7jty73" path="res://scene/character/states/action.tscn" id="170_lp3au"]
 [ext_resource type="PackedScene" uid="uid://d0cfhvoyngupi" path="res://scene/character/states/action/roll.tscn" id="171_3kien"]
 [ext_resource type="PackedScene" uid="uid://rphikkm5thmx" path="res://scene/character/states/action/attack.tscn" id="171_lirr0"]
-[ext_resource type="PackedScene" uid="uid://cl02erl2k84ad" path="res://scene/character/states/action/use_gun/start_aim.tscn" id="172_jpikk"]
 [ext_resource type="PackedScene" uid="uid://t40f4mawxn56" path="res://scene/character/states/incapacitated.tscn" id="173_rr87g"]
 [ext_resource type="PackedScene" uid="uid://bexnfq44abe3q" path="res://scene/character/states/incapacitated/hurt.tscn" id="174_2d3a3"]
+[ext_resource type="Resource" path="res://resource/water_priestess/idle_stop.tres" id="174_wtxsk"]
 [ext_resource type="PackedScene" uid="uid://depht2awncffo" path="res://scene/character/states/action/air_attack.tscn" id="175_4q8yv"]
 [ext_resource type="PackedScene" uid="uid://k6fdi54ai135" path="res://scene/character/states/incapacitated/death.tscn" id="175_exqgt"]
 [ext_resource type="Script" uid="uid://67q1hh18rykp" path="res://script/physics/kinematic/grounded.gd" id="186_yn7hy"]
 [ext_resource type="Script" uid="uid://5ekknacs16ny" path="res://script/physics/resistance.gd" id="187_lirr0"]
 [ext_resource type="Script" uid="uid://cfqkwikgws0dr" path="res://script/physics/steering.gd" id="187_lp3au"]
 [ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="188_lirr0"]
+[ext_resource type="Script" uid="uid://cs70gybpkbh24" path="res://script/combat/attack.gd" id="191_4ynna"]
+[ext_resource type="Resource" path="res://resource/water_priestess/attack_payload_1.tres" id="192_noruh"]
+[ext_resource type="Resource" path="res://resource/water_priestess/attack_payload_2.tres" id="193_aar3h"]
+[ext_resource type="Resource" path="res://resource/water_priestess/attack_payload_3.tres" id="194_c8e23"]
 
 [sub_resource type="Resource" id="Resource_jpikk"]
 script = ExtResource("2_lirr0")
@@ -1009,7 +1014,7 @@ _data = {
 &"attack3": SubResource("Animation_ytxcy")
 }
 
-[node name="WaterPriestess" type="CharacterBody2D" unique_id=656407729 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "resistance", "kinematic", "visuals", "sprite", "animation_player", "origin") groups=["player"]]
+[node name="WaterPriestess" type="CharacterBody2D" unique_id=656407729 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "resistance", "kinematic", "dash_trail", "visuals", "sprite", "animation_player", "origin") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_yn7hy")
 state_machine = NodePath("StateMachine")
@@ -1020,6 +1025,7 @@ gravity = NodePath("Physics/Gravity")
 resistance = NodePath("Physics/Resistance")
 move_behavior = SubResource("Resource_jpikk")
 kinematic = NodePath("Physics/KinematicGrounded")
+dash_trail = NodePath("Visuals/OnionSkinTrail")
 visuals = NodePath("Visuals")
 sprite = NodePath("Visuals/AnimatedSprite2D")
 animation_player = NodePath("AnimationPlayer")
@@ -1064,6 +1070,11 @@ position = Vector2(-0.5, 13)
 shape = SubResource("RectangleShape2D_okmev")
 debug_color = Color(0.5890741, 0.5449041, 0.17991158, 0.41960785)
 
+[node name="OnionSkinTrail" parent="Visuals" unique_id=594599957 node_paths=PackedStringArray("source") instance=ExtResource("169_nyfsv")]
+source = NodePath("../AnimatedSprite2D")
+spawn_interval = 0.06
+max_ghosts = 8
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=743458432]
 position = Vector2(-0.5, -18)
 shape = SubResource("RectangleShape2D_w8ny5")
@@ -1083,13 +1094,13 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 [node name="Grounded" parent="StateMachine/Locomotion" unique_id=2122582834 instance=ExtResource("161_4q8yv")]
 
 [node name="Idle" parent="StateMachine/Locomotion/Grounded" unique_id=1808960593 instance=ExtResource("162_ytxcy")]
+stop_behavior = ExtResource("174_wtxsk")
 
 [node name="Move" parent="StateMachine/Locomotion/Grounded" unique_id=2105850077 instance=ExtResource("163_2o33o")]
 sprint_animation = &"surf"
 run_animation = &"walk"
 
 [node name="Airborne" parent="StateMachine/Locomotion" unique_id=1304592049 instance=ExtResource("167_mifu2")]
-attack_transition = &"AirAttack"
 
 [node name="Jump" parent="StateMachine/Locomotion/Airborne" unique_id=533408498 instance=ExtResource("168_7ehhp")]
 animation_name = &"jump_up"
@@ -1098,21 +1109,15 @@ animation_name = &"jump_up"
 animation_name = &"jump_down"
 
 [node name="Roll" parent="StateMachine/Locomotion" unique_id=185626220 instance=ExtResource("171_3kien")]
-roll_speed = null
-roll_duration = null
 roll_animation = &"tumble"
-invulnerable_during_roll = null
 
 [node name="Action" parent="StateMachine" unique_id=842032143 instance=ExtResource("170_lp3au")]
 
-[node name="Attack" parent="StateMachine/Action" unique_id=912385043 instance=ExtResource("171_lirr0")]
+[node name="Attack" parent="StateMachine/Action" unique_id=912385043 node_paths=PackedStringArray("attacks") instance=ExtResource("171_lirr0")]
+attacks = [NodePath("../../../Attacks/Attack"), NodePath("../../../Attacks/Attack2"), NodePath("../../../Attacks/Attack3")]
 animation_time = Array[float]([0.45, 0.35, 0.5])
 
-[node name="Aim" parent="StateMachine/Action" unique_id=109740685 instance=ExtResource("172_jpikk")]
-
 [node name="AirAttack" parent="StateMachine/Action" unique_id=1996409664 instance=ExtResource("175_4q8yv")]
-animation_name = null
-time = null
 
 [node name="Incapacitated" parent="StateMachine" unique_id=740572724 instance=ExtResource("173_rr87g")]
 
@@ -1137,3 +1142,20 @@ metadata/_custom_type_script = "uid://67q1hh18rykp"
 [node name="Resistance" type="Node" parent="Physics" unique_id=394842530]
 script = ExtResource("187_lirr0")
 metadata/_custom_type_script = "uid://5ekknacs16ny"
+
+[node name="Attacks" type="Node" parent="." unique_id=1541684403]
+
+[node name="Attack" type="Node" parent="Attacks" unique_id=1461368162 node_paths=PackedStringArray("hit_box")]
+script = ExtResource("191_4ynna")
+hit_box = NodePath("../../Visuals/HitBox")
+payload = ExtResource("192_noruh")
+
+[node name="Attack2" type="Node" parent="Attacks" unique_id=1249349426 node_paths=PackedStringArray("hit_box")]
+script = ExtResource("191_4ynna")
+hit_box = NodePath("../../Visuals/HitBox")
+payload = ExtResource("193_aar3h")
+
+[node name="Attack3" type="Node" parent="Attacks" unique_id=1129544968 node_paths=PackedStringArray("hit_box")]
+script = ExtResource("191_4ynna")
+hit_box = NodePath("../../Visuals/HitBox")
+payload = ExtResource("194_c8e23")
