@@ -45,7 +45,6 @@
 [ext_resource type="PackedScene" uid="uid://oru2q7f6tago" path="res://scene/character/states/action/use_gun/reload.tscn" id="33_x50mr"]
 [ext_resource type="PackedScene" uid="uid://do2xwq7u1oo5e" path="res://scene/character/states/action/use_gun/start_reload.tscn" id="34_r534o"]
 [ext_resource type="PackedScene" uid="uid://1q3fks28uqks" path="res://scene/character/states/action/use_gun/progress_reload.tscn" id="35_7nkyt"]
-[ext_resource type="Script" uid="uid://wvhuys2w10ds" path="res://script/common/animation_observer.gd" id="38_5e65o"]
 [ext_resource type="PackedScene" uid="uid://281p5x6mtchc" path="res://scene/common/animation_chain_player.tscn" id="45_x50mr"]
 [ext_resource type="Script" uid="uid://dwvyy140cfqff" path="res://script/common/animation_chain.gd" id="46_r534o"]
 [ext_resource type="Script" uid="uid://dtm3k843uyqn6" path="res://script/combat/gun.gd" id="46_x50mr"]
@@ -2743,9 +2742,8 @@ animation_time = Array[float]([0.4, 0.4, 0.4])
 
 [node name="Aim" parent="StateMachine/Action/UseGun" unique_id=1538403824 instance=ExtResource("29_f7gb6")]
 
-[node name="Shoot" parent="StateMachine/Action/UseGun/Aim" unique_id=1814684570 node_paths=PackedStringArray("anim_observer") instance=ExtResource("28_52oc2")]
+[node name="Shoot" parent="StateMachine/Action/UseGun/Aim" unique_id=1814684570 instance=ExtResource("28_52oc2")]
 next_shot_min_time = 0.25
-anim_observer = NodePath("../../../../../Components/AnimationObserver")
 
 [node name="StartAim" parent="StateMachine/Action/UseGun/Aim" unique_id=109740685 instance=ExtResource("17_g6y8q")]
 time = 0.2
@@ -2806,12 +2804,6 @@ payload = SubResource("Resource_0hf0l")
 metadata/_custom_type_script = "uid://cs70gybpkbh24"
 
 [node name="Components" type="Node" parent="." unique_id=2092026776]
-
-[node name="AnimationObserver" type="Node" parent="Components" unique_id=577291595 node_paths=PackedStringArray("sprite")]
-script = ExtResource("38_5e65o")
-sprite = NodePath("../../Visuals/Base")
-animation = &"shoot"
-metadata/_custom_type_script = "uid://wvhuys2w10ds"
 
 [node name="AnimationChainPlayer" parent="Components" unique_id=485980049 instance=ExtResource("45_x50mr")]
 chains = Dictionary[StringName, ExtResource("46_r534o")]({

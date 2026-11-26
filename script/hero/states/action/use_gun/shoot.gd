@@ -1,9 +1,9 @@
 extends HeroStateBase
 
 @export var anim_name: StringName = &"shoot"
+@export var fire_frame: int = 0
 @export var next_shot_min_time: float = 0.1
 @export var time: float = 0.3
-@export var anim_observer: AnimationObserver
 
 
 func enter():
@@ -11,12 +11,10 @@ func enter():
 		_transition(&"StartReload")
 		return
 	hero.play_animation(anim_name, time, true)
-	anim_observer.subscribe_entered(_on_shoot_frame_entered)
+	var fire_time := hero.get_frame_time(anim_name, fire_frame, time)
+	if fire_time >= 0.0:
+		_call_after(fire_time, _on_shoot_frame_entered)
 	_state_timer(time, _on_finished)
-
-func exit():
-	if anim_observer != null and anim_observer.frame_entered.is_connected(_on_shoot_frame_entered):
-		anim_observer.unsubscribe_entered(_on_shoot_frame_entered)
 
 func update(_delta: float) -> StringName:
 	if Input.is_action_just_pressed("click"):

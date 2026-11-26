@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dlgm3haqibyaw" path="res://scene/enemies/common/perception.tscn" id="5_u06k2"]
 [ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/fsm/machine.gd" id="6_bxxyc"]
 [ext_resource type="PackedScene" uid="uid://i0rj2sedr07y" path="res://scene/enemies/common/hit_box.tscn" id="6_srgcj"]
-[ext_resource type="Script" uid="uid://wvhuys2w10ds" path="res://script/common/animation_observer.gd" id="7_8l2p6"]
 [ext_resource type="PackedScene" uid="uid://dwk4ubs07kedw" path="res://scene/enemies/common/alert_vfx.tscn" id="7_lkhaw"]
 [ext_resource type="PackedScene" uid="uid://dgr0braecu28y" path="res://scene/enemies/states/passive.tscn" id="7_xydch"]
 [ext_resource type="PackedScene" uid="uid://cp38i6pqejveu" path="res://scene/enemies/states/passive/idle.tscn" id="8_rtlgi"]
@@ -370,13 +369,6 @@ position = Vector2(0, -8)
 
 [node name="Components" type="Node" parent="." unique_id=1478823250]
 
-[node name="AttackObserver" type="Node" parent="Components" unique_id=1648382527 node_paths=PackedStringArray("sprite")]
-script = ExtResource("7_8l2p6")
-sprite = NodePath("../../Visual/AnimatedSprite2D")
-animation = &"attack"
-frame = 5
-metadata/_custom_type_script = "uid://wvhuys2w10ds"
-
 [node name="Attack" type="Node" parent="Components" unique_id=275905682 node_paths=PackedStringArray("hit_box")]
 script = ExtResource("10_6p0l8")
 distance = 16.0
@@ -398,8 +390,8 @@ stop_behavior = SubResource("Resource_wgla1")
 arrive_behavior = SubResource("Resource_nxtip")
 avoidance_weight = 0.0
 
-[node name="Attack" parent="StateMachine" unique_id=1140714920 node_paths=PackedStringArray("animation_observer", "collision_shape") instance=ExtResource("11_i4onk")]
-animation_observer = NodePath("../../Components/AttackObserver")
+[node name="Attack" parent="StateMachine" unique_id=1140714920 node_paths=PackedStringArray("collision_shape") instance=ExtResource("11_i4onk")]
+attack_frame = 5
 collision_shape = NodePath("../../Visual/HitBox/Attack")
 stop_behavior = SubResource("Resource_w0o5q")
 
@@ -438,5 +430,3 @@ script = ExtResource("24_koy3s")
 kinematic = NodePath("../KinematicGrounded")
 metadata/_custom_type_script = "uid://cfqkwikgws0dr"
 
-[connection signal="frame_entered" from="Components/AttackObserver" to="Components/Attack" method="start"]
-[connection signal="frame_exited" from="Components/AttackObserver" to="Components/Attack" method="end"]
