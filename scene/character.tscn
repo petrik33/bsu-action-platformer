@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bt5phod8n7len" path="res://script/physics/steering/behavior/horizontal/velocity_match.gd" id="2_3lse3"]
 [ext_resource type="Texture2D" uid="uid://cyems2rhg4r7" path="res://asset/texture/character/character_recolored_no_vfx.png" id="2_d7vt2"]
 [ext_resource type="Texture2D" uid="uid://bctpt2ofrqnlf" path="res://asset/texture/character/sword/Attack1.png" id="3_d7vt2"]
+[ext_resource type="PackedScene" uid="uid://bcyhy7e6oku67" path="res://scene/common/onion_skin_trail.tscn" id="3_r534o"]
 [ext_resource type="Texture2D" uid="uid://dmawkigs4d5gs" path="res://asset/texture/character/sword/Attack2.png" id="4_a748v"]
 [ext_resource type="Script" uid="uid://doq0lhrxpcf22" path="res://script/fsm/machine.gd" id="4_t17xi"]
 [ext_resource type="PackedScene" uid="uid://dgsdo2v3q356f" path="res://scene/character/states/locomotion.tscn" id="5_3fky7"]
@@ -2611,7 +2612,7 @@ metadata/_custom_type_script = "uid://li44jwhydfh1"
 script = ExtResource("46_r534o")
 animations = Array[StringName]([&"prepare_reload", &"gun_holster"])
 
-[node name="Character" type="CharacterBody2D" unique_id=649276059 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "resistance", "kinematic", "gun", "visuals", "sprite", "animation_player", "animation_chain") groups=["player"]]
+[node name="Character" type="CharacterBody2D" unique_id=649276059 node_paths=PackedStringArray("state_machine", "hit_box", "hurt_box", "steering", "gravity", "resistance", "kinematic", "gun", "dash_trail", "visuals", "sprite", "animation_player", "animation_chain") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_7s5o7")
 state_machine = NodePath("StateMachine")
@@ -2623,6 +2624,7 @@ resistance = NodePath("Physics/Resistance")
 move_behavior = SubResource("Resource_ypgq8")
 kinematic = NodePath("Physics/KinematicGrounded")
 gun = NodePath("Gun")
+dash_trail = NodePath("Visuals/OnionSkinTrail")
 base_speed = 350.0
 jump_speed = 325.0
 visuals = NodePath("Visuals")
@@ -2637,6 +2639,13 @@ position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_lp7ui")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=19771187]
+
+[node name="OnionSkinTrail" parent="Visuals" unique_id=594599957 node_paths=PackedStringArray("source") instance=ExtResource("3_r534o")]
+source = NodePath("../Base")
+spawn_interval = 0.06
+max_ghosts = 8
+tint = Color(0.835125, 0.85, 0.7225, 1)
+fade_tint = Color(0.80537504, 0.85, 0.46750003, 1)
 
 [node name="Base" type="AnimatedSprite2D" parent="Visuals" unique_id=1717960583]
 sprite_frames = SubResource("SpriteFrames_0hf0l")

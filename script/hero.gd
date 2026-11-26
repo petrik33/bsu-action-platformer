@@ -10,6 +10,7 @@ class_name Hero extends Actor
 @export var move_behavior: HorizontalVelocityMatch
 @export var kinematic: KinematicGrounded
 @export var gun: Gun
+@export var dash_trail: OnionSkinTrail
 
 @export var base_speed: float = 400
 @export var jump_speed: float = 350
@@ -76,6 +77,16 @@ func jump():
 
 func can_aim() -> bool:
 	return gun != null and not gun.is_holstered
+
+
+func start_dash_trail() -> void:
+	if dash_trail:
+		dash_trail.start()
+
+
+func stop_dash_trail() -> void:
+	if dash_trail:
+		dash_trail.stop()
 
 
 func _on_hit_received(attack_data: AttackData):

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bcyhy7e6oku67"]
+
+[ext_resource type="Script" uid="uid://baeg12rcm1xqm" path="res://script/common/onion_skin_trail.gd" id="1_jmyrn"]
+
+[node name="OnionSkinTrail" type="Node2D" unique_id=594599957]
+z_index = -1
+script = ExtResource("1_jmyrn")

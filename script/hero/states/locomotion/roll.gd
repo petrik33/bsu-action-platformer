@@ -18,9 +18,11 @@ func enter() -> void:
 		hero.set_invulnerable(true)
 	
 	hero.play_animation(roll_animation)
+	hero.start_dash_trail()
 	_state_timer(roll_duration, _on_finished)
 
 func exit() -> void:
+	hero.stop_dash_trail()
 	if invulnerable_during_roll:
 		hero.set_invulnerable(false)
 
