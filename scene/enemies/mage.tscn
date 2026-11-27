@@ -23,9 +23,11 @@
 [ext_resource type="PackedScene" uid="uid://d2sud346rxdoh" path="res://scene/common/gravity.tscn" id="20_rj7a1"]
 [ext_resource type="Script" uid="uid://67q1hh18rykp" path="res://script/physics/kinematic/grounded.gd" id="21_rj7a1"]
 [ext_resource type="Script" uid="uid://dshykxflhegna" path="res://script/physics/steering/behavior/horizontal/pursue.gd" id="22_mn5wp"]
+[ext_resource type="PackedScene" uid="uid://5jk372wopywm" path="res://scene/enemies/states/death.tscn" id="22_wgla1"]
 [ext_resource type="Script" uid="uid://in5s4schm5yy" path="res://script/physics/patroling.gd" id="23_4uli5"]
 [ext_resource type="Script" uid="uid://5ekknacs16ny" path="res://script/physics/resistance.gd" id="24_hka7v"]
 [ext_resource type="Script" uid="uid://cfqkwikgws0dr" path="res://script/physics/steering.gd" id="24_koy3s"]
+[ext_resource type="PackedScene" uid="uid://belhn1p30xo4s" path="res://scene/components/health.tscn" id="27_wgla1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxxwj"]
 size = Vector2(12, 31)
@@ -283,7 +285,7 @@ metadata/_custom_type_script = "uid://li44jwhydfh1"
 script = ExtResource("18_30p3m")
 metadata/_custom_type_script = "uid://cewda2wmnhl21"
 
-[sub_resource type="Resource" id="Resource_30p3m"]
+[sub_resource type="Resource" id="Resource_amfhk"]
 resource_local_to_scene = true
 script = ExtResource("18_koy3s")
 max_speed = 75.0
@@ -297,7 +299,7 @@ metadata/_custom_type_script = "uid://cewda2wmnhl21"
 script = ExtResource("18_30p3m")
 metadata/_custom_type_script = "uid://cewda2wmnhl21"
 
-[sub_resource type="Resource" id="Resource_nxtip"]
+[sub_resource type="Resource" id="Resource_si4vy"]
 resource_local_to_scene = true
 script = ExtResource("18_koy3s")
 metadata/_custom_type_script = "uid://bbtve5kjayupf"
@@ -306,12 +308,12 @@ metadata/_custom_type_script = "uid://bbtve5kjayupf"
 script = ExtResource("18_30p3m")
 metadata/_custom_type_script = "uid://cewda2wmnhl21"
 
-[sub_resource type="Resource" id="Resource_amfhk"]
+[sub_resource type="Resource" id="Resource_v2d5y"]
 resource_local_to_scene = true
 script = ExtResource("22_mn5wp")
 metadata/_custom_type_script = "uid://dshykxflhegna"
 
-[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "alert_vfx", "steering", "gravity", "resistance", "patroling", "kinematic", "attack", "visuals", "sprite")]
+[node name="Mage" type="CharacterBody2D" unique_id=927593917 node_paths=PackedStringArray("state_machine", "perception", "navigation", "hurt_box", "alert_vfx", "steering", "gravity", "resistance", "patroling", "kinematic", "attack", "visuals", "sprite", "health")]
 collision_layer = 4
 script = ExtResource("1_oqubo")
 state_machine = NodePath("StateMachine")
@@ -328,6 +330,7 @@ attack = NodePath("Components/Attack")
 passive = false
 visuals = NodePath("Visual")
 sprite = NodePath("Visual/AnimatedSprite2D")
+health = NodePath("Components/Health")
 metadata/_custom_type_script = "uid://w23557yemp8u"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=3677463]
@@ -377,6 +380,9 @@ hit_box = NodePath("../../Visual/HitBox")
 payload = SubResource("Resource_hka7v")
 metadata/_custom_type_script = "uid://c185jxoudbv2e"
 
+[node name="Health" parent="Components" unique_id=1746119955 instance=ExtResource("27_wgla1")]
+max_hp = 45.0
+
 [node name="StateMachine" type="Node" parent="." unique_id=1650397840 node_paths=PackedStringArray("initial")]
 script = ExtResource("6_bxxyc")
 initial = NodePath("Passive/Idle")
@@ -388,7 +394,7 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 stop_behavior = SubResource("Resource_wgla1")
 
 [node name="Patrol" parent="StateMachine/Passive" unique_id=1114917989 instance=ExtResource("9_srgcj")]
-arrive_behavior = SubResource("Resource_30p3m")
+arrive_behavior = SubResource("Resource_amfhk")
 avoidance_weight = 0.0
 
 [node name="Attack" parent="StateMachine" unique_id=1140714920 node_paths=PackedStringArray("collision_shape") instance=ExtResource("11_i4onk")]
@@ -399,15 +405,18 @@ stop_behavior = SubResource("Resource_w0o5q")
 
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("13_rtlgi")]
 stop_behavior = SubResource("Resource_mn5wp")
-arrive_behavior = SubResource("Resource_nxtip")
+arrive_behavior = SubResource("Resource_si4vy")
 
 [node name="Alert" parent="StateMachine" unique_id=1829192895 instance=ExtResource("17_0c3hi")]
 stop_behavior = SubResource("Resource_dxho3")
 
 [node name="Chase" parent="StateMachine" unique_id=1942010174 instance=ExtResource("10_8l2p6")]
 run_animation_name = &"walk"
-pursue_behavior = SubResource("Resource_amfhk")
+pursue_behavior = SubResource("Resource_v2d5y")
 avoidance_weight = 0.0
+
+[node name="Death" parent="StateMachine" unique_id=657521699 instance=ExtResource("22_wgla1")]
+time = 0.6
 
 [node name="Physics" type="Node" parent="." unique_id=1691308413]
 

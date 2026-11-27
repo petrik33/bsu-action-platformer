@@ -51,6 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://281p5x6mtchc" path="res://scene/common/animation_chain_player.tscn" id="45_x50mr"]
 [ext_resource type="Script" uid="uid://dwvyy140cfqff" path="res://script/common/animation_chain.gd" id="46_r534o"]
 [ext_resource type="Script" uid="uid://dtm3k843uyqn6" path="res://script/combat/gun.gd" id="46_x50mr"]
+[ext_resource type="PackedScene" uid="uid://belhn1p30xo4s" path="res://scene/components/health.tscn" id="52_3k4se"]
 
 [sub_resource type="Resource" id="Resource_ypgq8"]
 resource_local_to_scene = true
@@ -2988,6 +2989,7 @@ animation_time = Array[float]([0.3, 0.3, 0.3])
 [node name="Hurt" parent="StateMachine/Incapacitated" unique_id=33714673 instance=ExtResource("19_ud0a3")]
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("20_0qvrh")]
+death_animation = &""
 
 [node name="Physics" type="Node" parent="." unique_id=561106528]
 
@@ -3041,3 +3043,6 @@ bullet_scene = ExtResource("29_ii2y5")
 bullet_speed = 700.0
 bullet_origin = NodePath("../Visuals/BulletOrigin")
 bullet_next_origin = NodePath("../Visuals/BulletNextFrame")
+
+[node name="Health" parent="." unique_id=1746119955 instance=ExtResource("52_3k4se")]
+max_hp = 200.0

@@ -120,15 +120,17 @@ func _advance_state_time(delta: float):
 
 
 func _progress_state_timers(delta: float):
-	var triggered: Array[CharacterStateTimer] = []
-	for timer in _state_timers.duplicate():
+	var expired: Array[CharacterStateTimer] = []
+	for timer in _state_timers:
 		timer.remaining -= delta
-		if timer.remaining > 0:
+		if timer.remaining <= 0.0:
+			expired.append(timer)
+
+	for timer in expired:
+		if not _state_timers.has(timer):
 			continue
-		timer.callback.call()
-		triggered.push_back(timer)
-	for timer in triggered:
 		_state_timers.erase(timer)
+		timer.callback.call()
 
 
 func _remove_state_timers(state_name: StringName):
@@ -137,7 +139,7 @@ func _remove_state_timers(state_name: StringName):
 			_state_timers.remove_at(i)
 
 func _on_state_transition_requested(state_name: StringName):
-	call_deferred("request_transition", state_name)
+	request_transition(state_name)
 
 func _on_state_timer_requested(state_name: StringName, time: float, callable: Callable):
 	_state_timers.append(CharacterStateTimer.new(state_name, time, callable))

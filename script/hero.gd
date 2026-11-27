@@ -21,11 +21,16 @@ var last_hurt: AttackData
 
 
 func _ready() -> void:
+	super._ready()
 	state_machine.initialize(self)
 	hurt_box.hit_received.connect(_on_hit_received)
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"resurrect"):
+		resurrect()
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -55,7 +60,29 @@ func move_horizontally(speed_multiplier: float = 1.0):
 
 func hurt(attack_data: AttackData):
 	last_hurt = attack_data
+	if health:
+		if not health.take_damage(attack_data.damage):
+			return
+		if health.is_dead():
+			return
 	state_machine.request_transition(&"Hurt")
+
+func on_death() -> void:
+	if hurt_box:
+		hurt_box.is_invulnerable = true
+	if state_machine:
+		state_machine.request_transition(&"Death")
+
+func resurrect() -> bool:
+	if health == null or not health.is_dead():
+		return false
+
+	health.reset()
+	if hurt_box:
+		hurt_box.is_invulnerable = false
+	if state_machine:
+		state_machine.request_transition(&"Idle")
+	return true
 
 func set_resistance(value: bool) -> void:
 	if resistance:

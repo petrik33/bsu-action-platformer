@@ -194,6 +194,7 @@
 [ext_resource type="Resource" path="res://resource/water_priestess/attack_payload_1.tres" id="192_noruh"]
 [ext_resource type="Resource" path="res://resource/water_priestess/attack_payload_2.tres" id="193_aar3h"]
 [ext_resource type="Resource" path="res://resource/water_priestess/attack_payload_3.tres" id="194_c8e23"]
+[ext_resource type="PackedScene" uid="uid://belhn1p30xo4s" path="res://scene/components/health.tscn" id="195_4ynna"]
 
 [sub_resource type="Resource" id="Resource_jpikk"]
 script = ExtResource("2_lirr0")
@@ -1128,6 +1129,7 @@ cancel_frames = Array[int]([3, 15])
 [node name="Hurt" parent="StateMachine/Incapacitated" unique_id=33714673 instance=ExtResource("174_2d3a3")]
 
 [node name="Death" parent="StateMachine/Incapacitated" unique_id=1468380441 instance=ExtResource("175_exqgt")]
+death_animation = &"tumble"
 
 [node name="Physics" type="Node" parent="." unique_id=1034351560]
 
@@ -1163,3 +1165,6 @@ payload = ExtResource("193_aar3h")
 script = ExtResource("191_4ynna")
 hit_box = NodePath("../../Visuals/HitBox")
 payload = ExtResource("194_c8e23")
+
+[node name="Health" parent="." unique_id=1746119955 instance=ExtResource("195_4ynna")]
+max_hp = 200.0

@@ -5,8 +5,32 @@ class_name Actor extends CharacterBody2D
 @export var animation_player: AnimationPlayer
 @export var origin: Node2D
 @export var animation_chain: AnimationChainPlayer
+@export var health: HealthComponent
 
 var current_animation: StringName = &""
+
+
+func _ready() -> void:
+	if health == null:
+		health = get_node_or_null("Health") as HealthComponent
+	if health:
+		health.died.connect(_on_died)
+
+
+func take_damage(amount: float) -> bool:
+	return health != null and health.take_damage(amount)
+
+
+func is_dead() -> bool:
+	return health != null and health.is_dead()
+
+
+func _on_died() -> void:
+	on_death()
+
+
+func on_death() -> void:
+	pass
 
 
 func face_movement():

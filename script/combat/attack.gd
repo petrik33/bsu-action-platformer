@@ -23,6 +23,8 @@ func is_active() -> bool:
 	return _is_active
 
 func _on_hit_box_hit(hurt_box: HurtBox):
+	if not _is_active:
+		return
 	if _targets_hit.has(hurt_box):
 		return
 	var diff = hurt_box.global_position.x - hit_box.global_position.x

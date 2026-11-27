@@ -19,6 +19,7 @@ var last_hurt: AttackData
 
 
 func _ready() -> void:
+	super._ready()
 	rng.seed = int(floorf(global_position.x - global_position.y))
 	hurt_box.hit_received.connect(_on_hit_received)
 	state_machine.initialize(self)
@@ -61,7 +62,19 @@ func set_resistance(value: bool) -> void:
 
 func hurt(payload: AttackData):
 	last_hurt = payload
+	if health:
+		if not health.take_damage(payload.damage):
+			return
+		if health.is_dead():
+			return
 	state_machine.request_transition(&"Hurt")
+
+
+func on_death() -> void:
+	if hurt_box:
+		hurt_box.is_invulnerable = true
+	if state_machine:
+		state_machine.request_transition(&"Death")
 
 
 func _on_hit_received(payload: AttackData):
