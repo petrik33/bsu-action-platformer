@@ -1,7 +1,0 @@
-[gd_scene format=3]
-
-[ext_resource type="Script" path="res://script/hero/states/action/use_gun/hide_gun.gd" id="1_hide_gun"]
-
-[node name="HideGun" type="Node"]
-script = ExtResource("1_hide_gun")
-metadata/_custom_type_script = "uid://cob6ddl21va62"
