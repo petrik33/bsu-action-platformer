@@ -325,6 +325,7 @@ resistance = NodePath("Physics/Resistance")
 patroling = NodePath("Physics/Patroling")
 kinematic = NodePath("Physics/KinematicGrounded")
 attack = NodePath("Components/Attack")
+passive = false
 visuals = NodePath("Visual")
 sprite = NodePath("Visual/AnimatedSprite2D")
 metadata/_custom_type_script = "uid://w23557yemp8u"
