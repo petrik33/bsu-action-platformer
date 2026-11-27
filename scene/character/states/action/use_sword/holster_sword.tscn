@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://de7efv5754n1i"]
+
+[ext_resource type="Script" uid="uid://ba0oi02dhis7w" path="res://script/hero/states/action/holster_sword.gd" id="1_cm5ci"]
+
+[node name="HolsterSword" type="Node" unique_id=1536167405]
+script = ExtResource("1_cm5ci")
+metadata/_custom_type_script = "uid://cob6ddl21va62"

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HorizontalStop" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="HorizontalStop" format=3 uid="uid://by0uf3pc2sak"]
 
 [ext_resource type="Script" uid="uid://cewda2wmnhl21" path="res://script/physics/steering/behavior/horizontal/stop.gd" id="1_stop"]
 

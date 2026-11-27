@@ -1,6 +1,6 @@
 class_name HeroAttackState extends HeroStateBase
 
-@export var lock_speed_multiplier: float = 0.1
+@export var holster_state: StringName = &""
 @export var combo_animations: Array[StringName] = [&"attack", &"attack2", &"attack3"]
 @export var attacks: Array[Attack] = []
 @export var animation_time: Array[float] = [-1.0, -1.0, -1.0]
@@ -12,7 +12,7 @@ var can_cancel: bool = false
 
 
 func enter():
-	if combo_buffered and combo_index < combo_animations.size() - 1:
+	if combo_buffered and not _is_last_in_combo():
 		combo_index += 1
 	else:
 		combo_index = 0
@@ -26,8 +26,6 @@ func exit():
 	attacks[combo_index].end()
 
 func update(_delta: float) -> StringName:
-	hero.move_horizontally(lock_speed_multiplier)
-	
 	if Input.is_action_just_pressed("click"):
 		if can_cancel:
 			_transition(&"Attack")
@@ -49,7 +47,7 @@ func _start_attack():
 	_schedule_cancel(anim_name, time)
 
 func _schedule_cancel(anim_name: StringName, time: float):
-	if combo_index >= combo_animations.size() - 1:
+	if _is_last_in_combo():
 		return
 	if combo_index >= cancel_frames.size():
 		return
@@ -67,4 +65,10 @@ func _on_finished():
 	if combo_buffered:
 		_transition(&"Attack")
 	else:
-		_transition(&"Idle")
+		if holster_state.is_empty() or not _is_last_in_combo():
+			_transition(&"Idle")
+		else:
+			_transition(holster_state)
+
+func _is_last_in_combo():
+	return combo_index == combo_animations.size() - 1

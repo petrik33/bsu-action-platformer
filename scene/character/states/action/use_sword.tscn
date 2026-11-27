@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cr2jnsx5cy0hq"]
+
+[ext_resource type="Script" uid="uid://chppuhc4xw05h" path="res://script/hero/states/action/use_sword.gd" id="1_2vot3"]
+
+[node name="UseSword" type="Node" unique_id=1222858006]
+script = ExtResource("1_2vot3")
+metadata/_custom_type_script = "uid://cob6ddl21va62"

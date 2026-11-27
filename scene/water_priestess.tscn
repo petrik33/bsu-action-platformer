@@ -179,12 +179,13 @@
 [ext_resource type="PackedScene" uid="uid://ciuiv751od242" path="res://scene/character/states/locomotion/airborne/fall.tscn" id="169_yn7hy"]
 [ext_resource type="PackedScene" uid="uid://c5d84xi7jty73" path="res://scene/character/states/action.tscn" id="170_lp3au"]
 [ext_resource type="PackedScene" uid="uid://d0cfhvoyngupi" path="res://scene/character/states/action/roll.tscn" id="171_3kien"]
-[ext_resource type="PackedScene" uid="uid://rphikkm5thmx" path="res://scene/character/states/action/attack.tscn" id="171_lirr0"]
+[ext_resource type="PackedScene" uid="uid://rphikkm5thmx" path="res://scene/character/states/action/use_sword/attack.tscn" id="171_lirr0"]
 [ext_resource type="PackedScene" uid="uid://t40f4mawxn56" path="res://scene/character/states/incapacitated.tscn" id="173_rr87g"]
 [ext_resource type="PackedScene" uid="uid://bexnfq44abe3q" path="res://scene/character/states/incapacitated/hurt.tscn" id="174_2d3a3"]
-[ext_resource type="Resource" path="res://resource/water_priestess/idle_stop.tres" id="174_wtxsk"]
-[ext_resource type="PackedScene" uid="uid://depht2awncffo" path="res://scene/character/states/action/air_attack.tscn" id="175_4q8yv"]
+[ext_resource type="Resource" uid="uid://by0uf3pc2sak" path="res://resource/water_priestess/idle_stop.tres" id="174_wtxsk"]
+[ext_resource type="PackedScene" uid="uid://depht2awncffo" path="res://scene/character/states/action/use_sword/air_attack.tscn" id="175_4q8yv"]
 [ext_resource type="PackedScene" uid="uid://k6fdi54ai135" path="res://scene/character/states/incapacitated/death.tscn" id="175_exqgt"]
+[ext_resource type="PackedScene" uid="uid://cr2jnsx5cy0hq" path="res://scene/character/states/action/use_sword.tscn" id="183_nyfsv"]
 [ext_resource type="Script" uid="uid://67q1hh18rykp" path="res://script/physics/kinematic/grounded.gd" id="186_yn7hy"]
 [ext_resource type="Script" uid="uid://5ekknacs16ny" path="res://script/physics/resistance.gd" id="187_lirr0"]
 [ext_resource type="Script" uid="uid://cfqkwikgws0dr" path="res://script/physics/steering.gd" id="187_lp3au"]
@@ -1113,12 +1114,14 @@ roll_animation = &"tumble"
 
 [node name="Action" parent="StateMachine" unique_id=842032143 instance=ExtResource("170_lp3au")]
 
-[node name="Attack" parent="StateMachine/Action" unique_id=912385043 node_paths=PackedStringArray("attacks") instance=ExtResource("171_lirr0")]
-attacks = [NodePath("../../../Attacks/Attack"), NodePath("../../../Attacks/Attack2"), NodePath("../../../Attacks/Attack3")]
+[node name="UseSword" parent="StateMachine/Action" unique_id=1222858006 instance=ExtResource("183_nyfsv")]
+
+[node name="Attack" parent="StateMachine/Action/UseSword" unique_id=912385043 node_paths=PackedStringArray("attacks") instance=ExtResource("171_lirr0")]
+attacks = [NodePath("../../../../Attacks/Attack"), NodePath("../../../../Attacks/Attack2"), NodePath("../../../../Attacks/Attack3")]
 animation_time = Array[float]([0.45, 0.35, 0.5])
 cancel_frames = Array[int]([3, 15])
 
-[node name="AirAttack" parent="StateMachine/Action" unique_id=1996409664 instance=ExtResource("175_4q8yv")]
+[node name="AirAttack" parent="StateMachine/Action/UseSword" unique_id=1996409664 instance=ExtResource("175_4q8yv")]
 
 [node name="Incapacitated" parent="StateMachine" unique_id=740572724 instance=ExtResource("173_rr87g")]
 

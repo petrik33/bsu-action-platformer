@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dsjj74yffpddg" path="res://scene/character/states/locomotion/grounded/idle.tscn" id="7_ud0a3"]
 [ext_resource type="PackedScene" uid="uid://bejmpipnu481a" path="res://scene/character/states/locomotion/grounded/move.tscn" id="8_0qvrh"]
 [ext_resource type="Texture2D" uid="uid://db4hivmdgb23s" path="res://asset/texture/character/VFX/Holster.png" id="8_k653l"]
+[ext_resource type="Texture2D" uid="uid://ef4cqn5fn8bf" path="res://asset/texture/character/sword/Holster.png" id="8_r534o"]
 [ext_resource type="Texture2D" uid="uid://7nkm45urwwx4" path="res://asset/texture/character/VFX/PrepareReload.png" id="9_h7r1x"]
 [ext_resource type="Texture2D" uid="uid://drpawvpix3toc" path="res://asset/texture/character/VFX/Reload.png" id="10_52oc2"]
 [ext_resource type="Texture2D" uid="uid://crsvke6rwm8kg" path="res://asset/texture/character/VFX/Shoot.png" id="11_5e65o"]
@@ -25,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://ciuiv751od242" path="res://scene/character/states/locomotion/airborne/fall.tscn" id="14_sdelk"]
 [ext_resource type="PackedScene" uid="uid://c5d84xi7jty73" path="res://scene/character/states/action.tscn" id="15_ckk4y"]
 [ext_resource type="PackedScene" uid="uid://d0cfhvoyngupi" path="res://scene/character/states/action/roll.tscn" id="15_x2uf3"]
-[ext_resource type="PackedScene" uid="uid://rphikkm5thmx" path="res://scene/character/states/action/attack.tscn" id="16_3lse3"]
+[ext_resource type="PackedScene" uid="uid://rphikkm5thmx" path="res://scene/character/states/action/use_sword/attack.tscn" id="16_3lse3"]
 [ext_resource type="PackedScene" uid="uid://cl02erl2k84ad" path="res://scene/character/states/action/use_gun/start_aim.tscn" id="17_g6y8q"]
 [ext_resource type="PackedScene" uid="uid://t40f4mawxn56" path="res://scene/character/states/incapacitated.tscn" id="18_7u363"]
 [ext_resource type="PackedScene" uid="uid://bexnfq44abe3q" path="res://scene/character/states/incapacitated/hurt.tscn" id="19_ud0a3"]
@@ -45,6 +46,8 @@
 [ext_resource type="PackedScene" uid="uid://oru2q7f6tago" path="res://scene/character/states/action/use_gun/reload.tscn" id="33_x50mr"]
 [ext_resource type="PackedScene" uid="uid://do2xwq7u1oo5e" path="res://scene/character/states/action/use_gun/start_reload.tscn" id="34_r534o"]
 [ext_resource type="PackedScene" uid="uid://1q3fks28uqks" path="res://scene/character/states/action/use_gun/progress_reload.tscn" id="35_7nkyt"]
+[ext_resource type="PackedScene" uid="uid://cr2jnsx5cy0hq" path="res://scene/character/states/action/use_sword.tscn" id="36_ps0kl"]
+[ext_resource type="PackedScene" uid="uid://de7efv5754n1i" path="res://scene/character/states/action/use_sword/holster_sword.tscn" id="38_0gccd"]
 [ext_resource type="PackedScene" uid="uid://281p5x6mtchc" path="res://scene/common/animation_chain_player.tscn" id="45_x50mr"]
 [ext_resource type="Script" uid="uid://dwvyy140cfqff" path="res://script/common/animation_chain.gd" id="46_r534o"]
 [ext_resource type="Script" uid="uid://dtm3k843uyqn6" path="res://script/combat/gun.gd" id="46_x50mr"]
@@ -653,6 +656,46 @@ region = Rect2(328, 403, 41, 31)
 atlas = ExtResource("2_d7vt2")
 region = Rect2(369, 403, 41, 31)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_66d4x"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(0, 310, 41, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq5vk"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(41, 310, 41, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwtxx"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(82, 310, 41, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrggw"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(123, 310, 41, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sydym"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(164, 310, 41, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oos4v"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(205, 310, 41, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_genwj"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(246, 310, 41, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av8nr"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(287, 310, 41, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqoaf"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(328, 310, 41, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrm8r"]
+atlas = ExtResource("2_d7vt2")
+region = Rect2(369, 310, 41, 31)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qts8n"]
 atlas = ExtResource("2_d7vt2")
 region = Rect2(0, 341, 41, 31)
@@ -1230,6 +1273,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_66d4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq5vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwtxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrggw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sydym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oos4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_genwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av8nr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqoaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrm8r")
+}],
+"loop": 0,
+"name": &"sword_holster",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qts8n")
 }, {
 "duration": 1.0,
@@ -1406,6 +1484,46 @@ region = Rect2(763, 0, 109, 90)
 atlas = ExtResource("5_cnvcp")
 region = Rect2(872, 0, 109, 90)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ra7e8"]
+atlas = ExtResource("8_r534o")
+region = Rect2(0, 0, 109, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfx7l"]
+atlas = ExtResource("8_r534o")
+region = Rect2(109, 0, 109, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26flq"]
+atlas = ExtResource("8_r534o")
+region = Rect2(218, 0, 109, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbw8l"]
+atlas = ExtResource("8_r534o")
+region = Rect2(327, 0, 109, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egjmy"]
+atlas = ExtResource("8_r534o")
+region = Rect2(436, 0, 109, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2wk6"]
+atlas = ExtResource("8_r534o")
+region = Rect2(545, 0, 109, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldccv"]
+atlas = ExtResource("8_r534o")
+region = Rect2(654, 0, 109, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d280"]
+atlas = ExtResource("8_r534o")
+region = Rect2(763, 0, 109, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyun2"]
+atlas = ExtResource("8_r534o")
+region = Rect2(872, 0, 109, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfg8d"]
+atlas = ExtResource("8_r534o")
+region = Rect2(981, 0, 109, 90)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_aqmka"]
 animations = [{
 "frames": [{
@@ -1524,6 +1642,41 @@ animations = [{
 "loop": 0,
 "name": &"attack3",
 "speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ra7e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfx7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26flq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbw8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egjmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2wk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldccv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d280")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyun2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfg8d")
+}],
+"loop": 0,
+"name": &"holster",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wp4yi"]
@@ -2381,6 +2534,69 @@ tracks/4/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_u7j3v"]
+resource_name = "holster_sword"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Base:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"sword_holster"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Base:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sword:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"holster"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Sword:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 12]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Sword:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_nwtxx"]
 resource_name = "prepare_reload"
 tracks/0/type = "value"
@@ -2578,6 +2794,7 @@ _data = {
 &"attack2": SubResource("Animation_0qvrh"),
 &"attack3": SubResource("Animation_cnvcp"),
 &"gun_holster": SubResource("Animation_uq5vk"),
+&"holster_sword": SubResource("Animation_u7j3v"),
 &"prepare_reload": SubResource("Animation_nwtxx"),
 &"reload": SubResource("Animation_rrggw"),
 &"shoot": SubResource("Animation_sydym")
@@ -2656,7 +2873,7 @@ offset = Vector2(2, -15.5)
 visible = false
 position = Vector2(26, -15)
 sprite_frames = SubResource("SpriteFrames_aqmka")
-animation = &"attack3"
+animation = &"holster"
 frame = 1
 
 [node name="VFX" type="AnimatedSprite2D" parent="Visuals" unique_id=671747971]
@@ -2705,6 +2922,7 @@ position = Vector2(2.5, -17.5)
 position = Vector2(90.5, -17.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=10964029]
+callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_p3t0x")
 
 [node name="StateMachine" type="Node" parent="." unique_id=522585884 node_paths=PackedStringArray("initial")]
@@ -2734,10 +2952,6 @@ sprint_threshold = 450.0
 
 [node name="Action" parent="StateMachine" unique_id=842032143 instance=ExtResource("15_ckk4y")]
 
-[node name="Attack" parent="StateMachine/Action" unique_id=912385043 node_paths=PackedStringArray("attacks") instance=ExtResource("16_3lse3")]
-attacks = [NodePath("../../../Attacks/Attack"), NodePath("../../../Attacks/Attack2"), NodePath("../../../Attacks/Attack3")]
-animation_time = Array[float]([0.4, 0.4, 0.4])
-
 [node name="UseGun" parent="StateMachine/Action" unique_id=2072645484 instance=ExtResource("26_h7r1x")]
 
 [node name="Aim" parent="StateMachine/Action/UseGun" unique_id=1538403824 instance=ExtResource("29_f7gb6")]
@@ -2758,6 +2972,16 @@ time = 0.2
 
 [node name="HolsterGun" parent="StateMachine/Action/UseGun" unique_id=509831847 instance=ExtResource("31_pujba")]
 time = 0.4
+
+[node name="UseSword" parent="StateMachine/Action" unique_id=1222858006 instance=ExtResource("36_ps0kl")]
+lock_speed_multiplier = 0.15
+
+[node name="Attack" parent="StateMachine/Action/UseSword" unique_id=912385043 node_paths=PackedStringArray("attacks") instance=ExtResource("16_3lse3")]
+holster_state = &"HolsterSword"
+attacks = [NodePath("../../../../Attacks/Attack"), NodePath("../../../../Attacks/Attack2"), NodePath("../../../../Attacks/Attack3")]
+animation_time = Array[float]([0.3, 0.3, 0.3])
+
+[node name="HolsterSword" parent="StateMachine/Action/UseSword" unique_id=1536167405 instance=ExtResource("38_0gccd")]
 
 [node name="Incapacitated" parent="StateMachine" unique_id=740572724 instance=ExtResource("18_7u363")]
 
