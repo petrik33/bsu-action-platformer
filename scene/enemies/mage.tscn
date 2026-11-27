@@ -283,7 +283,7 @@ metadata/_custom_type_script = "uid://li44jwhydfh1"
 script = ExtResource("18_30p3m")
 metadata/_custom_type_script = "uid://cewda2wmnhl21"
 
-[sub_resource type="Resource" id="Resource_nxtip"]
+[sub_resource type="Resource" id="Resource_30p3m"]
 resource_local_to_scene = true
 script = ExtResource("18_koy3s")
 max_speed = 75.0
@@ -297,7 +297,7 @@ metadata/_custom_type_script = "uid://cewda2wmnhl21"
 script = ExtResource("18_30p3m")
 metadata/_custom_type_script = "uid://cewda2wmnhl21"
 
-[sub_resource type="Resource" id="Resource_amfhk"]
+[sub_resource type="Resource" id="Resource_nxtip"]
 resource_local_to_scene = true
 script = ExtResource("18_koy3s")
 metadata/_custom_type_script = "uid://bbtve5kjayupf"
@@ -306,7 +306,7 @@ metadata/_custom_type_script = "uid://bbtve5kjayupf"
 script = ExtResource("18_30p3m")
 metadata/_custom_type_script = "uid://cewda2wmnhl21"
 
-[sub_resource type="Resource" id="Resource_si4vy"]
+[sub_resource type="Resource" id="Resource_amfhk"]
 resource_local_to_scene = true
 script = ExtResource("22_mn5wp")
 metadata/_custom_type_script = "uid://dshykxflhegna"
@@ -387,11 +387,10 @@ metadata/_custom_type_script = "uid://doq0lhrxpcf22"
 stop_behavior = SubResource("Resource_wgla1")
 
 [node name="Patrol" parent="StateMachine/Passive" unique_id=1114917989 instance=ExtResource("9_srgcj")]
-arrive_behavior = SubResource("Resource_nxtip")
+arrive_behavior = SubResource("Resource_30p3m")
 avoidance_weight = 0.0
 
 [node name="Attack" parent="StateMachine" unique_id=1140714920 node_paths=PackedStringArray("collision_shape") instance=ExtResource("11_i4onk")]
-attack_frame = 5
 collision_shape = NodePath("../../Visual/HitBox/Attack")
 stop_behavior = SubResource("Resource_w0o5q")
 
@@ -399,14 +398,14 @@ stop_behavior = SubResource("Resource_w0o5q")
 
 [node name="Investigate" parent="StateMachine" unique_id=2119018935 instance=ExtResource("13_rtlgi")]
 stop_behavior = SubResource("Resource_mn5wp")
-arrive_behavior = SubResource("Resource_amfhk")
+arrive_behavior = SubResource("Resource_nxtip")
 
 [node name="Alert" parent="StateMachine" unique_id=1829192895 instance=ExtResource("17_0c3hi")]
 stop_behavior = SubResource("Resource_dxho3")
 
 [node name="Chase" parent="StateMachine" unique_id=1942010174 instance=ExtResource("10_8l2p6")]
 run_animation_name = &"walk"
-pursue_behavior = SubResource("Resource_si4vy")
+pursue_behavior = SubResource("Resource_amfhk")
 avoidance_weight = 0.0
 
 [node name="Physics" type="Node" parent="." unique_id=1691308413]
@@ -429,4 +428,3 @@ metadata/_custom_type_script = "uid://5ekknacs16ny"
 script = ExtResource("24_koy3s")
 kinematic = NodePath("../KinematicGrounded")
 metadata/_custom_type_script = "uid://cfqkwikgws0dr"
-

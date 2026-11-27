@@ -13,7 +13,7 @@ func enter():
 		kinematic.dash(Vector2(enemy.last_hurt.knockback.x, 0))
 	enemy.set_resistance(true)
 	enemy.face(-enemy.velocity.x)
-	enemy.play_animation(hurt_animation)
+	enemy.play_animation(hurt_animation, -1.0, true)
 	_state_timer(knockback_time, _on_finished)
 
 func exit():
